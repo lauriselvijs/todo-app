@@ -1,0 +1,11 @@
+@import "../../style/main";
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45vw;
+
+  position: absolute;
+  top: 10vh;
+}

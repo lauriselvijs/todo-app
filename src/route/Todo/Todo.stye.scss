@@ -1,0 +1,12 @@
+@import "../../style/main.scss";
+
+.todo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  height: 100vh;
+  background-color: $very-light-gray;
+}

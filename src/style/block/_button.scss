@@ -1,0 +1,15 @@
+@mixin check-mark-btn($class-name, $top, $left, $checked: false) {
+  .#{$class-name} {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid $light-grayish-blue;
+    width: 20px;
+    height: 20px;
+    top: $top;
+    left: $left;
+    background-image: url("../../asset/image/icon/icon-check.svg"),
+      $check-background;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

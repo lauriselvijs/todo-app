@@ -1,0 +1,10 @@
+@import "../../style/main";
+
+.footer {
+  font-size: $font-size-small;
+  text-align: center;
+
+  & a {
+    color: $footer-color;
+  }
+}

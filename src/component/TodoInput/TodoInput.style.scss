@@ -1,0 +1,34 @@
+@import "../../style/main.scss";
+
+.todo-input {
+  position: relative;
+
+  @include check-mark-btn("circle-check-mark", 20, 22);
+
+  .circle-check-mark {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid $light-grayish-blue;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    left: 22px;
+  }
+
+  input.todo-input-field {
+    width: 545px;
+    height: 60px;
+
+    border-radius: $border-radius;
+    border: none;
+    color: $very-dark-grayish-blue;
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+    padding-left: 70px;
+    caret-color: $bright-blue;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
