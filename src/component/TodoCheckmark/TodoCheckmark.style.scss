@@ -1,0 +1,4 @@
+@import "../../style/main.scss";
+
+@include check-mark-btn("todo-check-mark", 14px, 20px);
+@include check-mark-btn("todo-check-mark-checked", 14px, 20px, true);

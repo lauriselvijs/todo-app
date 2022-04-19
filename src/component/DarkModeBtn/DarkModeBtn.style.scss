@@ -1,4 +1,7 @@
 @import "../../style/main.scss";
 
 .dark-mode-btn {
+  &:hover {
+    transform: scale(1.1);
+  }
 }

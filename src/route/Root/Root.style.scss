@@ -1,4 +1,8 @@
 @import "../../style/main.scss";
 
 .root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

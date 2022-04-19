@@ -1,1 +1,8 @@
 @import "../../style/main.scss";
+
+.todo-input-field {
+  color: $dark-grayish-blue;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-regular;
+  cursor: default;
+}

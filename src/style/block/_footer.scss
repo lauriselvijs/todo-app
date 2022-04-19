@@ -1,0 +1,12 @@
+@mixin todo-footer($class-name, $selected: false) {
+  .#{$class-name} {
+    font-weight: $font-weight-bold;
+    color: if($selected, $bright-blue, $dark-grayish-blue);
+    font-size: $font-size-medium;
+    cursor: pointer;
+
+    &:hover {
+      color: $very-dark-grayish-blue;
+    }
+  }
+}

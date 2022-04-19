@@ -1,11 +1,11 @@
 @import "../../style/main";
 
 .header-wrapper {
+  position: absolute;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 45vw;
+  gap: 415px;
 
-  position: absolute;
   top: 10vh;
 }

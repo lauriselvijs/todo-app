@@ -4,11 +4,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-
-  position: absolute;
-  top: 30vh;
-
-  width: 45vw;
-  height: 45vh;
+  gap: 25px;
 }

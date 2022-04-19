@@ -1,21 +1,27 @@
 @import "../../style/main.scss";
 
 .todo-menu {
-  position: relative;
-
   width: 615px;
   height: fit-content;
   background-color: $white;
+  box-shadow: 0px 10px 20px 5px $light-grayish-blue;
+  padding-top: 10px;
+  border-radius: $border-radius;
 
-  padding-left: 70px;
+  &-separator {
+    border: 1px solid $very-light-grayish-blue;
+  }
 
-  //   .circle-check-mark {
-  //     position: absolute;
-  //     border-radius: 50%;
-  //     border: 1px solid $light-grayish-blue;
-  //     width: 20px;
-  //     height: 20px;
-  //     top: 20px;
-  //     left: 22px;
-  //   }
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    &-center-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
 }

@@ -3,7 +3,9 @@ import "./App.style.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Root from "../../route/Root/Root.component";
 import Todo from "../../route/Todo";
-import { ROOT } from "../../const/Url";
+import { ROOT, NOT_FOUND } from "../../const/Url";
+import Footer from "../Footer";
+import NoMatch from "../../route/NoMatch";
 
 const App = () => {
   return (
@@ -13,7 +15,9 @@ const App = () => {
           <Route path={ROOT} element={<Root />}>
             <Route index element={<Todo />} />
           </Route>
+          <Route path={NOT_FOUND} element={<NoMatch />} />
         </Routes>
+        {/* <Footer /> */}
       </Router>
     </div>
   );

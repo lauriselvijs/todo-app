@@ -7,9 +7,34 @@
     height: 20px;
     top: $top;
     left: $left;
-    background-image: url("../../asset/image/icon/icon-check.svg"),
-      $check-background;
-    background-repeat: no-repeat;
-    background-position: center;
+    z-index: 1;
+    cursor: pointer;
+
+    background-image: if(
+      $checked,
+      (url("../../asset/image/icon/icon-check.svg"), $check-background),
+      none
+    );
+    background-repeat: if($checked, no-repeat, none);
+    background-position: if($checked, center, none);
+
+    @if $checked == false {
+      &:hover {
+        background-image: $check-background;
+        border: none;
+        transform: scale(1.1);
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 1px;
+          right: 1px;
+          bottom: 1px;
+          left: 1px;
+          background-color: $white;
+          border-radius: 50%;
+        }
+      }
+    }
   }
 }
