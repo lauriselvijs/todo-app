@@ -1,12 +1,31 @@
-@mixin todo-footer($class-name, $selected: false) {
+@mixin todo-footer-btn(
+  $class-name,
+  $selected: false,
+  $hover: true,
+  $clickable: true
+) {
   .#{$class-name} {
     font-weight: $font-weight-bold;
     color: if($selected, $bright-blue, $dark-grayish-blue);
     font-size: $font-size-medium;
-    cursor: pointer;
+    cursor: default;
+    background-color: transparent;
+    border: none;
 
-    &:hover {
-      color: $very-dark-grayish-blue;
+    @if ($clickable) {
+      &:hover {
+        cursor: pointer;
+      }
+      &:active {
+        color: $bright-blue;
+      }
+    }
+
+    @if (not $selected and $hover) {
+      &:hover {
+        cursor: pointer;
+        color: $very-dark-grayish-blue;
+      }
     }
   }
 }

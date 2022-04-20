@@ -18,22 +18,10 @@
     background-repeat: if($checked, no-repeat, none);
     background-position: if($checked, center, none);
 
-    @if $checked == false {
+    @if not $checked {
       &:hover {
-        background-image: $check-background;
+        background-image: url("../../asset/image/icon/check-btn-border.svg");
         border: none;
-        transform: scale(1.1);
-
-        &:before {
-          content: "";
-          position: absolute;
-          top: 1px;
-          right: 1px;
-          bottom: 1px;
-          left: 1px;
-          background-color: $white;
-          border-radius: 50%;
-        }
       }
     }
   }

@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TodoShowAllBtn.style.scss";
 
 const TodoShowAllBtn = () => {
-  return <div className="todo-show-all-btn">All</div>;
+  const [todoShowAllClicked, setTodoShowAllClicked] = useState<boolean>(false);
+
+  const onTodoShowAllBtnClick = () => {
+    setTodoShowAllClicked(!todoShowAllClicked);
+  };
+
+  return (
+    <button
+      className={
+        todoShowAllClicked ? "todo-show-all-btn-clicked" : "todo-show-all-btn"
+      }
+      onClick={onTodoShowAllBtnClick}
+    >
+      All
+    </button>
+  );
 };
 
 export default TodoShowAllBtn;

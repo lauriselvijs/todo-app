@@ -2,13 +2,13 @@
 
 .todo-title-link {
   text-decoration: none;
+  cursor: default;
 
   .todo-title {
     font-weight: $font-weight-bold;
     color: $very-light-gray;
     font-size: $font-size-title;
     letter-spacing: 10px;
-    cursor: default;
 
     &:hover {
       transform: scale(1.1);

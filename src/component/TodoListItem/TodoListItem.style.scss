@@ -10,13 +10,15 @@
   list-style: none;
 
   padding-left: 70px;
-  height: 50px;
+  height: 60px;
 
   color: $very-dark-grayish-blue;
   font-size: $font-size-large;
   font-weight: $font-weight-regular;
 
-  .icon-cross {
-    padding-right: 20px;
+  &-completed {
+    @extend .todo-list-item;
+    color: $light-grayish-blue;
+    text-decoration: line-through;
   }
 }

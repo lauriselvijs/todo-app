@@ -7,6 +7,7 @@ import TodoShowAllBtn from "../TodoShowAllBtn";
 import TodoShowActiveBtn from "../TodoShowActiveBtn";
 import TodoShowCompletedBtn from "../TodoShowCompletedBtn";
 import TodoClearCompletedBtn from "../TodoClearCompletedBtn";
+import { DARK_MODE } from "../../const/DarkMode.const";
 
 const todoList = [
   {
@@ -38,11 +39,11 @@ const todoList = [
 
 const TodoMenu = () => {
   return (
-    <div className="todo-menu">
+    <div className={DARK_MODE ? "todo-menu-dark-mode" : "todo-menu"}>
       {todoList.map((todo: ITodoListItem["todo"], index: number) => (
         <div key={index}>
           <TodoListItem todo={todo} />
-          <hr className="todo-menu-separator" />
+          <div className="todo-menu-separator" />
         </div>
       ))}
       <div className="todo-menu-footer">

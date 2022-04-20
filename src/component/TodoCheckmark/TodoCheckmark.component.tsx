@@ -2,16 +2,16 @@ import React from "react";
 import "./TodoCheckmark.style.scss";
 
 const TodoCheckmark = ({
-  active,
+  todoActive,
   onTodoCheckmarkClick,
 }: {
-  active: boolean;
+  todoActive: boolean;
   onTodoCheckmarkClick: () => void;
 }) => {
   return (
     <div
       onClick={onTodoCheckmarkClick}
-      className={active ? "todo-check-mark" : "todo-check-mark-checked"}
+      className={todoActive ? "todo-check-mark" : "todo-check-mark-checked"}
     />
   );
 };

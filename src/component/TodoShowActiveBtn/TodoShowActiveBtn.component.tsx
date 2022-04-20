@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TodoShowActiveBtn.style.scss";
 
 const TodoShowActiveBtn = () => {
-  return <div className="todo-show-active-btn">Active</div>;
+  const [todoShowActiveClicked, setTodoShowActiveClicked] =
+    useState<boolean>(false);
+
+  const onTodoShowActiveBtnClick = () => {
+    setTodoShowActiveClicked(!todoShowActiveClicked);
+  };
+
+  return (
+    <button
+      className={
+        todoShowActiveClicked
+          ? "todo-show-active-btn-clicked"
+          : "todo-show-active-btn"
+      }
+      onClick={onTodoShowActiveBtnClick}
+    >
+      Active
+    </button>
+  );
 };
 
 export default TodoShowActiveBtn;

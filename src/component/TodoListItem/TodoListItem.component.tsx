@@ -3,40 +3,45 @@ import "./TodoListItem.style.scss";
 import { ITodoListItem } from "../../type-definition/ListItem";
 import TodoCheckmark from "../TodoCheckmark";
 import PropTypes from "prop-types";
-import IconCross from "../../asset/image/icon/icon-cross.svg";
+import TodoDeleteBtn from "../DeleteTodoBtn";
 
 const TodoListItem = ({
-  todo: { todoMsg, todoActive: initialActive, todoId },
+  todo: { todoMsg, todoActive: todoInitialActive, todoId },
 }: ITodoListItem) => {
-  const [active, setActive] = useState<boolean>(initialActive);
+  const [todoActive, setTodoActive] = useState<boolean>(todoInitialActive);
   const [showDeleteTodo, setShowDeleteTodo] = useState<boolean>(false);
+  const [todoCompleted, setTodoCompleted] = useState<boolean>(false);
 
   const onTodoCheckmarkClick = () => {
-    setActive(!active);
+    setTodoActive(!todoActive);
   };
 
   const onMouseLeaveTodoItem = () => {
-    setShowDeleteTodo(false);
+    !todoCompleted && setShowDeleteTodo(false);
   };
 
   const onMouseEnterTodoItem = () => {
-    setShowDeleteTodo(true);
+    !todoCompleted && setShowDeleteTodo(true);
+  };
+
+  const onTodoListItemClick = () => {
+    setTodoCompleted(true);
+    setShowDeleteTodo(false);
   };
 
   return (
     <div
-      className="todo-list-item"
+      className={todoCompleted ? "todo-list-item-completed" : "todo-list-item"}
       onMouseEnter={onMouseEnterTodoItem}
       onMouseLeave={onMouseLeaveTodoItem}
+      onClick={onTodoListItemClick}
     >
       <TodoCheckmark
-        active={active}
+        todoActive={todoActive}
         onTodoCheckmarkClick={onTodoCheckmarkClick}
       />
       {todoMsg}
-      {showDeleteTodo && (
-        <img src={IconCross} alt="Icon cross" className="icon-cross" />
-      )}
+      {showDeleteTodo && <TodoDeleteBtn />}
     </div>
   );
 };

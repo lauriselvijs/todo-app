@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import "./TodoInput.style.scss";
 import TodoCheckmark from "../TodoCheckmark";
+import { DARK_MODE } from "../../const/DarkMode.const";
 
 const TodoInput = () => {
   const [todoInput, setTodoInput] = useState<string>("");
@@ -23,14 +24,17 @@ const TodoInput = () => {
   return (
     <div className="todo-input" title="Press &ldquo;Enter&ldquo; to Add Todo">
       <TodoCheckmark
-        active={active}
+        todoActive={active}
         onTodoCheckmarkClick={onTodoCheckmarkClick}
       />
       <input
         type="text"
+        placeholder="Create a new todo..."
         value={todoInput}
         onChange={onTodoInputChange}
-        className="todo-input-field"
+        className={
+          DARK_MODE ? "todo-input-field-dark-mode" : "todo-input-field"
+        }
         onKeyPress={handleAddTodoOnEnterKeyPress}
       />
     </div>

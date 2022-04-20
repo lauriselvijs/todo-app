@@ -2,9 +2,10 @@
 
 .footer {
   position: static;
-  left: 0;
-  bottom: 20px;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
   font-size: $font-size-small;
   text-align: center;
 

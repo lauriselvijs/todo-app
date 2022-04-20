@@ -1,4 +1,4 @@
 @import "../../style/main.scss";
 
-@include todo-footer("todo-show-completed-btn");
-@include todo-footer("todo-show-completed-btn-selected", true);
+@include todo-footer-btn("todo-show-completed-btn");
+@include todo-footer-btn("todo-show-completed-btn-clicked", $selected: true);

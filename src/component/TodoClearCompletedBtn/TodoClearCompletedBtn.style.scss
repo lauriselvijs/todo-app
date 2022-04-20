@@ -1,4 +1,3 @@
 @import "../../style/main.scss";
 
-@include todo-footer("todo-clear-completed-btn");
-@include todo-footer("todo-clear-completed-btn-selected", true);
+@include todo-footer-btn("todo-clear-completed-btn", $hover: false);

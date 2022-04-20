@@ -1,27 +1,41 @@
 @import "../../style/main.scss";
 
-.todo-menu {
-  width: 615px;
-  height: fit-content;
-  background-color: $white;
-  box-shadow: 0px 10px 20px 5px $light-grayish-blue;
-  padding-top: 10px;
-  border-radius: $border-radius;
+@mixin todo-menu($class-name, $dark-mode: false) {
+  .#{$class-name} {
+    width: 615px;
+    height: fit-content;
+    background-color: if(
+      $dark-mode,
+      $dark-theme-very-light-desaturated-blue,
+      $white
+    );
+    box-shadow: 0px 10px 20px 5px
+      if($dark-mode, $dark-theme-very-dark-blue, $light-grayish-blue);
+    border-radius: $border-radius;
 
-  &-separator {
-    border: 1px solid $very-light-grayish-blue;
-  }
+    .todo-menu-separator {
+      border: 1px solid
+        if(
+          $dark-mode,
+          $dark-theme-very-dark-grayish-blue-light,
+          $very-light-grayish-blue
+        );
+    }
 
-  &-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-
-    &-center-section {
+    .todo-menu-footer {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      padding: 15px 20px;
+
+      .todo-menu-center-section {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
     }
   }
 }
+
+@include todo-menu("todo-menu");
+@include todo-menu("todo-menu-dark-mode", $dark-mode: true);

@@ -1,7 +1,15 @@
 @import "../../style/main.scss";
 
-body {
-  margin: 0;
-  font-family: $font-family;
-  background-color: $very-light-gray;
+@mixin app-body($dark-mode: false) {
+  body {
+    margin: 0;
+    font-family: $font-family;
+    background-color: if(
+      $dark-mode,
+      $dark-theme-very-dark-blue,
+      $very-light-gray
+    );
+  }
 }
+
+@include app-body($dark-mode: var(--dark-mode));
