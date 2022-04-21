@@ -1,5 +1,10 @@
 @import "../../style/main.scss";
 
-.todo-delete-btn {
-  padding-right: 20px;
+@mixin todo-delete-btn($class-name, $dark-mode: false) {
+  .#{$class-name} {
+    padding-right: 20px;
+  }
 }
+
+@include todo-delete-btn("todo-delete-btn");
+@include todo-delete-btn("todo-delete-btn-dark-mode", $dark-mode: true);

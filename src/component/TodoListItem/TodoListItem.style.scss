@@ -1,24 +1,37 @@
 @import "../../style/main.scss";
 
-.todo-list-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
+@mixin todo-list-item($class-name, $dark-mode: false) {
+  .#{$class-name} {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
 
-  list-style: none;
+    list-style: none;
 
-  padding-left: 70px;
-  height: 60px;
+    padding-left: 70px;
+    height: 60px;
 
-  color: $very-dark-grayish-blue;
-  font-size: $font-size-large;
-  font-weight: $font-weight-regular;
+    color: if(
+      $dark-mode,
+      $dark-theme-light-grayish-blue,
+      $very-dark-grayish-blue
+    );
+    font-size: $font-size-large;
+    font-weight: $font-weight-regular;
 
-  &-completed {
-    @extend .todo-list-item;
-    color: $light-grayish-blue;
-    text-decoration: line-through;
+    &-completed {
+      @extend .#{$class-name};
+      color: if(
+        $dark-mode,
+        $dark-theme-very-dark-grayish-blue-light,
+        $light-grayish-blue
+      );
+      text-decoration: line-through;
+    }
   }
 }
+
+@include todo-list-item("todo-list-item");
+@include todo-list-item("todo-list-item-dark-mode", $dark-mode: true);

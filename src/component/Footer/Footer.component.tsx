@@ -1,9 +1,10 @@
 import React from "react";
 import "./Footer.style.scss";
+import { DARK_MODE } from "../../const/DarkMode.const";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className={DARK_MODE ? "footer-dark-mode" : "footer"}>
       Challenge by &nbsp;
       <a
         rel="noreferrer"

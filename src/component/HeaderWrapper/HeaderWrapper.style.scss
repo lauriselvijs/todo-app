@@ -9,3 +9,9 @@
 
   top: 5vh;
 }
+
+@include mobile {
+  .header-wrapper {
+    gap: 120px;
+  }
+}

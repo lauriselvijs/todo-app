@@ -3,17 +3,11 @@
 @mixin todo-menu($class-name, $dark-mode: false) {
   .#{$class-name} {
     width: 615px;
-    height: fit-content;
-    background-color: if(
-      $dark-mode,
-      $dark-theme-very-light-desaturated-blue,
-      $white
-    );
-    box-shadow: 0px 10px 20px 5px
-      if($dark-mode, $dark-theme-very-dark-blue, $light-grayish-blue);
-    border-radius: $border-radius;
 
-    .todo-menu-separator {
+    // height: fit-content;
+    @include menu-box($dark-mode: $dark-mode);
+
+    &-separator {
       border: 1px solid
         if(
           $dark-mode,
@@ -22,16 +16,46 @@
         );
     }
 
-    .todo-menu-footer {
+    &-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 20px;
 
-      .todo-menu-center-section {
+      &-center-section {
         display: flex;
         align-items: center;
         gap: 10px;
+      }
+    }
+  }
+
+  @include mobile {
+    .#{$class-name} {
+      width: 320px;
+      position: relative;
+
+      &-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+
+        &-center-section {
+          position: absolute;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          left: 0px;
+          top: 380px;
+
+          width: 320px;
+          height: 50px;
+
+          @include menu-box($dark-mode: $dark-mode);
+        }
       }
     }
   }

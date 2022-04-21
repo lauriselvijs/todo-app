@@ -5,10 +5,11 @@ import HeaderWrapper from "../../component/HeaderWrapper";
 import TodoHero from "../../component/TodoHero";
 import TodoTitle from "../../component/TodoTItle";
 import "./Root.style.scss";
+import { DARK_MODE } from "../../const/DarkMode.const";
 
 const Root = () => {
   return (
-    <main className="root">
+    <main className={DARK_MODE ? "root-dark-mode" : "root"}>
       <TodoHero />
       <HeaderWrapper>
         <TodoTitle />

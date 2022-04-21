@@ -43,14 +43,30 @@ const TodoMenu = () => {
       {todoList.map((todo: ITodoListItem["todo"], index: number) => (
         <div key={index}>
           <TodoListItem todo={todo} />
-          <div className="todo-menu-separator" />
+          <div
+            className={
+              DARK_MODE
+                ? "todo-menu-dark-mode-separator"
+                : "todo-menu-separator"
+            }
+          />
         </div>
       ))}
-      <div className="todo-menu-footer">
+      <div
+        className={
+          DARK_MODE ? "todo-menu-dark-mode-footer" : "todo-menu-footer"
+        }
+      >
         <div className="todo-menu-footer-left-section">
           <TodoInputCount />
         </div>
-        <div className="todo-menu-footer-center-section">
+        <div
+          className={
+            DARK_MODE
+              ? "todo-menu-dark-mode-footer-center-section"
+              : "todo-menu-footer-center-section"
+          }
+        >
           <TodoShowAllBtn />
           <TodoShowActiveBtn />
           <TodoShowCompletedBtn />

@@ -36,6 +36,12 @@
       color: $dark-grayish-blue;
     }
   }
+
+  @include mobile {
+    input.#{$class-name} {
+      width: 250px;
+    }
+  }
 }
 
 .todo-input {

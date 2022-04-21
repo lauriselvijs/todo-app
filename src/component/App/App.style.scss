@@ -1,15 +1,6 @@
 @import "../../style/main.scss";
 
-@mixin app-body($dark-mode: false) {
-  body {
-    margin: 0;
-    font-family: $font-family;
-    background-color: if(
-      $dark-mode,
-      $dark-theme-very-dark-blue,
-      $very-light-gray
-    );
-  }
+body {
+  margin: 0;
+  font-family: $font-family;
 }
-
-@include app-body($dark-mode: var(--dark-mode));

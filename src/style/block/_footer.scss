@@ -2,15 +2,21 @@
   $class-name,
   $selected: false,
   $hover: true,
-  $clickable: true
+  $clickable: true,
+  $dark-mode: false
 ) {
   .#{$class-name} {
     font-weight: $font-weight-bold;
-    color: if($selected, $bright-blue, $dark-grayish-blue);
     font-size: $font-size-medium;
     cursor: default;
     background-color: transparent;
     border: none;
+
+    color: if(
+      $dark-mode,
+      if($selected, $bright-blue, $dark-theme-dark-grayish-blue),
+      if($selected, $bright-blue, $dark-grayish-blue)
+    );
 
     @if ($clickable) {
       &:hover {
@@ -24,7 +30,11 @@
     @if (not $selected and $hover) {
       &:hover {
         cursor: pointer;
-        color: $very-dark-grayish-blue;
+        color: if(
+          $dark-mode,
+          $dark-theme-dark-grayish-blue-hover,
+          $very-dark-grayish-blue
+        );
       }
     }
   }

@@ -4,6 +4,7 @@ import { ITodoListItem } from "../../type-definition/ListItem";
 import TodoCheckmark from "../TodoCheckmark";
 import PropTypes from "prop-types";
 import TodoDeleteBtn from "../DeleteTodoBtn";
+import { DARK_MODE } from "../../const/DarkMode.const";
 
 const TodoListItem = ({
   todo: { todoMsg, todoActive: todoInitialActive, todoId },
@@ -31,17 +32,26 @@ const TodoListItem = ({
 
   return (
     <div
-      className={todoCompleted ? "todo-list-item-completed" : "todo-list-item"}
+      className={
+        DARK_MODE
+          ? todoCompleted
+            ? "todo-list-item-dark-mode-completed"
+            : "todo-list-item-dark-mode"
+          : todoCompleted
+          ? "todo-list-item-completed"
+          : "todo-list-item"
+      }
       onMouseEnter={onMouseEnterTodoItem}
       onMouseLeave={onMouseLeaveTodoItem}
-      onClick={onTodoListItemClick}
     >
       <TodoCheckmark
         todoActive={todoActive}
         onTodoCheckmarkClick={onTodoCheckmarkClick}
       />
       {todoMsg}
-      {showDeleteTodo && <TodoDeleteBtn />}
+      {showDeleteTodo && (
+        <TodoDeleteBtn onTodoDeleteBtnClick={onTodoListItemClick} />
+      )}
     </div>
   );
 };
