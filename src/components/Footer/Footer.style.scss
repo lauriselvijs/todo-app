@@ -1,0 +1,9 @@
+@import "../../style/main";
+
+.footer {
+  @include footer-style;
+
+  &-dark-mode {
+    @include footer-style($dark-mode: true);
+  }
+}

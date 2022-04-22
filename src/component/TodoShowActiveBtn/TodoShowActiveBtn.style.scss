@@ -1,4 +1,0 @@
-@import "../../style/main.scss";
-
-@include todo-footer-btn("todo-show-active-btn");
-@include todo-footer-btn("todo-show-active-btn-clicked", $selected: true);

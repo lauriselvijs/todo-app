@@ -1,0 +1,17 @@
+@import "../../style/main.scss";
+
+.todo-input-count {
+  @include todo-footer-btn-style(
+    $hover: false,
+    $clickable: false,
+    $dark-mode: true
+  );
+
+  &-dark-mode {
+    @include todo-footer-btn-style(
+      $hover: false,
+      $clickable: false,
+      $dark-mode: true
+    );
+  }
+}

@@ -1,0 +1,33 @@
+@mixin todo-input-field-style($dark-mode: false) {
+  input {
+    width: 545px;
+    height: 60px;
+    padding-left: 70px;
+    cursor: text;
+    font-family: $font-family;
+    border-radius: $border-radius;
+    border: none;
+    font-size: $font-size-large;
+    font-weight: $font-weight-regular;
+    caret-color: $bright-blue;
+
+    color: if(
+      $dark-mode,
+      $dark-theme-light-grayish-blue,
+      $very-dark-grayish-blue
+    );
+
+    background-color: if(
+      $dark-mode,
+      $dark-theme-very-light-desaturated-blue,
+      none
+    );
+
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $dark-grayish-blue;
+    }
+  }
+}

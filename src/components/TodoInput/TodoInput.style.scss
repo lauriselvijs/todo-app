@@ -1,0 +1,16 @@
+@import "../../style/main.scss";
+
+.todo-input {
+  position: relative;
+
+  @include todo-input-field-style;
+  @include todo-input-field-style($dark-mode: true);
+}
+
+@include mobile {
+  .todo-input {
+    input {
+      width: 250px;
+    }
+  }
+}

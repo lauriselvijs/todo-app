@@ -1,0 +1,17 @@
+@import "../../style/main.scss";
+
+.todo-list-item {
+  @include todo-list-item-style;
+
+  &-completed {
+    @include todo-list-item-completed-style;
+  }
+}
+
+.todo-list-item-dark-mode {
+  @include todo-list-item-style($dark-mode: true);
+
+  &-completed {
+    @include todo-list-item-completed-style($dark-mode: true);
+  }
+}

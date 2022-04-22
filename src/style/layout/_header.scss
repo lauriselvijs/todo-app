@@ -1,0 +1,13 @@
+header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 415px;
+  top: 5vh;
+}
+
+@include mobile {
+  header {
+    gap: 120px;
+  }
+}

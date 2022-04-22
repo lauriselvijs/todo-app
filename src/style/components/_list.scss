@@ -1,0 +1,29 @@
+@mixin todo-list-item-style($dark-mode: false) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  padding-left: 70px;
+  height: 60px;
+  font-size: $font-size-large;
+  font-weight: $font-weight-regular;
+
+  color: if(
+    $dark-mode,
+    $dark-theme-light-grayish-blue,
+    $very-dark-grayish-blue
+  );
+}
+
+@mixin todo-list-item-completed-style($dark-mode: false) {
+  @include todo-list-item-style;
+  color: if(
+    $dark-mode,
+    $dark-theme-very-dark-grayish-blue-light,
+    $light-grayish-blue
+  );
+
+  text-decoration: line-through;
+}

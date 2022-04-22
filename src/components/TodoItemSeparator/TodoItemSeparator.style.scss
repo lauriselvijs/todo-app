@@ -1,0 +1,9 @@
+@import "../../style/main.scss";
+
+.todo-menu-separator {
+  @include todo-menu-separator-style;
+
+  &-dark-mode {
+    @include todo-menu-separator-style($dark-mode: true);
+  }
+}

@@ -1,0 +1,13 @@
+@mixin todo-menu-style($dark-mode: false) {
+  width: 615px;
+
+  background-color: if(
+    $dark-mode,
+    $dark-theme-very-light-desaturated-blue,
+    $white
+  );
+
+  box-shadow: 0px 10px 20px 5px
+    if($dark-mode, $dark-theme-very-dark-blue, $light-grayish-blue);
+  border-radius: $border-radius;
+}

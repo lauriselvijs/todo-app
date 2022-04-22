@@ -1,0 +1,21 @@
+@mixin no-match-style($dark-mode: false) {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: $font-weight-bold;
+  color: if(
+    $dark-mode,
+    $dark-theme-light-grayish-blue,
+    $very-dark-grayish-blue
+  );
+  background-color: if(
+    $dark-mode,
+    $dark-theme-very-dark-blue,
+    $very-light-gray
+  );
+  font-size: $font-size-title;
+  letter-spacing: 10px;
+  cursor: default;
+  height: 96vh;
+}

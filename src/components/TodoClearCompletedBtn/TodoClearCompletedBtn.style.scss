@@ -1,0 +1,9 @@
+@import "../../style/main.scss";
+
+.todo-clear-completed-btn {
+  @include todo-footer-btn-style($hover: false);
+
+  &-dark-mode {
+    @include todo-footer-btn-style($hover: false, $dark-mode: true);
+  }
+}

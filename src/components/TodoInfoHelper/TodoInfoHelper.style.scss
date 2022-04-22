@@ -1,0 +1,8 @@
+@import "../../style/main.scss";
+
+.todo-info-helper {
+  @include todo-helper-msg-style;
+  &-dark-mode {
+    @include todo-helper-msg-style($dark-mode: true);
+  }
+}
