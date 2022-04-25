@@ -33,8 +33,3 @@ $dark-theme-footer-color: invert(hsl(228, 45%, 44%));
 
 // Border //
 $border-radius: 5px;
-
-:export {
-  BgDark: $dark-theme-very-dark-blue;
-  BgWhite: $very-light-grayish-blue;
-}

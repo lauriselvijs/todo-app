@@ -1,7 +1,23 @@
 @import "./typography";
 @import "./fonts";
 
+:root {
+  --main-bg-color: var(--imported-main-bg-color, #{$very-light-grayish-blue});
+}
+
+.dark-theme {
+  --main-bg-color: var(
+    --dark-theme-imported-main-bg-color,
+    #{$dark-theme-very-dark-blue}
+  );
+}
+
 body {
   margin: 0;
   font-family: $font-family;
+  background-color: var(--main-bg-color);
+}
+
+:export {
+  darkTheme: dark-theme;
 }

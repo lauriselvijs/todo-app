@@ -6,3 +6,12 @@
     @include todo-helper-msg-style($dark-mode: true);
   }
 }
+
+@include mobile {
+  .todo-info-helper,
+  .todo-info-helper-dark-mode {
+    position: absolute;
+    top: 75vh;
+    z-index: -1;
+  }
+}

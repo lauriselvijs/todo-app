@@ -1,3 +1,3 @@
 export interface IWrapper {
-  children: ReactChild | ReactChildren;
+  children: ReactChild[];
 }

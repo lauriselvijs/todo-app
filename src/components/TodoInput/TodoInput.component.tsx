@@ -22,7 +22,10 @@ const TodoInput = () => {
   };
 
   return (
-    <div className="todo-input" title="Press &ldquo;Enter&ldquo; to Add Todo">
+    <div
+      className={DARK_MODE ? "todo-input-dark-mode" : "todo-input"}
+      title="Press &ldquo;Enter&ldquo; to Add Todo"
+    >
       <TodoCheckmark
         todoActive={active}
         onTodoCheckmarkClick={onTodoCheckmarkClick}
@@ -32,9 +35,7 @@ const TodoInput = () => {
         placeholder="Create a new todo..."
         value={todoInput}
         onChange={onTodoInputChange}
-        className={
-          DARK_MODE ? "todo-input-field-dark-mode" : "todo-input-field"
-        }
+        className="todo-input-field"
         onKeyPress={handleAddTodoOnEnterKeyPress}
       />
     </div>

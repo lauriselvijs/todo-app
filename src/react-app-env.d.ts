@@ -10,7 +10,11 @@ declare module "*.jpg" {
   export default value;
 }
 
+interface ITheme {
+  [key: string]: string;
+}
+
 declare module "*.scss" {
-  const value: any;
+  const value: ITheme;
   export default value;
 }

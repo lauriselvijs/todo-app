@@ -35,14 +35,18 @@ const todoList = [
 ];
 
 const TodoMenu = () => {
+  const todoComponentArray = todoList.map(
+    (todo: ITodoListItem["todo"], index: number) => (
+      <div key={index}>
+        <TodoListItem todo={todo} />
+        <TodoItemSeparator />
+      </div>
+    )
+  );
+
   return (
     <div className={DARK_MODE ? "todo-menu-dark-mode" : "todo-menu"}>
-      {todoList.map((todo: ITodoListItem["todo"], index: number) => (
-        <div key={index}>
-          <TodoListItem todo={todo} />
-          <TodoItemSeparator />
-        </div>
-      ))}
+      {todoComponentArray}
       <TodoMenuFooter />
     </div>
   );
