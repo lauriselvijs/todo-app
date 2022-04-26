@@ -8,6 +8,8 @@ import { DARK_MODE } from "../../constants/DarkMode.const";
 
 const TodoListItem = ({
   todo: { todoMsg, todoActive: todoInitialActive, todoId },
+  provided: { innerRef, draggableProps, dragHandleProps },
+  snapshot,
 }: ITodoListItem) => {
   const [todoActive, setTodoActive] = useState<boolean>(todoInitialActive);
   const [showDeleteTodo, setShowDeleteTodo] = useState<boolean>(false);
@@ -43,6 +45,10 @@ const TodoListItem = ({
       }
       onMouseEnter={onMouseEnterTodoItem}
       onMouseLeave={onMouseLeaveTodoItem}
+      ref={innerRef}
+      snapshot={snapshot}
+      {...draggableProps}
+      {...dragHandleProps}
     >
       <TodoCheckmark
         todoActive={todoActive}

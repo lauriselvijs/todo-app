@@ -8,6 +8,10 @@
   @include todo-menu-style($dark-mode: true);
 }
 
+.todo-item-container {
+  min-height: calc(var(--todo-list-item-length) * 60px);
+}
+
 @include mobile {
   .todo-menu,
   .todo-menu-dark-mode {

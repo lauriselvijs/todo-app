@@ -10,12 +10,13 @@ const TodoDeleteBtn = ({
   onTodoDeleteBtnClick: () => void;
 }) => {
   return (
-    <img
-      src={DARK_MODE ? IconCrossDarkMode : IconCross}
-      alt="Icon cross"
-      className="todo-delete-btn"
-      onClick={onTodoDeleteBtnClick}
-    />
+    <button className="todo-delete-btn" onClick={onTodoDeleteBtnClick}>
+      <img
+        src={DARK_MODE ? IconCrossDarkMode : IconCross}
+        alt="Icon cross"
+        className="todo-delete-btn-img"
+      />
+    </button>
   );
 };
 

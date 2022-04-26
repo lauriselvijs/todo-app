@@ -1,8 +1,0 @@
-@mixin todo-menu-separator-style($dark-mode: false) {
-  border: 1px solid
-    if(
-      $dark-mode,
-      $dark-theme-very-dark-grayish-blue-light,
-      $very-light-grayish-blue
-    );
-}

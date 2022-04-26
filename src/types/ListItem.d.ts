@@ -4,4 +4,6 @@ export interface ITodoListItem {
     todoMsg: string;
     todoActive: boolean;
   };
+  provided: DraggableProvided;
+  snapshot: DraggableStateSnapshot;
 }
