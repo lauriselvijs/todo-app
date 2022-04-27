@@ -2,13 +2,17 @@ import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import "./TodoInput.style.scss";
 import TodoCheckmark from "../TodoCheckmark";
 import { DARK_MODE } from "../../constants/DarkMode.const";
+import { addTodo } from "../../store/features/TodoItems/todoItems.slice";
+import { useDispatch } from "react-redux";
 
 const TodoInput = () => {
   const [todoInput, setTodoInput] = useState<string>("");
-  const [active, setActive] = useState<boolean>(true);
+  const [todoActive, setTodoActive] = useState<boolean>(true);
+
+  const dispatch = useDispatch();
 
   const onTodoCheckmarkClick = () => {
-    setActive(!active);
+    setTodoActive(!todoActive);
   };
 
   const onTodoInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -16,8 +20,9 @@ const TodoInput = () => {
   };
 
   const handleAddTodoOnEnterKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      console.log("enter pressed");
+    if (e.key === "Enter" && todoInput) {
+      console.log(todoActive);
+      dispatch(addTodo({ todoMsg: todoInput, todoActive }));
     }
   };
 
@@ -27,7 +32,7 @@ const TodoInput = () => {
       title="Press &ldquo;Enter&ldquo; to Add Todo"
     >
       <TodoCheckmark
-        todoActive={active}
+        todoActive={todoActive}
         onTodoCheckmarkClick={onTodoCheckmarkClick}
       />
       <input

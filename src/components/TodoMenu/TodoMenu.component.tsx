@@ -11,36 +11,11 @@ import {
   DropResult,
   DroppableProvided,
 } from "react-beautiful-dnd";
-
-const todoList = [
-  {
-    todoId: "1",
-    todoMsg: "Finnish homework",
-    todoActive: true,
-  },
-  {
-    todoId: "2",
-    todoMsg: "Shopping1",
-    todoActive: false,
-  },
-  {
-    todoId: "3",
-    todoMsg: "Shopping2",
-    todoActive: false,
-  },
-  {
-    todoId: "4",
-    todoMsg: "Shopping3",
-    todoActive: false,
-  },
-  {
-    todoId: "5",
-    todoMsg: "Shopping4",
-    todoActive: false,
-  },
-];
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
 
 const TodoMenu = () => {
+  const todoList = useSelector((state: RootState) => state.todos.todoList);
   const [todoItems, setTodoItems] = useState<ITodoListItem["todo"][]>(todoList);
 
   const onDragEnd = (result: DropResult): void => {
@@ -54,7 +29,7 @@ const TodoMenu = () => {
     }
   };
 
-  const todoComponentArray = todoItems.map(
+  const todoComponentArray = todoList.map(
     (todo: ITodoListItem["todo"], index: number) => (
       <div key={index}>
         <Draggable key={todo.todoId} draggableId={todo.todoId} index={index}>
@@ -86,7 +61,7 @@ const TodoMenu = () => {
             </div>
           )}
         </Droppable>
-        <TodoMenuFooter />
+        {todoList.length !== 0 && <TodoMenuFooter />}
       </div>
     </DragDropContext>
   );
