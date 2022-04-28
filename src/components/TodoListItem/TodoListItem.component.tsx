@@ -7,41 +7,30 @@ import TodoDeleteBtn from "../DeleteTodoBtn";
 import { DARK_MODE } from "../../constants/DarkMode.const";
 
 const TodoListItem = ({
-  todo: { todoMsg, todoActive: todoInitialActive, todoId },
+  todo: { todoMsg, todoActive, todoId },
   provided: { innerRef, draggableProps, dragHandleProps },
   snapshot,
 }: ITodoListItem) => {
-  const [todoActive, setTodoActive] = useState<boolean>(todoInitialActive);
   const [showDeleteTodo, setShowDeleteTodo] = useState<boolean>(false);
-  const [todoCompleted, setTodoCompleted] = useState<boolean>(false);
-
-  const onTodoCheckmarkClick = () => {
-    setTodoActive(!todoActive);
-  };
 
   const onMouseLeaveTodoItem = () => {
-    !todoCompleted && setShowDeleteTodo(false);
+    setShowDeleteTodo(false);
   };
 
   const onMouseEnterTodoItem = () => {
-    !todoCompleted && setShowDeleteTodo(true);
-  };
-
-  const onTodoListItemClick = () => {
-    setTodoCompleted(true);
-    setShowDeleteTodo(false);
+    setShowDeleteTodo(true);
   };
 
   return (
     <div
       className={
         DARK_MODE
-          ? todoCompleted
-            ? "todo-list-item-dark-mode-completed"
-            : "todo-list-item-dark-mode"
-          : todoCompleted
-          ? "todo-list-item-completed"
-          : "todo-list-item"
+          ? todoActive
+            ? "todo-list-item-dark-mode"
+            : "todo-list-item-dark-mode-completed"
+          : todoActive
+          ? "todo-list-item"
+          : "todo-list-item-completed"
       }
       onMouseEnter={onMouseEnterTodoItem}
       onMouseLeave={onMouseLeaveTodoItem}
@@ -50,14 +39,9 @@ const TodoListItem = ({
       {...draggableProps}
       {...dragHandleProps}
     >
-      <TodoCheckmark
-        todoActive={todoActive}
-        onTodoCheckmarkClick={onTodoCheckmarkClick}
-      />
+      <TodoCheckmark todoId={todoId} todoActive={todoActive} />
       {todoMsg}
-      {showDeleteTodo && (
-        <TodoDeleteBtn onTodoDeleteBtnClick={onTodoListItemClick} />
-      )}
+      {showDeleteTodo && <TodoDeleteBtn todoId={todoId} />}
     </div>
   );
 };

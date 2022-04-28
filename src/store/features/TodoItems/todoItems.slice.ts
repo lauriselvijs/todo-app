@@ -1,7 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import { todoOptions } from "../../../constants/TodoMenu.const";
+import { ITodoListItem } from "../../../types/ListItem";
 import { initialState } from "./todoItems.initial-state";
 import { IaddTodo } from "./todoItems.reducer";
+
+const { TODO_OPTION_ALL, TODO_OPTION_COMPLETED, TODO_OPTION_ACTIVE } =
+  todoOptions;
 
 export const todoItems = createSlice({
   name: "todoItems",
@@ -11,17 +16,70 @@ export const todoItems = createSlice({
       state,
       { payload: { todoMsg, todoActive } }: PayloadAction<IaddTodo["todo"]>
     ) => {
-      state.todoList.push({ todoId: uuidv4(), todoMsg, todoActive });
+      state.todoList = [
+        ...state.todoList,
+        { todoId: uuidv4(), todoMsg, todoActive },
+      ];
     },
-    // deleteTodo: (
-    //   state,
-    //   { payload: { todoMsg, todoActive } }: PayloadAction<IaddTodo["todo"]>
-    // ) => {
-    //   state.todoList.push({ todoId: uuidv4(), todoMsg, todoActive });
-    // },
+    deleteTodo: (state, action: PayloadAction<string>) => {
+      {
+        state.todoList = state.todoList.filter(
+          (todo) => todo.todoId !== action.payload
+        );
+      }
+    },
+    setActiveTodo: (
+      state,
+      {
+        payload: { todoId, todoActive },
+      }: PayloadAction<{ todoId: string; todoActive: boolean }>
+    ) => {
+      {
+        state.todoList = state.todoList.map((todo) => {
+          if (todo.todoId === todoId) {
+            return { ...todo, todoActive };
+          }
+          return todo;
+        });
+      }
+    },
+    setNewActiveTodoInput: (state, action: PayloadAction<boolean>) => {
+      state.todoActiveInput = action.payload;
+    },
+    setNewTodoOrder: (
+      state,
+      action: PayloadAction<ITodoListItem["todo"][]>
+    ) => {
+      state.todoList = [...action.payload];
+    },
+    clearCompletedTodos: (state) => {
+      state.todoList = state.todoList.filter((todo) => {
+        return todo.todoActive === true;
+      });
+    },
+    setTodoOptionAll: (state) => {
+      state.todoOption = TODO_OPTION_ALL;
+    },
+    setTodoOptionCompleted: (state) => {
+      state.todoOption = TODO_OPTION_COMPLETED;
+    },
+    setTodoOptionActive: (state) => {
+      state.todoOption = TODO_OPTION_ACTIVE;
+      state.todoList = state.todoList.filter((todo) => todo.todoActive);
+    },
   },
 });
 
-export const { addTodo } = todoItems.actions;
+export const {
+  addTodo,
+  deleteTodo,
+  setActiveTodo,
+  setNewActiveTodoInput,
+  setNewTodoOrder,
+  clearCompletedTodos,
+  setTodoOptionAll,
+  setTodoOptionCompleted,
+  setTodoOptionActive,
+} = todoItems.actions;
 
 export default todoItems.reducer;

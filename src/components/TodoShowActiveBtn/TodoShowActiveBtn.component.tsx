@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import "./TodoShowActiveBtn.style.scss";
 import { DARK_MODE } from "../../constants/DarkMode.const";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
+import { todoOptions } from "../../constants/TodoMenu.const";
+import { setTodoOptionActive } from "../../store/features/TodoItems/todoItems.slice";
 
 const TodoShowActiveBtn = () => {
-  const [todoShowActiveClicked, setTodoShowActiveClicked] =
-    useState<boolean>(false);
+  const { TODO_OPTION_ACTIVE } = todoOptions;
+  const todoOption = useSelector((state: RootState) => state.todos.todoOption);
+  const dispatch = useDispatch();
 
   const onTodoShowActiveBtnClick = () => {
-    setTodoShowActiveClicked(!todoShowActiveClicked);
+    dispatch(setTodoOptionActive());
   };
 
   return (
     <button
       className={
         DARK_MODE
-          ? todoShowActiveClicked
+          ? todoOption === TODO_OPTION_ACTIVE
             ? "todo-show-active-btn-dark-mode-clicked"
             : "todo-show-active-btn-dark-mode"
-          : todoShowActiveClicked
+          : todoOption === TODO_OPTION_ACTIVE
           ? "todo-show-active-btn-clicked"
           : "todo-show-active-btn"
       }

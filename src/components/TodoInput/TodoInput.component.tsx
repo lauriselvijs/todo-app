@@ -2,18 +2,20 @@ import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import "./TodoInput.style.scss";
 import TodoCheckmark from "../TodoCheckmark";
 import { DARK_MODE } from "../../constants/DarkMode.const";
-import { addTodo } from "../../store/features/TodoItems/todoItems.slice";
-import { useDispatch } from "react-redux";
+import {
+  addTodo,
+  setNewActiveTodoInput,
+} from "../../store/features/TodoItems/todoItems.slice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
 
 const TodoInput = () => {
   const [todoInput, setTodoInput] = useState<string>("");
-  const [todoActive, setTodoActive] = useState<boolean>(true);
+  const todoActiveInput = useSelector(
+    (state: RootState) => state.todos.todoActiveInput
+  );
 
   const dispatch = useDispatch();
-
-  const onTodoCheckmarkClick = () => {
-    setTodoActive(!todoActive);
-  };
 
   const onTodoInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setTodoInput(e.target.value);
@@ -21,8 +23,9 @@ const TodoInput = () => {
 
   const handleAddTodoOnEnterKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && todoInput) {
-      console.log(todoActive);
-      dispatch(addTodo({ todoMsg: todoInput, todoActive }));
+      dispatch(addTodo({ todoMsg: todoInput, todoActive: todoActiveInput }));
+      // !todoActiveInput && dispatch(setNewActiveTodoInput(true));
+      setTodoInput("");
     }
   };
 
@@ -31,13 +34,10 @@ const TodoInput = () => {
       className={DARK_MODE ? "todo-input-dark-mode" : "todo-input"}
       title="Press &ldquo;Enter&ldquo; to Add Todo"
     >
-      <TodoCheckmark
-        todoActive={todoActive}
-        onTodoCheckmarkClick={onTodoCheckmarkClick}
-      />
+      <TodoCheckmark newActiveTodo={true} todoActive={todoActiveInput} />
       <input
         type="text"
-        placeholder="Create a new todo..."
+        placeholder={"Create a new todo..."}
         value={todoInput}
         onChange={onTodoInputChange}
         className="todo-input-field"

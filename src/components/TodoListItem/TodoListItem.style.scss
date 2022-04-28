@@ -10,7 +10,6 @@
 
 .todo-list-item-dark-mode {
   @include todo-list-item-style($dark-mode: true);
-  background-color: attr(data-bg);
 
   &-completed {
     @include todo-list-item-completed-style($dark-mode: true);

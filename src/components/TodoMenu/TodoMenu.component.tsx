@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TodoMenu.style.scss";
 import TodoListItem from "../TodoListItem";
 import { ITodoListItem } from "../../types/ListItem";
@@ -13,20 +13,25 @@ import {
 } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
+import { useDispatch } from "react-redux";
+import { setNewTodoOrder } from "../../store/features/TodoItems/todoItems.slice";
+import { todoOptions } from "../../constants/TodoMenu.const";
 
 const TodoMenu = () => {
-  const todoList = useSelector((state: RootState) => state.todos.todoList);
-  const [todoItems, setTodoItems] = useState<ITodoListItem["todo"][]>(todoList);
+  const { TODO_OPTION_ACTIVE, TODO_OPTION_ALL, TODO_OPTION_COMPLETED } =
+    todoOptions;
+  const { todoList, todoOption } = useSelector(
+    (state: RootState) => state.todos
+  );
+
+  const dispatch = useDispatch();
 
   const onDragEnd = (result: DropResult): void => {
     const { source, destination } = result;
-
-    if (destination) {
-      const newTodoItems = Array.from(todoItems);
-      const [removed] = newTodoItems.splice(source.index, 1);
-      newTodoItems.splice(destination.index, 0, removed);
-      setTodoItems(newTodoItems);
-    }
+    const newTodoItems = Array.from(todoList);
+    const [removed] = newTodoItems.splice(source.index, 1);
+    destination && newTodoItems.splice(destination.index, 0, removed);
+    dispatch(setNewTodoOrder(newTodoItems));
   };
 
   const todoComponentArray = todoList.map(
