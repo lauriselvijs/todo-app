@@ -6,13 +6,13 @@ import { RootState } from "../../store/app/store";
 import { stringPluralize } from "../../utils/String.util";
 
 const TodoInputCount = () => {
-  const todoList = useSelector((state: RootState) => state.todos.todoList);
+  const todoCount = useSelector((state: RootState) => state.todos.todoCount);
 
   return (
     <div
       className={DARK_MODE ? "todo-input-count-dark-mode" : "todo-input-count"}
     >
-      {stringPluralize(todoList.length, "item")} left
+      {stringPluralize(todoCount, "item")} left
     </div>
   );
 };

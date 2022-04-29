@@ -3,14 +3,21 @@ import "./TodoDeleteBtn.style.scss";
 import IconCross from "../../asset/image/icon/icon-cross.svg";
 import IconCrossDarkMode from "../../asset/image/icon/icon-cross-dark-mode.svg";
 import { DARK_MODE } from "../../constants/DarkMode.const";
-import { useDispatch } from "react-redux";
-import { deleteTodo } from "../../store/features/TodoItems/todoItems.slice";
+import {
+  deleteTodo,
+  setTodoOptionAll,
+} from "../../store/features/TodoItems/todoItems.slice";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
+import { RootState } from "../../store/app/store";
+import { useSelector } from "react-redux";
 
 const TodoDeleteBtn = ({ todoId }: { todoId: string }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const todoList = useSelector((state: RootState) => state.todos.todoList);
 
   const onTodoDeleteBtnClick = () => {
     dispatch(deleteTodo(todoId));
+    todoList.length === 1 && dispatch(setTodoOptionAll());
   };
 
   return (

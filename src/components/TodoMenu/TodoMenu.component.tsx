@@ -13,9 +13,13 @@ import {
 } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
-import { useDispatch } from "react-redux";
-import { setNewTodoOrder } from "../../store/features/TodoItems/todoItems.slice";
 import { todoOptions } from "../../constants/TodoMenu.const";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
+import { onTodoDragEnd } from "../../utils/TodoAnimation.util";
+import {
+  setNewTodoOrder,
+  setTodoCount,
+} from "../../store/features/TodoItems/todoItems.slice";
 
 const TodoMenu = () => {
   const { TODO_OPTION_ACTIVE, TODO_OPTION_ALL, TODO_OPTION_COMPLETED } =
@@ -23,18 +27,28 @@ const TodoMenu = () => {
   const { todoList, todoOption } = useSelector(
     (state: RootState) => state.todos
   );
+  const [filteredTodos, setFilteredTodos] =
+    useState<ITodoListItem["todo"][]>(todoList);
+  const dispatch = useAppDispatch();
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    todoOption === TODO_OPTION_ACTIVE &&
+      setFilteredTodos(todoList.filter((todo) => todo.todoActive));
+    todoOption === TODO_OPTION_COMPLETED &&
+      setFilteredTodos(todoList.filter((todo) => !todo.todoActive));
+    todoOption === TODO_OPTION_ALL && setFilteredTodos(todoList);
+  }, [todoOption, todoList]);
+
+  useEffect(() => {
+    dispatch(setTodoCount(filteredTodos.length));
+  }, [filteredTodos]);
 
   const onDragEnd = (result: DropResult): void => {
-    const { source, destination } = result;
-    const newTodoItems = Array.from(todoList);
-    const [removed] = newTodoItems.splice(source.index, 1);
-    destination && newTodoItems.splice(destination.index, 0, removed);
-    dispatch(setNewTodoOrder(newTodoItems));
+    setFilteredTodos(onTodoDragEnd(result, filteredTodos));
+    dispatch(setNewTodoOrder(onTodoDragEnd(result, filteredTodos)));
   };
 
-  const todoComponentArray = todoList.map(
+  const todoComponentArray = filteredTodos.map(
     (todo: ITodoListItem["todo"], index: number) => (
       <div key={index}>
         <Draggable key={todo.todoId} draggableId={todo.todoId} index={index}>
@@ -55,7 +69,7 @@ const TodoMenu = () => {
               className="todo-item-container"
               style={
                 {
-                  "--todo-list-item-length": todoList.length,
+                  "--todo-list-item-length": filteredTodos.length,
                 } as React.CSSProperties
               }
               {...droppableProps}

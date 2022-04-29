@@ -1,11 +1,11 @@
 import React from "react";
 import "./TodoClearCompletedBtn.style.scss";
 import { DARK_MODE } from "../../constants/DarkMode.const";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import { clearCompletedTodos } from "../../store/features/TodoItems/todoItems.slice";
 
 const TodoClearCompletedBtn = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onTodoClearCompletedBtnClick = () => {
     dispatch(clearCompletedTodos());

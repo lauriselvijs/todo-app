@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import "./TodoShowCompletedBtn.style.scss";
 import { DARK_MODE } from "../../constants/DarkMode.const";
 import { todoOptions } from "../../constants/TodoMenu.const";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 import { setTodoOptionCompleted } from "../../store/features/TodoItems/todoItems.slice";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
 
 const TodoShowCompletedBtn = () => {
   const { TODO_OPTION_COMPLETED } = todoOptions;
   const todoOption = useSelector((state: RootState) => state.todos.todoOption);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onTodoShowCompletedBtnClick = () => {
     dispatch(setTodoOptionCompleted());

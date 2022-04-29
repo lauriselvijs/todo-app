@@ -4,4 +4,5 @@ export interface IinitialTodoListState {
   todoList: ITodoListItem["todo"][];
   todoActiveInput: boolean;
   todoOption: string;
+  todoCount: number;
 }

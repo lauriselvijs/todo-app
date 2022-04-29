@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { todoOptions } from "../../../constants/TodoMenu.const";
 import { ITodoListItem } from "../../../types/ListItem";
@@ -12,6 +12,9 @@ export const todoItems = createSlice({
   name: "todoItems",
   initialState,
   reducers: {
+    setTodoCount: (state, action: PayloadAction<number>) => {
+      state.todoCount = action.payload;
+    },
     addTodo: (
       state,
       { payload: { todoMsg, todoActive } }: PayloadAction<IaddTodo["todo"]>
@@ -58,14 +61,16 @@ export const todoItems = createSlice({
       });
     },
     setTodoOptionAll: (state) => {
+      // use current for debugging application state
+      // console.log(current(state));
       state.todoOption = TODO_OPTION_ALL;
     },
+
     setTodoOptionCompleted: (state) => {
       state.todoOption = TODO_OPTION_COMPLETED;
     },
     setTodoOptionActive: (state) => {
       state.todoOption = TODO_OPTION_ACTIVE;
-      state.todoList = state.todoList.filter((todo) => todo.todoActive);
     },
   },
 });
@@ -80,6 +85,7 @@ export const {
   setTodoOptionAll,
   setTodoOptionCompleted,
   setTodoOptionActive,
+  setTodoCount,
 } = todoItems.actions;
 
 export default todoItems.reducer;

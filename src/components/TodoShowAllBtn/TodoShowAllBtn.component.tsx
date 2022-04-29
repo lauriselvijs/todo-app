@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./TodoShowAllBtn.style.scss";
 import { DARK_MODE } from "../../constants/DarkMode.const";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import { setTodoOptionAll } from "../../store/features/TodoItems/todoItems.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
@@ -10,7 +10,7 @@ import { todoOptions } from "../../constants/TodoMenu.const";
 const TodoShowAllBtn = () => {
   const { TODO_OPTION_ALL } = todoOptions;
   const todoOption = useSelector((state: RootState) => state.todos.todoOption);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onTodoShowAllBtnClick = () => {
     dispatch(setTodoOptionAll());

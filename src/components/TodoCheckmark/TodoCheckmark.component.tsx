@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./TodoCheckmark.style.scss";
 import { ITodoCheckmark } from "./TodoCheckmark";
 import { DARK_MODE } from "../../constants/DarkMode.const";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import {
   setActiveTodo,
   setNewActiveTodoInput,
@@ -13,7 +13,7 @@ const TodoCheckmark = ({
   newActiveTodo,
   todoActive,
 }: ITodoCheckmark) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onTodoCheckmarkClick = () => {
     todoId && dispatch(setActiveTodo({ todoId, todoActive: !todoActive }));

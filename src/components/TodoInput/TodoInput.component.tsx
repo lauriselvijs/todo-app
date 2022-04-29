@@ -6,8 +6,9 @@ import {
   addTodo,
   setNewActiveTodoInput,
 } from "../../store/features/TodoItems/todoItems.slice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
 
 const TodoInput = () => {
   const [todoInput, setTodoInput] = useState<string>("");
@@ -15,7 +16,7 @@ const TodoInput = () => {
     (state: RootState) => state.todos.todoActiveInput
   );
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onTodoInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setTodoInput(e.target.value);
@@ -24,7 +25,7 @@ const TodoInput = () => {
   const handleAddTodoOnEnterKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && todoInput) {
       dispatch(addTodo({ todoMsg: todoInput, todoActive: todoActiveInput }));
-      // !todoActiveInput && dispatch(setNewActiveTodoInput(true));
+      !todoActiveInput && dispatch(setNewActiveTodoInput(true));
       setTodoInput("");
     }
   };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, MouseEvent } from "react";
 import "./TodoListItem.style.scss";
 import { ITodoListItem } from "../../types/ListItem";
 import TodoCheckmark from "../TodoCheckmark";
@@ -13,11 +13,11 @@ const TodoListItem = ({
 }: ITodoListItem) => {
   const [showDeleteTodo, setShowDeleteTodo] = useState<boolean>(false);
 
-  const onMouseLeaveTodoItem = () => {
+  const onMouseLeaveTodoItem = (): void => {
     setShowDeleteTodo(false);
   };
 
-  const onMouseEnterTodoItem = () => {
+  const onMouseOverTodoItem = (): void => {
     setShowDeleteTodo(true);
   };
 
@@ -32,8 +32,8 @@ const TodoListItem = ({
           ? "todo-list-item"
           : "todo-list-item-completed"
       }
-      onMouseEnter={onMouseEnterTodoItem}
       onMouseLeave={onMouseLeaveTodoItem}
+      onMouseOver={onMouseOverTodoItem}
       ref={innerRef}
       snapshot={snapshot}
       {...draggableProps}
