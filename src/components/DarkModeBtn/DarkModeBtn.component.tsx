@@ -19,6 +19,7 @@ const DarkModeBtn = () => {
 
   return (
     <img
+      alt="Dark mode button"
       src={darkMode ? SunIcon : MoonIcon}
       onClick={onDarkModeBtnClick}
       className={darkTheme}

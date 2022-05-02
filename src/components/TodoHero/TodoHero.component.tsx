@@ -10,6 +10,7 @@ const TodoHero = () => {
 
   return (
     <img
+      alt="Header background"
       className="todo-hero"
       src={darkMode ? BgDesktopDark : BgDesktopLight}
     ></img>
