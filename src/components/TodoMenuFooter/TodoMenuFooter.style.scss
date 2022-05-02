@@ -1,11 +1,14 @@
 @import "../../style/main.scss";
 
 @mixin todo-menu-footer-center-section-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   justify-content: center;
   align-items: center;
   left: 0px;
-  top: 380px;
+  top: 105%;
   width: 320px;
   height: 50px;
 }

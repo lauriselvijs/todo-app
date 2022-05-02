@@ -1,5 +1,6 @@
 import React from "react";
-import { DARK_MODE } from "../../constants/DarkMode.const";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
 import TodoClearCompletedBtn from "../TodoClearCompletedBtn";
 import TodoInputCount from "../TodoItemCount";
 import TodoShowActiveBtn from "../TodoShowActiveBtn";
@@ -8,6 +9,8 @@ import TodoShowCompletedBtn from "../TodoShowCompletedBtn";
 import "./TodoMenuFooter.style.scss";
 
 const TodoMenuFooter = () => {
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
+
   return (
     <div className="todo-menu-footer">
       <div className="todo-menu-footer-left-section">
@@ -15,7 +18,7 @@ const TodoMenuFooter = () => {
       </div>
       <div
         className={
-          DARK_MODE
+          darkMode
             ? "todo-menu-footer-center-section-dark-mode"
             : "todo-menu-footer-center-section"
         }

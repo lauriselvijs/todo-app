@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import "./TodoInput.style.scss";
 import TodoCheckmark from "../TodoCheckmark";
-import { DARK_MODE } from "../../constants/DarkMode.const";
 import {
   addTodo,
   setNewActiveTodoInput,
@@ -11,6 +10,7 @@ import { RootState } from "../../store/app/store";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 
 const TodoInput = () => {
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const [todoInput, setTodoInput] = useState<string>("");
   const todoActiveInput = useSelector(
     (state: RootState) => state.todos.todoActiveInput
@@ -32,7 +32,7 @@ const TodoInput = () => {
 
   return (
     <div
-      className={DARK_MODE ? "todo-input-dark-mode" : "todo-input"}
+      className={darkMode ? "todo-input-dark-mode" : "todo-input"}
       title="Press &ldquo;Enter&ldquo; to Add Todo"
     >
       <TodoCheckmark newActiveTodo={true} todoActive={todoActiveInput} />

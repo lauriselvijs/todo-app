@@ -1,0 +1,10 @@
+.dark-theme {
+  --main-bg-color: var(
+    --dark-theme-imported-main-bg-color,
+    #{$dark-theme-very-dark-blue}
+  );
+}
+
+:export {
+  darkTheme: dark-theme;
+}

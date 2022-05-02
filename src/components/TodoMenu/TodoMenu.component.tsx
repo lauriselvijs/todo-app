@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./TodoMenu.style.scss";
 import TodoListItem from "../TodoListItem";
 import { ITodoListItem } from "../../types/ListItem";
-import { DARK_MODE } from "../../constants/DarkMode.const";
 import TodoMenuFooter from "../TodoMenuFooter";
 import {
   DragDropContext,
@@ -27,6 +26,7 @@ const TodoMenu = () => {
   const { todoList, todoOption } = useSelector(
     (state: RootState) => state.todos
   );
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const [filteredTodos, setFilteredTodos] =
     useState<ITodoListItem["todo"][]>(todoList);
   const dispatch = useAppDispatch();
@@ -62,7 +62,7 @@ const TodoMenu = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className={DARK_MODE ? "todo-menu-dark-mode" : "todo-menu"}>
+      <div className={darkMode ? "todo-menu-dark-mode" : "todo-menu"}>
         <Droppable droppableId="droppable">
           {({ droppableProps, innerRef, placeholder }: DroppableProvided) => (
             <div

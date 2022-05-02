@@ -1,12 +1,13 @@
 import React from "react";
 import "./TodoCheckmark.style.scss";
 import { ITodoCheckmark } from "./TodoCheckmark";
-import { DARK_MODE } from "../../constants/DarkMode.const";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import {
   setActiveTodo,
   setNewActiveTodoInput,
 } from "../../store/features/TodoItems/todoItems.slice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
 
 const TodoCheckmark = ({
   todoId,
@@ -14,6 +15,7 @@ const TodoCheckmark = ({
   todoActive,
 }: ITodoCheckmark) => {
   const dispatch = useAppDispatch();
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
 
   const onTodoCheckmarkClick = () => {
     todoId && dispatch(setActiveTodo({ todoId, todoActive: !todoActive }));
@@ -24,7 +26,7 @@ const TodoCheckmark = ({
     <div
       onClick={onTodoCheckmarkClick}
       className={
-        DARK_MODE
+        darkMode
           ? todoActive
             ? "todo-check-mark-dark-mode"
             : "todo-check-mark-dark-mode-checked"

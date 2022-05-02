@@ -1,16 +1,18 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState } from "react";
 import "./TodoListItem.style.scss";
 import { ITodoListItem } from "../../types/ListItem";
 import TodoCheckmark from "../TodoCheckmark";
 import PropTypes from "prop-types";
 import TodoDeleteBtn from "../DeleteTodoBtn";
-import { DARK_MODE } from "../../constants/DarkMode.const";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
 
 const TodoListItem = ({
   todo: { todoMsg, todoActive, todoId },
   provided: { innerRef, draggableProps, dragHandleProps },
   snapshot,
 }: ITodoListItem) => {
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const [showDeleteTodo, setShowDeleteTodo] = useState<boolean>(false);
 
   const onMouseLeaveTodoItem = (): void => {
@@ -24,7 +26,7 @@ const TodoListItem = ({
   return (
     <div
       className={
-        DARK_MODE
+        darkMode
           ? todoActive
             ? "todo-list-item-dark-mode"
             : "todo-list-item-dark-mode-completed"

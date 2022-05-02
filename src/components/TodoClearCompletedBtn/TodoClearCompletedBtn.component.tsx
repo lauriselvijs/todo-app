@@ -1,11 +1,13 @@
 import React from "react";
 import "./TodoClearCompletedBtn.style.scss";
-import { DARK_MODE } from "../../constants/DarkMode.const";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import { clearCompletedTodos } from "../../store/features/TodoItems/todoItems.slice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
 
 const TodoClearCompletedBtn = () => {
   const dispatch = useAppDispatch();
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
 
   const onTodoClearCompletedBtnClick = () => {
     dispatch(clearCompletedTodos());
@@ -14,7 +16,7 @@ const TodoClearCompletedBtn = () => {
   return (
     <button
       className={
-        DARK_MODE
+        darkMode
           ? "todo-clear-completed-btn-dark-mode"
           : "todo-clear-completed-btn"
       }

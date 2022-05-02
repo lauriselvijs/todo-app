@@ -2,13 +2,16 @@ import React from "react";
 import "./TodoHero.style.scss";
 import BgDesktopLight from "../../asset/image/bg-desktop-light.jpg";
 import BgDesktopDark from "../../asset/image/bg-desktop-dark.jpg";
-import { DARK_MODE } from "../../constants/DarkMode.const";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
 
 const TodoHero = () => {
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
+
   return (
     <img
       className="todo-hero"
-      src={DARK_MODE ? BgDesktopDark : BgDesktopLight}
+      src={darkMode ? BgDesktopDark : BgDesktopLight}
     ></img>
   );
 };

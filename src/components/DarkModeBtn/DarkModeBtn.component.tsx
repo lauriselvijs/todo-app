@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import "./DarkModeBtn.style.scss";
 import MoonIcon from "../../asset/image/icon/icon-moon.svg";
 import SunIcon from "../../asset/image/icon/icon-sun.svg";
 import Theme from "../../style/main.scss";
-import { useSetTheme } from "../../hooks/TodoTheme.hook";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/app/store";
+import { useAppDispatch } from "../../hooks/TodoActions.hook";
+import { setDarkMode } from "../../store/features/DarkMode/darkMode.slice";
 
 const DarkModeBtn = () => {
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
+  const dispatch = useAppDispatch();
   const { darkTheme } = Theme;
-  const [theme, setTheme] = useSetTheme(darkTheme);
 
   const onDarkModeBtnClick = () => {
-    setTheme(!theme);
+    dispatch(setDarkMode(darkTheme));
   };
 
   return (
     <img
-      src={theme ? MoonIcon : SunIcon}
+      src={darkMode ? SunIcon : MoonIcon}
       onClick={onDarkModeBtnClick}
-      className="dark-theme"
+      className={darkTheme}
       id="dark-mode-btn"
     />
   );

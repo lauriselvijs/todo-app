@@ -2,7 +2,6 @@ import React from "react";
 import "./TodoDeleteBtn.style.scss";
 import IconCross from "../../asset/image/icon/icon-cross.svg";
 import IconCrossDarkMode from "../../asset/image/icon/icon-cross-dark-mode.svg";
-import { DARK_MODE } from "../../constants/DarkMode.const";
 import {
   deleteTodo,
   setTodoOptionAll,
@@ -14,6 +13,7 @@ import { useSelector } from "react-redux";
 const TodoDeleteBtn = ({ todoId }: { todoId: string }) => {
   const dispatch = useAppDispatch();
   const todoList = useSelector((state: RootState) => state.todos.todoList);
+  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
 
   const onTodoDeleteBtnClick = () => {
     dispatch(deleteTodo(todoId));
@@ -23,7 +23,7 @@ const TodoDeleteBtn = ({ todoId }: { todoId: string }) => {
   return (
     <button className="todo-delete-btn" onClick={onTodoDeleteBtnClick}>
       <img
-        src={DARK_MODE ? IconCrossDarkMode : IconCross}
+        src={darkMode ? IconCrossDarkMode : IconCross}
         alt="Icon cross"
         className="todo-delete-btn-img"
       />
