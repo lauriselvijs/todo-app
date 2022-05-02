@@ -16,7 +16,6 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
     - [Continued development](#continued-development)
     - [Useful resources](#useful-resources)
   - [Author](#author)
-  - [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -44,72 +43,70 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github](https://github.com/lauriselvijs/todo-app)
-- Live Site URL: [Netlify](https://your-live-site-url.com)
+- Live Site URL: [Netlify](https://81fd79-todo-app.netlify.app/)
 
 ## My process
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
+- HTML5 markup
+- [SCSS](https://sass-lang.com/) - advanced variant of CSS
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- [TypeScript](https://www.typescriptlang.org/) - Strongly typed programming language for JS
+- [Redux Toolkit](https://redux-toolkit.js.org/) - The official, opinionated, batteries-included toolset for efficient Redux development
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+Using redux toolkit for more efficient global state implementation
 
 ```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
+export const darkMode = createSlice({
+  name: "darkMode",
+  initialState,
+  reducers: {
+    setDarkMode: (state, action: PayloadAction<string>) => {
+      if (action.payload && !state.darkMode) {
+        document.body.className = action.payload;
+      } else if (state.darkMode) {
+        document.body.className = "";
+      }
+
+      state.darkMode = !state.darkMode;
+    },
+  },
+});
 };
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+Using global css variables to change themes of webpage
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+```css
+:root {
+  --main-bg-color: var(--imported-main-bg-color, #{$very-light-grayish-blue});
+}
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  background-color: var(--main-bg-color);
+}
+```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- Continued use of Redux Toolkit as well features like createAsyncThunk and RTK Query
+- Using css variables for different theme implementation
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [TypeScript Docs](https://www.typescriptlang.org/docs/) - Docs to better understand typescript
+- [JavaScript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - JS docs
+- [w3schools CSS docs](https://www.w3schools.com/css/default.asp) - Great documentation to understand CSS
+- [w3schools HTML docs](https://www.w3schools.com/html/default.asp) - Great documentation to understand HTML
+- [ReactJS](https://reactjs.org/docs/getting-started.html) - Great documentation to understand ReactJS
+- [Redux Toolkit](https://redux-toolkit.js.org/usage/usage-guide) - Great documentation to understand Redux Toolkit
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Lauris](https://portfolio-rouge-seven.vercel.app/)
+- Frontend Mentor - [lauriselvijs](https://www.frontendmentor.io/profile/lauriselvijs)
