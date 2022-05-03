@@ -1,7 +1,10 @@
 export interface IaddTodo {
-  todo: {
-    todoId?: string;
-    todoMsg: string;
-    todoActive: boolean;
-  };
+  todoId?: string;
+  todoMsg: string;
+  todoActive: boolean;
+}
+
+export interface IactiveTodo {
+  todoId: string;
+  todoActive: boolean;
 }

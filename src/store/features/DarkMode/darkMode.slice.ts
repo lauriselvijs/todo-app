@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { setTodoOptionCompleted } from "../TodoItems/todoItems.slice";
 import { initialState } from "./darkMode.initial-state";
 
 export const darkMode = createSlice({
@@ -14,6 +15,11 @@ export const darkMode = createSlice({
 
       state.darkMode = !state.darkMode;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(setTodoOptionCompleted, (state) => {
+      state.darkMode = true;
+    });
   },
 });
 

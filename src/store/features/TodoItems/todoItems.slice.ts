@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { todoOptions } from "../../../constants/TodoMenu.const";
 import { ITodoListItem } from "../../../types/ListItem";
 import { initialState } from "./todoItems.initial-state";
-import { IaddTodo } from "./todoItems.reducer";
+import { IactiveTodo, IaddTodo } from "./todoItems.reducer.d";
 
 const { TODO_OPTION_ALL, TODO_OPTION_COMPLETED, TODO_OPTION_ACTIVE } =
   todoOptions;
@@ -17,7 +17,7 @@ export const todoItems = createSlice({
     },
     addTodo: (
       state,
-      { payload: { todoMsg, todoActive } }: PayloadAction<IaddTodo["todo"]>
+      { payload: { todoMsg, todoActive } }: PayloadAction<IaddTodo>
     ) => {
       state.todoList = [
         ...state.todoList,
@@ -33,9 +33,7 @@ export const todoItems = createSlice({
     },
     setActiveTodo: (
       state,
-      {
-        payload: { todoId, todoActive },
-      }: PayloadAction<{ todoId: string; todoActive: boolean }>
+      { payload: { todoId, todoActive } }: PayloadAction<IactiveTodo>
     ) => {
       {
         state.todoList = state.todoList.map((todo) => {
