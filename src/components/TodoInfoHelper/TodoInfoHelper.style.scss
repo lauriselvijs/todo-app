@@ -11,7 +11,7 @@
   .todo-info-helper,
   .todo-info-helper-dark-mode {
     position: absolute;
-    top: calc(var(--todo-list-item-length) * 70px + 210px);
+    top: calc(var(--todo-list-item-count) * 70px + 210px);
     z-index: -1;
   }
 }

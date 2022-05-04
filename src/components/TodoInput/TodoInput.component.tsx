@@ -1,4 +1,10 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  KeyboardEvent,
+  useMemo,
+  useEffect,
+} from "react";
 import "./TodoInput.style.scss";
 import TodoCheckmark from "../TodoCheckmark";
 import {
@@ -15,6 +21,18 @@ const TodoInput = () => {
   const todoActiveInput = useSelector(
     (state: RootState) => state.todos.todoActiveInput
   );
+
+  // const [theme, setTheme] = useState<boolean>(false);
+
+  // const darkTheme = { newTheme: theme ? "newTheme" : "oldTheme" };
+
+  // // const theme = useMemo(() => {
+  // //   return { newTheme: "newTheme" };
+  // // }, [darkMode]);
+
+  // useEffect(() => {
+  //   console.log(darkMode);
+  // }, [darkTheme]);
 
   const dispatch = useAppDispatch();
 

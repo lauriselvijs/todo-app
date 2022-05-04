@@ -9,7 +9,7 @@
 }
 
 .todo-item-container {
-  min-height: calc(var(--todo-list-item-length) * 60px);
+  min-height: calc(var(--todo-list-item-count) * 60px);
 }
 
 @include mobile {

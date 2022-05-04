@@ -8,17 +8,26 @@ import { RootState } from "../../store/app/store";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import { setDarkMode } from "../../store/features/DarkMode/darkMode.slice";
 import { getIp } from "../../store/features/Ip/ip.slice";
+import { getCurrentWeather } from "../../store/features/Weather/weather.slice";
 
 const DarkModeBtn = () => {
   const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const ipInfo = useSelector((state: RootState) => state.ip.ipInfo);
+
   const dispatch = useAppDispatch();
   const { darkTheme } = Theme;
 
-  const onDarkModeBtnClick = () => {
-    dispatch(setDarkMode(darkTheme));
+  useEffect(() => {
+    if (darkMode) {
+      document.body.className = darkTheme;
+    } else if (!darkMode) {
+      document.body.className = "";
+    }
+  }, [darkMode]);
 
-    // dispatch(getIp());
+  const onDarkModeBtnClick = () => {
+    dispatch(setDarkMode());
+    dispatch(getCurrentWeather("s"));
   };
 
   return (

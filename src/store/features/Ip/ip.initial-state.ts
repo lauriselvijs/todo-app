@@ -1,6 +1,8 @@
-import { Iip } from "./ip.initial-state.d";
+import IinitalStateIp from "./ip.initial-state.d";
 
-export const initialState: Iip = {
+const initialState: IinitalStateIp = {
   ipInfo: "",
   loading: false,
 };
+
+export default initialState;

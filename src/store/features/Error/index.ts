@@ -1,3 +1,3 @@
-import error from "./Error.slice";
+import error from "./error.slice";
 
 export default error;

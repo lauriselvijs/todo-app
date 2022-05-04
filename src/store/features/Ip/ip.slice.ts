@@ -1,88 +1,58 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./ip.initial-state";
-import axios, { AxiosError } from "axios";
-import { Iip } from "./ip.initial-state.d";
-import { IError } from "../Error/Error.initial-state.d";
-import { setError } from "../Error/Error.slice";
-import { store } from "../../app/store";
+import initialState from "./ip.initial-state";
+import axios from "axios";
+import IinitalStateIp from "./ip.initial-state.d";
+import { setError } from "../Error/error.slice";
+import { GET_YOUR_IP_URL } from "../../../constants/Ip.const";
+import { GET_IP_TYPE, IP_SLICE_NAME } from "./ip.const";
 
-// export const getIp = createAsyncThunk<Iip["ip"]>(
-//   "ip/getIp",
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get("https://api.ipify.org/?format=json");
-//       return response.data;
-//     } catch (err: any) {
-//       if (!err.response) {
-//         throw err;
-//       }
-//       thunkAPI.dispatch(setError({ id: 1, msg: "test" }));
-//       // return rejectWithValue(err.response.data);
-//     }
-//   }
-// );
+const getIp = createAsyncThunk<IinitalStateIp>(
+  GET_IP_TYPE,
+  async (_, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(
+        setError({
+          code: 0,
+          message: "",
+        })
+      );
+      const response = await axios.get(GET_YOUR_IP_URL);
 
-const options = {
-  method: "GET",
-  url: "https://weatherapi-com.p.rapidapi.com/ip.json",
-  params: { q: "s" },
-  headers: {
-    "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
-    "X-RapidAPI-Key": process.env.REACT_APP_X_RAPID_API_KEY
-      ? process.env.REACT_APP_X_RAPID_API_KEY
-      : "",
-  },
-};
+      return response.data;
+    } catch (err: any) {
+      if (!err.response) {
+        throw err;
+      }
 
-const getIp = createAsyncThunk<
-  Iip["ipInfo"],
-  void,
-  {
-    rejectValue: IError;
-  }
->("ip/getIp", async (_, { rejectWithValue }) => {
-  try {
-    const response = await axios.request(options);
-    return response.data.ip;
-  } catch (err: any) {
-    const error: AxiosError<IError> = err;
-    if (!error.response) {
-      throw err;
+      if (err.response.data.code && err.response.data.message) {
+        thunkAPI.dispatch(
+          setError({
+            code: err.response.data.code,
+            message: err.response.data.message,
+          })
+        );
+      }
     }
-
-    return rejectWithValue(error.response.data);
   }
-});
+);
 
 export const ip = createSlice({
-  name: "ip",
+  name: IP_SLICE_NAME,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getIp.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getIp.fulfilled, (state, { payload: ip }) => {
+    builder.addCase(getIp.fulfilled, (state, { payload: { ipInfo } }) => {
       state.loading = false;
-      state.ipInfo = ip;
+      state.ipInfo = ipInfo;
     });
-    builder.addCase(getIp.rejected, (_, action) => {
-      if (action.payload) {
-        store.getState().error.code = action.payload.code;
-        store.getState().error.message = action.payload.message;
-      } else if (action.error.message) {
-        store.getState().error.message = action.error.message;
-      }
+    builder.addCase(getIp.rejected, (state) => {
+      state.loading = false;
     });
   },
 });
-
-// builder.addCase(getIp.rejected, (state, action) => {
-//   if (action.payload) {
-//     store.getState().error.code = action.payload.code;
-//     store.getState().error.message = action.payload.message;
-//   }
-// });
 
 export { getIp };
 

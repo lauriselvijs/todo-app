@@ -19,6 +19,7 @@ import {
   setNewTodoOrder,
   setTodoCount,
 } from "../../store/features/TodoItems/todoItems.slice";
+import { setTodoItemLengthProperty } from "../../utils/TodoList.util";
 
 const TodoMenu = () => {
   const { TODO_OPTION_ACTIVE, TODO_OPTION_ALL, TODO_OPTION_COMPLETED } =
@@ -60,6 +61,8 @@ const TodoMenu = () => {
     )
   );
 
+  const todoMenuTheme = setTodoItemLengthProperty(filteredTodos.length);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={darkMode ? "todo-menu-dark-mode" : "todo-menu"}>
@@ -67,11 +70,7 @@ const TodoMenu = () => {
           {({ droppableProps, innerRef, placeholder }: DroppableProvided) => (
             <div
               className="todo-item-container"
-              style={
-                {
-                  "--todo-list-item-length": filteredTodos.length,
-                } as React.CSSProperties
-              }
+              style={todoMenuTheme}
               {...droppableProps}
               ref={innerRef}
             >
