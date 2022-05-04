@@ -28,7 +28,9 @@ const options = {
   params: { q: "s" },
   headers: {
     "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
-    "X-RapidAPI-Key": "e53611fd6bmshb7fd9eaba1a06bfp1d79edjsn7e2dbb0c267d",
+    "X-RapidAPI-Key": process.env.REACT_APP_X_RAPID_API_KEY
+      ? process.env.REACT_APP_X_RAPID_API_KEY
+      : "",
   },
 };
 
