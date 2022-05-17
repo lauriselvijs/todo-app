@@ -24,6 +24,7 @@ const TodoCheckmark = ({
 
   return (
     <div
+      data-testid="todo-checkmark"
       onClick={onTodoCheckmarkClick}
       className={
         darkMode

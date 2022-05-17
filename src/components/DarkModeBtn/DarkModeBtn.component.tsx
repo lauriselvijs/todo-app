@@ -6,12 +6,14 @@ import Theme from "../../style/main.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
-import { setDarkMode } from "../../store/features/DarkMode/darkMode.slice";
+import { darkModeActions } from "../../store/features/DarkMode/darkMode.slice";
+import { bindActionCreators } from "@reduxjs/toolkit";
 
 const DarkModeBtn = () => {
   const darkMode = useSelector((state: RootState) => state.dark.darkMode);
 
   const dispatch = useAppDispatch();
+  const { setDarkMode } = bindActionCreators(darkModeActions, dispatch);
   const { darkTheme } = Theme;
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const DarkModeBtn = () => {
   }, [darkMode]);
 
   const onDarkModeBtnClick = () => {
-    dispatch(setDarkMode());
+    setDarkMode();
   };
 
   return (
@@ -33,7 +35,6 @@ const DarkModeBtn = () => {
       alt="Dark mode button"
       src={darkMode ? SunIcon : MoonIcon}
       onClick={onDarkModeBtnClick}
-      className={darkTheme}
       id="dark-mode-btn"
     />
   );

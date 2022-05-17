@@ -38,7 +38,7 @@ const TodoInput = () => {
       <TodoCheckmark newActiveTodo={true} todoActive={todoActiveInput} />
       <input
         type="text"
-        placeholder={"Create a new todo..."}
+        placeholder="Create a new todo..."
         value={todoInput}
         onChange={onTodoInputChange}
         className="todo-input-field"

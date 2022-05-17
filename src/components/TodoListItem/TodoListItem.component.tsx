@@ -25,6 +25,7 @@ const TodoListItem = ({
 
   return (
     <div
+      data-testid="todo-list-item"
       className={
         darkMode
           ? todoActive
