@@ -1,5 +1,5 @@
 interface IinitialStateError {
-  error: IError["error"];
+  error: IError;
 }
 
 export default IinitialStateError;

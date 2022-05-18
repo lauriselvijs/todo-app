@@ -5,6 +5,7 @@ import DarkModeBtn from "../../components/DarkModeBtn";
 import HeaderWrapper from "../../components/HeaderWrapper";
 import TodoHero from "../../components/TodoHero";
 import TodoTitle from "../../components/TodoTItle";
+import WeatherCurrent from "../../components/WeatherCurrent";
 import { RootState } from "../../store/app/store";
 
 const Root = () => {
@@ -12,6 +13,7 @@ const Root = () => {
 
   return (
     <main className={darkMode ? "root-dark-mode" : "root"}>
+      <WeatherCurrent />
       <TodoHero />
       <HeaderWrapper>
         <TodoTitle />

@@ -27,6 +27,7 @@ const TodoMenu = () => {
   const { todoList, todoOption } = useSelector(
     (state: RootState) => state.todos
   );
+
   const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const [filteredTodos, setFilteredTodos] =
     useState<ITodoListItem["todo"][]>(todoList);

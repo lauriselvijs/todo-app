@@ -3,7 +3,7 @@ import initialState from "./weather.initial-state";
 import axios, { AxiosError } from "axios";
 import {
   WEATHER_API_URL,
-  X_RAPID_API_Host,
+  X_RAPID_API_HOST_NAME,
 } from "../../../constants/Weather.const";
 import IinitialStateWeather from "./weather.initial-state.d";
 import { GET_CURRENT_WEATHER_TYPE, WEATHER_SLICE_NAME } from "./weather.const";
@@ -17,14 +17,15 @@ const getCurrentWeather = createAsyncThunk<
   }
 >(GET_CURRENT_WEATHER_TYPE, async (location, { rejectWithValue }) => {
   try {
+    console.log(process.env.REACT_APP_X_RAPID_API_KEY_VALUE);
     const response = await axios.request({
       method: "GET",
       url: WEATHER_API_URL,
       params: { q: location },
       headers: {
-        "X-RapidAPI-Host": X_RAPID_API_Host,
-        "X-RapidAPI-Key": process.env.REACT_APP_X_RAPID_API_KEY
-          ? process.env.REACT_APP_X_RAPID_API_KEY
+        X_RAPID_API_HOST: X_RAPID_API_HOST_NAME,
+        X_RAPID_API_KEY: process.env.REACT_APP_X_RAPID_API_KEY_VALUE
+          ? process.env.REACT_APP_X_RAPID_API_KEY_VALUE
           : "",
       },
     });
@@ -55,16 +56,17 @@ const weather = createSlice({
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.loading = false;
 
-      if (action.payload) {
-        state.error = action.payload.error;
+      if (action.payload?.code && action.payload?.message) {
+        state.error = action.payload;
       } else if (action.error.message) {
-        // if no defined message found, pass generic message "Rejected"
+        // if no defined message found, generic message "Rejected" is passed
+        state.error.code = 0;
         state.error.message = action.error.message;
       }
     });
   },
 });
 
-export { getCurrentWeather };
+export const weatherActions = { getCurrentWeather };
 
 export default weather.reducer;

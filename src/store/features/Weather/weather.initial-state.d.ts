@@ -15,7 +15,7 @@ interface IinitialStateWeather {
     humidity: number;
   };
   loading: boolean;
-  error: IError["error"];
+  error: IError;
 }
 
 export default IinitialStateWeather;

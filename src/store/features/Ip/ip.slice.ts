@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import initialState from "./ip.initial-state";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import IinitalStateIp from "./ip.initial-state.d";
 import { setError } from "../Error/error.slice";
 import { GET_YOUR_IP_URL } from "../../../constants/Ip.const";
 import { GET_IP_TYPE, IP_SLICE_NAME } from "./ip.const";
+import { IError } from "../../../types/Error";
 
 const getIp = createAsyncThunk<IinitalStateIp>(
   GET_IP_TYPE,
@@ -20,11 +21,22 @@ const getIp = createAsyncThunk<IinitalStateIp>(
 
       return response.data;
     } catch (err: any) {
-      if (!err.response) {
+      const error: AxiosError<IError> = err;
+
+      if (!error.response) {
         throw err;
       }
 
-      if (err.response.data.code && err.response.data.message) {
+      if (error.message) {
+        thunkAPI.dispatch(
+          setError({
+            code: 0,
+            message: error.message,
+          })
+        );
+      }
+
+      if (error.response.data.code && error.response.data.message) {
         thunkAPI.dispatch(
           setError({
             code: err.response.data.code,
@@ -32,6 +44,8 @@ const getIp = createAsyncThunk<IinitalStateIp>(
           })
         );
       }
+
+      return error;
     }
   }
 );
@@ -54,6 +68,6 @@ export const ip = createSlice({
   },
 });
 
-export { getIp };
+export const ipActions = { getIp };
 
 export default ip.reducer;

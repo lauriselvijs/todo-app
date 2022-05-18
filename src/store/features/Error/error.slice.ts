@@ -9,7 +9,7 @@ export const Error = createSlice({
   reducers: {
     setError: (
       state,
-      { payload: { code, message } }: PayloadAction<IError["error"]>
+      { payload: { code, message } }: PayloadAction<IError>
     ) => {
       state.error.code = code;
       state.error.message = message;
