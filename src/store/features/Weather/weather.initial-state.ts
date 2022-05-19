@@ -2,7 +2,6 @@ import IinitialStateWeather from "./weather.initial-state.d";
 
 const initialState: IinitialStateWeather = {
   current: {
-    last_update: "",
     temp_c: 0,
     temp_f: 0,
     condition: {
@@ -11,7 +10,7 @@ const initialState: IinitialStateWeather = {
     },
     wind_mph: 0,
     wind_kph: 0,
-    wind_direction: "",
+    wind_dir: "",
     humidity: 0,
   },
   loading: false,

@@ -1,67 +1,77 @@
-import { bindActionCreators } from "@reduxjs/toolkit";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useFetchCurrentWeather } from "../../hooks/Weather.hook";
 import { RootState } from "../../store/app/store";
-import { ipActions } from "../../store/features/Ip/ip.slice";
-import { weatherActions } from "../../store/features/Weather/weather.slice";
 import "./WeatherCurrent.style.scss";
+// const { getIp } = ipActions;
 
 const WeatherCurrent = () => {
   const {
     dark: { darkMode },
     weather: {
       current: {
-        last_update,
         temp_c,
         temp_f,
         condition: { text, icon },
         wind_mph,
         wind_kph,
-        wind_direction,
+        wind_dir,
         humidity,
       },
       loading,
-      error: { message },
+      error: { message: currentWeatherErrorMsg },
     },
   } = useSelector((state: RootState) => state);
-  const dispatch = useDispatch();
-  const { getIp } = bindActionCreators(ipActions, dispatch);
-  const { getCurrentWeather } = bindActionCreators(weatherActions, dispatch);
 
   const [metric, setMetric] = useState<boolean>(false);
 
-  useEffect(() => {
-    // getIp();
-    // getCurrentWeather("london");
-  }, []);
+  useFetchCurrentWeather();
 
-  const onMeasurementUnitBtnClick = () => {
+  const onMeasurementUnitBtnClick = (): void => {
     setMetric(!metric);
   };
 
   return (
     <div className={darkMode ? "weather-current-dark-mode" : "weather-current"}>
-      <div className="main-current-weather-info">
-        <p>
-          {text} {icon}
-        </p>
-        <div className="current-weather-temperature-container">
-          <p className="current-weather-temperature">
-            {metric ? temp_f : temp_c}
-          </p>
-          <button className="unit-btn" onClick={onMeasurementUnitBtnClick}>
-            &deg;
-            {metric ? "f" : "c"}
-          </button>
-        </div>
-      </div>
-      <div className="add-current-weather-info">
-        <p>Wind {metric ? wind_mph + " mph" : wind_kph + " kph"}</p>
-        <p>Wind Direction {wind_direction}</p>
-        <p>Humidity {humidity} %</p>
-        <p>Last Updated {last_update}</p>
-      </div>
+      {loading ? (
+        <div className="weather-current-loader">Loading...</div>
+      ) : (
+        <>
+          {currentWeatherErrorMsg ? (
+            <>{currentWeatherErrorMsg}</>
+          ) : (
+            <>
+              <div className="weather-current-info-main">
+                <p>
+                  <img src={icon} alt="Current weather" title={text} />
+                </p>
+                <div className="weather-current-temperature-container">
+                  <p className="weather-current-temperature">
+                    {metric ? Math.round(temp_f) : Math.round(temp_c)}
+                  </p>
+                  <button
+                    className="weather-current-unit-btn"
+                    onClick={onMeasurementUnitBtnClick}
+                  >
+                    &deg;
+                    {metric ? "F" : "C"}
+                  </button>
+                </div>
+              </div>
+              <div className="weather-current-add--info">
+                <p>
+                  Wind{" "}
+                  {metric
+                    ? Math.round(wind_mph) + " mph"
+                    : Math.round(wind_kph) + " kph"}
+                </p>
+                <p>Wind Direction {wind_dir}</p>
+                <p>Humidity {humidity} %</p>
+              </div>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 };

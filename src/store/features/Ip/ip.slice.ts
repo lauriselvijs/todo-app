@@ -7,7 +7,7 @@ import { GET_YOUR_IP_URL } from "../../../constants/Ip.const";
 import { GET_IP_TYPE, IP_SLICE_NAME } from "./ip.const";
 import { IError } from "../../../types/Error";
 
-const getIp = createAsyncThunk<IinitalStateIp>(
+const getIp = createAsyncThunk<IinitalStateIp["ipInfo"]>(
   GET_IP_TYPE,
   async (_, thunkAPI) => {
     try {
@@ -58,9 +58,9 @@ export const ip = createSlice({
     builder.addCase(getIp.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getIp.fulfilled, (state, { payload: { ipInfo } }) => {
+    builder.addCase(getIp.fulfilled, (state, action) => {
       state.loading = false;
-      state.ipInfo = ipInfo;
+      state.ipInfo = action.payload;
     });
     builder.addCase(getIp.rejected, (state) => {
       state.loading = false;

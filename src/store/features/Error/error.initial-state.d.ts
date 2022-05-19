@@ -1,3 +1,5 @@
+import { IError } from "../../../types/Error.d";
+
 interface IinitialStateError {
   error: IError;
 }

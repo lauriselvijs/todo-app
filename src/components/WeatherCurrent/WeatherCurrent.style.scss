@@ -6,30 +6,45 @@
   align-items: flex-start;
   gap: 30px;
   position: absolute;
-  top: 120px;
-  left: 50px;
-  width: 200px;
-  height: 120px;
+  top: 60px;
+  left: 60px;
+  width: 300px;
+  height: 150px;
   border-radius: 10px;
   padding: 10px;
-  font-size: $font-size-small;
+  font-size: $font-size-large;
   font-weight: $font-weight-regular;
   background-color: fade-out($bg-color, 0.4);
   color: $color;
 
   transition: top 0.5s linear;
 
-  .current-weather-temperature-container {
+  .weather-current-loader {
+    align-self: center;
+  }
+
+  .weather-current-info-main {
     display: flex;
     flex-direction: row;
-    font-size: $font-size-large;
+    justify-content: center;
+    align-items: center;
 
-    .unit-btn {
-      color: $color;
-      background-color: transparent;
-      border: none;
-      &:hover {
-        transform: scale(1.2);
+    .weather-current-temperature-container {
+      display: flex;
+      flex-direction: row;
+      font-size: $font-size-title;
+
+      .weather-current-unit-btn {
+        font-size: $font-size-large;
+        cursor: pointer;
+        padding: 0px;
+        padding-bottom: 28px;
+        color: $color;
+        background-color: transparent;
+        border: none;
+        &:hover {
+          transform: scale(1.2);
+        }
       }
     }
   }
@@ -54,7 +69,7 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1390px) {
   .weather-current {
     @include weather-mobile;
 

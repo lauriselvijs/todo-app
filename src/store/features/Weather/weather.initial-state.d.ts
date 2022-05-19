@@ -2,7 +2,6 @@ import { IError } from "../../../types/Error.d";
 
 interface IinitialStateWeather {
   current: {
-    last_update: string;
     temp_c: number;
     temp_f: number;
     condition: {
@@ -11,7 +10,7 @@ interface IinitialStateWeather {
     };
     wind_mph: number;
     wind_kph: number;
-    wind_direction: string;
+    wind_dir: string;
     humidity: number;
   };
   loading: boolean;

@@ -1,5 +1,5 @@
 interface IinitalStateIp {
-  ipInfo: string;
+  ipInfo: { ip: string };
   loading: boolean;
 }
 

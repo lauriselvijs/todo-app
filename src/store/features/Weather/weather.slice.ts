@@ -4,9 +4,14 @@ import axios, { AxiosError } from "axios";
 import {
   WEATHER_API_URL,
   X_RAPID_API_HOST_NAME,
+  X_RAPID_API_HOST,
+  X_RAPID_API_KEY,
 } from "../../../constants/Weather.const";
 import IinitialStateWeather from "./weather.initial-state.d";
-import { GET_CURRENT_WEATHER_TYPE, WEATHER_SLICE_NAME } from "./weather.const";
+import {
+  GET_CURRENT_WEATHER_TYPE,
+  WEATHER_SLICE_NAME,
+} from "./weather.slice.const";
 import { IError } from "../../../types/Error.d";
 
 const getCurrentWeather = createAsyncThunk<
@@ -17,18 +22,18 @@ const getCurrentWeather = createAsyncThunk<
   }
 >(GET_CURRENT_WEATHER_TYPE, async (location, { rejectWithValue }) => {
   try {
-    console.log(process.env.REACT_APP_X_RAPID_API_KEY_VALUE);
     const response = await axios.request({
       method: "GET",
       url: WEATHER_API_URL,
       params: { q: location },
       headers: {
-        X_RAPID_API_HOST: X_RAPID_API_HOST_NAME,
-        X_RAPID_API_KEY: process.env.REACT_APP_X_RAPID_API_KEY_VALUE
+        [X_RAPID_API_HOST]: X_RAPID_API_HOST_NAME,
+        [X_RAPID_API_KEY]: process.env.REACT_APP_X_RAPID_API_KEY_VALUE
           ? process.env.REACT_APP_X_RAPID_API_KEY_VALUE
           : "",
       },
     });
+
     return response.data.current;
   } catch (err: any) {
     const error: AxiosError<IError> = err;
@@ -36,7 +41,10 @@ const getCurrentWeather = createAsyncThunk<
       throw err;
     }
 
-    return rejectWithValue(error.response.data);
+    return rejectWithValue({
+      ...error.response.data,
+      code: error.response.status,
+    });
   }
 });
 

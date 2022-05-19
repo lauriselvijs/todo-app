@@ -1,7 +1,7 @@
 import IinitalStateIp from "./ip.initial-state.d";
 
 const initialState: IinitalStateIp = {
-  ipInfo: "",
+  ipInfo: { ip: "" },
   loading: false,
 };
 
