@@ -13,6 +13,7 @@ interface IinitialStateWeather {
     wind_dir: string;
     humidity: number;
   };
+  loaded: boolean;
   loading: boolean;
   error: IError;
 }

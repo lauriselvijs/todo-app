@@ -14,6 +14,7 @@ const initialState: IinitialStateWeather = {
     humidity: 0,
   },
   loading: false,
+  loaded: false,
   error: {
     code: 0,
     message: "",

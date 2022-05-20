@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./TodoMenu.style.scss";
 import TodoListItem from "../TodoListItem";
 import { ITodoListItem } from "../../types/ListItem";
@@ -27,7 +27,6 @@ const TodoMenu = () => {
   const { todoList, todoOption } = useSelector(
     (state: RootState) => state.todos
   );
-
   const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const [filteredTodos, setFilteredTodos] =
     useState<ITodoListItem["todo"][]>(todoList);
@@ -50,17 +49,27 @@ const TodoMenu = () => {
     dispatch(setNewTodoOrder(onTodoDragEnd(result, filteredTodos)));
   };
 
-  const todoComponentArray = filteredTodos.map(
-    (todo: ITodoListItem["todo"], index: number) => (
-      <div key={index}>
-        <Draggable key={todo.todoId} draggableId={todo.todoId} index={index}>
-          {(provided, snapshot) => (
-            <TodoListItem provided={provided} snapshot={snapshot} todo={todo} />
-          )}
-        </Draggable>
-      </div>
-    )
+  const todoComponentArray = useMemo(
+    () =>
+      filteredTodos.map((todo: ITodoListItem["todo"], index: number) => (
+        <div key={index}>
+          <Draggable key={todo.todoId} draggableId={todo.todoId} index={index}>
+            {(provided, snapshot) => (
+              <TodoListItem
+                provided={provided}
+                snapshot={snapshot}
+                todo={todo}
+              />
+            )}
+          </Draggable>
+        </div>
+      )),
+    [filteredTodos]
   );
+
+  useEffect(() => {
+    console.log("update");
+  }, [todoComponentArray]);
 
   const todoMenuTheme = setTodoItemLengthProperty(filteredTodos.length);
 

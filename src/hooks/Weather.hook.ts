@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 export const useFetchCurrentWeather = () => {
   const [error, setError] = useState<string>("");
-  const dispatch = useAppDispatch();
   const { getIp } = ipActions;
+  const dispatch = useAppDispatch();
   const { getCurrentWeather } = bindActionCreators(weatherActions, dispatch);
 
   const getWeather = async () => {
@@ -17,6 +17,7 @@ export const useFetchCurrentWeather = () => {
     } catch (err: any) {
       const error: SerializedError = err;
 
+      getCurrentWeather("");
       error.name && setError(error.name);
       return error;
     }

@@ -55,14 +55,18 @@ const weather = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getCurrentWeather.pending, (state) => {
       state.loading = true;
+      state.loaded = false;
       state.error = { code: 0, message: "" };
     });
     builder.addCase(getCurrentWeather.fulfilled, (state, action) => {
       state.loading = false;
+      state.loaded = true;
+
       state.current = action.payload;
     });
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.loading = false;
+      state.loaded = false;
 
       if (action.payload?.code && action.payload?.message) {
         state.error = action.payload;

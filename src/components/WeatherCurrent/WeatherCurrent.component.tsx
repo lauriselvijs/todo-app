@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useFetchCurrentWeather } from "../../hooks/Weather.hook";
 import { RootState } from "../../store/app/store";
 import "./WeatherCurrent.style.scss";
-// const { getIp } = ipActions;
 
 const WeatherCurrent = () => {
   const {
@@ -19,6 +18,7 @@ const WeatherCurrent = () => {
         humidity,
       },
       loading,
+      loaded,
       error: { message: currentWeatherErrorMsg },
     },
   } = useSelector((state: RootState) => state);
@@ -33,7 +33,7 @@ const WeatherCurrent = () => {
 
   return (
     <div className={darkMode ? "weather-current-dark-mode" : "weather-current"}>
-      {loading ? (
+      {loading || !loaded ? (
         <div className="weather-current-loader">Loading...</div>
       ) : (
         <>
