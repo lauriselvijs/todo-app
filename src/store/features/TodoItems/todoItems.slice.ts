@@ -1,5 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
+import { createSlice, current, nanoid, PayloadAction } from "@reduxjs/toolkit";
 import { todoOptions } from "../../../constants/TodoMenu.const";
 import { ITodoListItem } from "../../../types/ListItem";
 import { TODO_ITEMS_SLICE_NAME } from "./todoItems.const";
@@ -22,7 +21,7 @@ export const todoItems = createSlice({
     ) => {
       state.todoList = [
         ...state.todoList,
-        { todoId: uuidv4(), todoMsg, todoActive },
+        { todoId: nanoid(), todoMsg, todoActive },
       ];
     },
     deleteTodo: (state, action: PayloadAction<string>) => {
