@@ -67,10 +67,6 @@ const TodoMenu = () => {
     [filteredTodos]
   );
 
-  useEffect(() => {
-    console.log("update");
-  }, [todoComponentArray]);
-
   const todoMenuTheme = setTodoItemLengthProperty(filteredTodos.length);
 
   return (
