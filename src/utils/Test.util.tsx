@@ -7,7 +7,7 @@ import { PersistGate } from "redux-persist/integration/react";
 export const render = (
   component: ReactNode
 ): RenderResult<
-  typeof import("/home/lauris/Desktop/todo-app/node_modules/@testing-library/dom/types/queries"),
+  typeof import("../../node_modules/@testing-library/dom/types/queries"),
   HTMLElement,
   HTMLElement
 > =>
