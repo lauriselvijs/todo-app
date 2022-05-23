@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import initialState from "./ip.initial-state";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import IinitalStateIp from "./ip.initial-state.d";
 import { setError } from "../Error/error.slice";
-import { GET_YOUR_IP_URL } from "../../../constants/Ip.const";
-import { GET_IP_TYPE, IP_SLICE_NAME } from "./ip.const";
+import { GET_IP_TYPE, IP_SLICE_NAME } from "./ip.store.const";
 import { IError } from "../../../types/Error";
+import { IpService } from "../../../services/Ip";
+
+const { getIpData } = IpService;
 
 const getIp = createAsyncThunk<IinitalStateIp["ipInfo"]>(
   GET_IP_TYPE,
@@ -17,9 +19,9 @@ const getIp = createAsyncThunk<IinitalStateIp["ipInfo"]>(
           message: "",
         })
       );
-      const response = await axios.get(GET_YOUR_IP_URL);
+      const ipData = getIpData();
 
-      return response.data;
+      return ipData;
     } catch (err: any) {
       const error: AxiosError<IError> = err;
 

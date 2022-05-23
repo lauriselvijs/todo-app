@@ -1,18 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import initialState from "./weather.initial-state";
-import axios, { AxiosError } from "axios";
-import {
-  WEATHER_API_URL,
-  X_RAPID_API_HOST_NAME,
-  X_RAPID_API_HOST,
-  X_RAPID_API_KEY,
-} from "../../../constants/Weather.const";
+import { AxiosError } from "axios";
 import IinitialStateWeather from "./weather.initial-state.d";
 import {
   GET_CURRENT_WEATHER_TYPE,
   WEATHER_SLICE_NAME,
 } from "./weather.slice.const";
 import { IError } from "../../../types/Error.d";
+import { CurrentWeatherService } from "../../../services/Weather";
+
+const { getCurrentWeatherData } = CurrentWeatherService;
 
 const getCurrentWeather = createAsyncThunk<
   IinitialStateWeather["current"],
@@ -22,19 +19,9 @@ const getCurrentWeather = createAsyncThunk<
   }
 >(GET_CURRENT_WEATHER_TYPE, async (location, { rejectWithValue }) => {
   try {
-    const response = await axios.request({
-      method: "GET",
-      url: WEATHER_API_URL,
-      params: { q: location },
-      headers: {
-        [X_RAPID_API_HOST]: X_RAPID_API_HOST_NAME,
-        [X_RAPID_API_KEY]: process.env.REACT_APP_X_RAPID_API_KEY_VALUE
-          ? process.env.REACT_APP_X_RAPID_API_KEY_VALUE
-          : "",
-      },
-    });
+    const currentWeatherData = getCurrentWeatherData(location);
 
-    return response.data.current;
+    return currentWeatherData;
   } catch (err: any) {
     const error: AxiosError<IError> = err;
     if (!error.response) {
