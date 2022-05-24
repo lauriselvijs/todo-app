@@ -5,12 +5,8 @@ import ip from "../features/Ip";
 import error from "../features/Error";
 import weather from "../features/Weather";
 
-export const rootReducer = combineReducers({
-  todos: todoItems,
-  dark: darkMode,
-  ip,
-  error,
-  weather,
-});
+const reducers = { todos: todoItems, dark: darkMode, ip, error, weather };
+
+export const rootReducer = combineReducers(reducers);
 
 export default rootReducer;
