@@ -14,7 +14,6 @@ const setup = () => {
 
 // you can also use beforeEach, beforeAll, afterEach, afterAll
 // beforeEach(() => {
-//   render(<TodoInput />);
 // });
 
 // unit test
