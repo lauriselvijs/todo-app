@@ -6,6 +6,7 @@ const { TODO_OPTION_ALL } = todoOptions;
 const initialState: IinitialTodoListState = {
   todoList: [],
   todoActiveInput: true,
+  todoEditMode: false,
   todoOption: TODO_OPTION_ALL,
   todoCount: 0,
 };

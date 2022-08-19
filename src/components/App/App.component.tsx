@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Root from "../../routes/Root/Root.component";
-import Todo from "../../routes/Todo";
-import { ROOT, NOT_FOUND } from "../../constants/Url.const";
+import { HOME_URL, NOT_FOUND } from "../../constants/Url.const";
+import NoMatch from "../../pages/NoMatch";
+import Layout from "../../pages/shared/Layout";
+import Todo from "../../pages/Todo";
 import Footer from "../Footer";
-import NoMatch from "../../routes/NoMatch";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path={ROOT} element={<Root />}>
+        <Route path={HOME_URL} element={<Layout />}>
           <Route index element={<Todo />} />
         </Route>
         <Route path={NOT_FOUND} element={<NoMatch />} />

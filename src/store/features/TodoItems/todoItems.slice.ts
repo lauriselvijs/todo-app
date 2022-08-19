@@ -25,24 +25,20 @@ export const todoItems = createSlice({
       ];
     },
     deleteTodo: (state, action: PayloadAction<string>) => {
-      {
-        state.todoList = state.todoList.filter(
-          (todo) => todo.todoId !== action.payload
-        );
-      }
+      state.todoList = state.todoList.filter(
+        (todo) => todo.todoId !== action.payload
+      );
     },
     setActiveTodo: (
       state,
       { payload: { todoId, todoActive } }: PayloadAction<IactiveTodo>
     ) => {
-      {
-        state.todoList = state.todoList.map((todo) => {
-          if (todo.todoId === todoId) {
-            return { ...todo, todoActive };
-          }
-          return todo;
-        });
-      }
+      state.todoList = state.todoList.map((todo) => {
+        if (todo.todoId === todoId) {
+          return { ...todo, todoActive };
+        }
+        return todo;
+      });
     },
     setNewActiveTodoInput: (state, action: PayloadAction<boolean>) => {
       state.todoActiveInput = action.payload;
@@ -52,6 +48,17 @@ export const todoItems = createSlice({
       action: PayloadAction<ITodoListItem["todo"][]>
     ) => {
       state.todoList = [...action.payload];
+    },
+    setTodoEdit: (
+      state,
+      { payload: { todoId, todoMsg, todoActive } }: PayloadAction<IaddTodo>
+    ) => {
+      state.todoList = state.todoList.map((todo) => {
+        if (todo.todoId === todoId) {
+          return { ...todo, todoMsg, todoActive };
+        }
+        return todo;
+      });
     },
     clearCompletedTodos: (state) => {
       state.todoList = state.todoList.filter((todo) => {
@@ -70,6 +77,9 @@ export const todoItems = createSlice({
     setTodoOptionActive: (state) => {
       state.todoOption = TODO_OPTION_ACTIVE;
     },
+    setTodoEditMode: (state) => {
+      state.todoEditMode = !state.todoEditMode;
+    },
   },
 });
 
@@ -79,11 +89,13 @@ export const {
   setActiveTodo,
   setNewActiveTodoInput,
   setNewTodoOrder,
+  setTodoEdit,
   clearCompletedTodos,
   setTodoOptionAll,
   setTodoOptionCompleted,
   setTodoOptionActive,
   setTodoCount,
+  setTodoEditMode,
 } = todoItems.actions;
 
 export default todoItems.reducer;

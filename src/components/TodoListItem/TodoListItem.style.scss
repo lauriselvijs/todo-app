@@ -1,10 +1,48 @@
 @import "../../style/main.scss";
 
+@mixin todo-edit-input($dark-mode: false) {
+  font-family: $font-family;
+  font-size: $font-size-large;
+  font-weight: $font-weight-regular;
+  caret-color: $bright-blue;
+
+  color: if(
+    $dark-mode,
+    $dark-theme-light-grayish-blue,
+    $very-dark-grayish-blue
+  );
+
+  background-color: if(
+    $dark-mode,
+    $dark-theme-very-light-desaturated-blue,
+    none
+  );
+}
+
 .todo-list-item {
   @include todo-list-item-style;
 
   &-completed {
     @include todo-list-item-completed-style;
+  }
+}
+
+.todo-list-item-edit-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+}
+
+input.todo-list-item-edit-input {
+  border: none;
+  outline: none;
+  @include todo-edit-input;
+
+  &::placeholder {
+    @include todo-list-item-style;
+    padding-left: 0px;
   }
 }
 

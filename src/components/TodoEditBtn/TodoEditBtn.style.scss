@@ -1,0 +1,13 @@
+@import "../../style/main.scss";
+
+.todo-edit-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &-img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
+  }
+}
