@@ -1,10 +1,12 @@
-describe("todo input checked", () => {
-  const createNewTodoPlaceholder = /Create a new todo.../i;
-  const finishProjectTodo = /Finnish project/i;
-  const todoCheckMark = "todo-checkmark";
+import {
+  createNewTodoPlaceholder,
+  finishProjectTodo,
+  todoCheckMark,
+} from "../../constants/Todo.const";
 
+describe("todo input checked", () => {
   it("user can create todo", () => {
-    cy.visit("http://localhost:3000/");
+    cy.visit("/");
     cy.findByPlaceholderText(createNewTodoPlaceholder).type("Finnish project");
     cy.findByTestId(todoCheckMark).click();
     cy.findByPlaceholderText(createNewTodoPlaceholder).type("{enter}");

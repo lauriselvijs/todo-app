@@ -1,0 +1,17 @@
+{
+  "extends": ["react-app", "shared-config"],
+  "rules": {
+    "testing-library/await-async-query": "off",
+    "testing-library/prefer-screen-queries": "off",
+    "testing-library/prefer-explicit-assert": "off",
+    "jest/valid-expect": "off",
+    "jest/valid-expect-in-promise": "off",
+    "jest/no-conditional-expect": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "rules": {}
+    }
+  ]
+}
