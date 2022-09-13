@@ -36,10 +36,10 @@ Users should be able to:
 
 ### Screenshot
 
-![Todo app dark mode mobile](https://user-images.githubusercontent.com/85683069/166263142-5f100334-edf8-41b3-acd9-a2678f6b5b43.png)
-![Todo app light mode mobile](https://user-images.githubusercontent.com/85683069/166263145-f19409c8-f904-4b88-8bb6-e2e00cf17c8d.png)
-![Todo app dark mode desktop](https://user-images.githubusercontent.com/85683069/166263146-5eb93fa5-1929-46db-b1c5-8a9a57810bdf.png)
-![Todo app light mode desktop](https://user-images.githubusercontent.com/85683069/166263149-389d384a-0edb-4bda-b8e4-abf7b0dd49dc.png)
+![Todo app mobile dark mode](https://user-images.githubusercontent.com/85683069/189924462-523718f5-2746-460e-86e1-46fc6111b303.png)
+![Todo app mobile light mode](https://user-images.githubusercontent.com/85683069/189924471-f537f898-028e-41dc-9726-6e0b7b751ec2.png)
+![Todo app desktop dark mode](https://user-images.githubusercontent.com/85683069/189924474-06664384-23ce-43a1-b28b-dd7414b3ff72.png)
+![Todo app desktop light mode](https://user-images.githubusercontent.com/85683069/189924476-3e090ea7-5771-46f1-ada5-2a04933635c9.png)
 
 ### Links
 
