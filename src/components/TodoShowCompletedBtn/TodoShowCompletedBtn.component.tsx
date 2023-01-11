@@ -2,7 +2,7 @@ import "./TodoShowCompletedBtn.style.scss";
 import { todoOptions } from "../../constants/TodoMenu.const";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
-import { setTodoOptionCompleted } from "../../store/features/TodoItems/todoItems.slice";
+import { setTodoOptionCompleted } from "../../store/features/Todo/Todo.slice";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 
 const TodoShowCompletedBtn = () => {

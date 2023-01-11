@@ -6,7 +6,7 @@ import IconCheck from "../../asset/image/icon/icon-checkmark.svg";
 import IconCheckDarkMode from "../../asset/image/icon/icon-checkmark-dark-mode.svg";
 import IconEdit from "../../asset/image/icon/icon-edit.svg";
 import IconEditDarkMode from "../../asset/image/icon/icon-edit-dark-mode.svg";
-import { setTodoEditMode } from "../../store/features/TodoItems/todoItems.slice";
+import { setTodoEditMode } from "../../store/features/Todo/Todo.slice";
 
 const TodoEditBtn = () => {
   const dispatch = useAppDispatch();

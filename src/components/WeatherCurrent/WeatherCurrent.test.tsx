@@ -1,7 +1,7 @@
 import { render } from "../../utils/Test.util";
 import WeatherCurrent from "./WeatherCurrent.component";
 import { screen } from "@testing-library/react";
-import { rest, server } from "../../__test__/mocks/Server.mock";
+import { rest, server } from "../../__tests__/mocks/Server.mock";
 import { WEATHER_API_URL } from "../../constants/Weather.const";
 
 beforeEach(() => {

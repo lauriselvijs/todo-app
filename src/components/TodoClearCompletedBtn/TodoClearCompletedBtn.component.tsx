@@ -1,6 +1,6 @@
 import "./TodoClearCompletedBtn.style.scss";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
-import { clearCompletedTodos } from "../../store/features/TodoItems/todoItems.slice";
+import { clearCompletedTodos } from "../../store/features/Todo/Todo.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 

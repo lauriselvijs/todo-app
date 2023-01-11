@@ -1,7 +1,11 @@
-import { IWrapper } from "../../types/Wrapper";
+import { ReactNode } from "react";
 
-const HeaderWrapper = ({ children }: IWrapper) => {
+interface HeaderProps {
+  children: ReactNode;
+}
+
+const Header = ({ children }: HeaderProps) => {
   return <header>{children}</header>;
 };
 
-export default HeaderWrapper;
+export default Header;

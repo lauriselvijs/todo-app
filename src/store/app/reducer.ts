@@ -1,12 +1,19 @@
-import todoItems from "../features/TodoItems";
-import darkMode from "../features/DarkMode";
 import { combineReducers } from "@reduxjs/toolkit";
-import ip from "../features/Ip";
-import error from "../features/Error";
-import weather from "../features/Weather";
 
-const reducers = { todos: todoItems, dark: darkMode, ip, error, weather };
+import { todoReducer, todoSliceName } from "../features/Todo";
+import { ipReducer, ipSliceName } from "../features/Ip";
+import { errorReducer, errorSliceName } from "../features/Error";
+import { weatherReducer, weatherSliceName } from "../features/Weather";
+import { themeSliceName, themeReducer } from "../features/Theme";
 
-export const rootReducer = combineReducers(reducers);
+const reducers = {
+  [todoSliceName]: todoReducer,
+  [themeSliceName]: themeReducer,
+  [ipSliceName]: ipReducer,
+  [errorSliceName]: errorReducer,
+  [weatherSliceName]: weatherReducer,
+};
+
+const rootReducer = combineReducers(reducers);
 
 export default rootReducer;

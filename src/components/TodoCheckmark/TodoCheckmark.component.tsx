@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import {
   setActiveTodo,
   setNewActiveTodoInput,
-} from "../../store/features/TodoItems/todoItems.slice";
+} from "../../store/features/Todo/Todo.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 

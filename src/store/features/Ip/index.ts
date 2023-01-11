@@ -1,3 +1,1 @@
-import ip from "./ip.slice";
-
-export default ip;
+export * from "./Ip.slice";

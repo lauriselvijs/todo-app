@@ -4,7 +4,7 @@ import IconCrossDarkMode from "../../asset/image/icon/icon-cross-dark-mode.svg";
 import {
   deleteTodo,
   setTodoOptionAll,
-} from "../../store/features/TodoItems/todoItems.slice";
+} from "../../store/features/Todo/Todo.slice";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import { RootState } from "../../store/app/store";
 import { useSelector } from "react-redux";

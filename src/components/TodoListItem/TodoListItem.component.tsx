@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import "./TodoListItem.style.scss";
-import { ITodoListItem } from "../../types/ListItem";
+import { Task } from "../../types/Task";
 import TodoCheckmark from "../TodoCheckmark";
 import PropTypes from "prop-types";
 import TodoDeleteBtn from "../TodoDeleteBtn";
@@ -8,13 +8,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 import TodoEditBtn from "../TodoEditBtn";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
-import { setTodoEdit } from "../../store/features/TodoItems/todoItems.slice";
+import { setTodoEdit } from "../../store/features/Todo/Todo.slice";
 
 const TodoListItem = ({
-  todo: { todoMsg, todoActive, todoId },
+  task: { id, msg, active },
   provided: { innerRef, draggableProps, dragHandleProps },
   snapshot,
-}: ITodoListItem) => {
+}: Task) => {
   const dispatch = useAppDispatch();
   const todoEditMode = useSelector(
     (state: RootState) => state.todos.todoEditMode
@@ -34,7 +34,7 @@ const TodoListItem = ({
   };
 
   const onTodoEditInputChange = (e: FormEvent<HTMLInputElement>): void => {
-    dispatch(setTodoEdit({todoId, todoMsg: e.currentTarget.value, todoActive}));
+    dispatch(setTodoEdit({ id, msg: e.currentTarget.value, active }));
   };
 
   return (
@@ -42,10 +42,10 @@ const TodoListItem = ({
       data-testid="todo-list-item"
       className={
         darkMode
-          ? todoActive
+          ? active
             ? "todo-list-item-dark-mode"
             : "todo-list-item-dark-mode-completed"
-          : todoActive
+          : active
           ? "todo-list-item"
           : "todo-list-item-completed"
       }
@@ -56,34 +56,22 @@ const TodoListItem = ({
       {...draggableProps}
       {...dragHandleProps}
     >
-      <TodoCheckmark todoId={todoId} todoActive={todoActive} />
-      {!todoEditMode && todoMsg}
+      <TodoCheckmark todoId={id} todoActive={active} />
+      {!todoEditMode && msg}
       {todoEditMode && (
         <input
           onInput={onTodoEditInputChange}
           className="todo-list-item-edit-input"
           type="text"
-          placeholder={todoMsg}
+          placeholder={msg}
         />
       )}
       <div className="todo-list-item-edit-delete">
         {(todoEditMode || showEditTodo) && <TodoEditBtn />}
-        {(todoEditMode || showDeleteTodo) && <TodoDeleteBtn todoId={todoId} />}
+        {(todoEditMode || showDeleteTodo) && <TodoDeleteBtn todoId={id} />}
       </div>
     </div>
   );
-};
-
-TodoListItem.propTypes = {
-  todoId: PropTypes.string,
-  todoMsg: PropTypes.string,
-  todoActive: PropTypes.bool,
-};
-
-TodoListItem.defaultProps = {
-  todoId: "",
-  todoMsg: "",
-  todoActive: false,
 };
 
 export default TodoListItem;

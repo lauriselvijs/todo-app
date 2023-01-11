@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import "./TodoMenu.style.scss";
 import TodoListItem from "../TodoListItem";
-import { ITodoListItem } from "../../types/ListItem";
+import { Task } from "../../types/Task";
 import TodoMenuFooter from "../TodoMenuFooter";
 import {
   DragDropContext,
@@ -18,7 +18,7 @@ import { onTodoDragEnd } from "../../utils/TodoAnimation.util";
 import {
   setNewTodoOrder,
   setTodoCount,
-} from "../../store/features/TodoItems/todoItems.slice";
+} from "../../store/features/Todo/Todo.slice";
 import { setTodoItemLengthProperty } from "../../utils/TodoList.util";
 
 const TodoMenu = () => {
@@ -28,8 +28,7 @@ const TodoMenu = () => {
     (state: RootState) => state.todos
   );
   const darkMode = useSelector((state: RootState) => state.dark.darkMode);
-  const [filteredTodos, setFilteredTodos] =
-    useState<ITodoListItem["todo"][]>(todoList);
+  const [filteredTodos, setFilteredTodos] = useState<Task["task"][]>(todoList);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -51,14 +50,14 @@ const TodoMenu = () => {
 
   const todoComponentArray = useMemo(
     () =>
-      filteredTodos.map((todo: ITodoListItem["todo"], index: number) => (
+      filteredTodos.map((todo: Task["task"], index: number) => (
         <div key={index}>
-          <Draggable key={todo.todoId} draggableId={todo.todoId} index={index}>
+          <Draggable key={todo.id} draggableId={todo.id} index={index}>
             {(provided, snapshot) => (
               <TodoListItem
                 provided={provided}
                 snapshot={snapshot}
-                todo={todo}
+                task={todo}
               />
             )}
           </Draggable>

@@ -4,7 +4,7 @@ import TodoCheckmark from "../TodoCheckmark";
 import {
   addTodo,
   setNewActiveTodoInput,
-} from "../../store/features/TodoItems/todoItems.slice";
+} from "../../store/features/Todo/Todo.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";

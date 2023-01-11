@@ -1,6 +1,6 @@
 import "./TodoShowAllBtn.style.scss";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
-import { setTodoOptionAll } from "../../store/features/TodoItems/todoItems.slice";
+import { setTodoOptionAll } from "../../store/features/Todo/Todo.slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 import { todoOptions } from "../../constants/TodoMenu.const";

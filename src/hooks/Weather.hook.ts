@@ -1,7 +1,7 @@
 import { bindActionCreators, SerializedError } from "@reduxjs/toolkit";
 import { useAppDispatch } from "./TodoActions.hook";
-import { weatherActions } from "../store/features/Weather/weather.slice";
-import { ipActions } from "../store/features/Ip/ip.slice";
+import { weatherActions } from "../store/features/Weather/Weather.slice";
+import { ipActions } from "../store/features/Ip/Ip.slice";
 import { useEffect, useState } from "react";
 
 export const useFetchCurrentWeather = () => {

@@ -1,9 +1,0 @@
-@import "../../style/main.scss";
-
-.no-match {
-  @include no-match-style;
-
-  &-dark-mode {
-    @include no-match-style($dark-mode: true);
-  }
-}

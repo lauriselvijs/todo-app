@@ -1,10 +1,10 @@
 import { DropResult } from "react-beautiful-dnd";
-import { ITodoListItem } from "../types/ListItem";
+import { Task } from "../types/Task";
 
 export const onTodoDragEnd = (
   result: DropResult,
-  todos: ITodoListItem["todo"][]
-): ITodoListItem["todo"][] => {
+  todos: Task["task"][]
+): Task["task"][] => {
   const { source, destination } = result;
   const newTodoItems = Array.from(todos);
   const [removed] = newTodoItems.splice(source.index, 1);

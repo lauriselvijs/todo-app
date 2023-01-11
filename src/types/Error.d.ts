@@ -1,4 +1,4 @@
-export interface IError {
-  code: number;
+export interface Error {
+  code: number | null;
   message: string;
 }

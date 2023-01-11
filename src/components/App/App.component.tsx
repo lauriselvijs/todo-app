@@ -1,21 +1,24 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { HOME_URL, NOT_FOUND } from "../../constants/Url.const";
-import NoMatch from "../../pages/NoMatch";
-import Layout from "../../pages/shared/Layout";
-import Todo from "../../pages/Todo";
-import Footer from "../Footer";
+import DarkModeBtn from "../DarkModeBtn";
+import Header from "../HeaderWrapper/HeaderWrapper.component";
+import Todo from "../Todo";
+import TodoHero from "../TodoHero";
+import TodoTitle from "../TodoTItle";
+import WeatherCurrent from "../WeatherCurrent";
 
 const App = () => {
+  const currentWeatherData = getCurrentWeatherData(location);
+
   return (
-    <Router>
-      <Routes>
-        <Route path={HOME_URL} element={<Layout />}>
-          <Route index element={<Todo />} />
-        </Route>
-        <Route path={NOT_FOUND} element={<NoMatch />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <>
+      <div>Test</div>
+      {/* <WeatherCurrent />
+      <Header>
+        <TodoTitle />
+        <DarkModeBtn />
+        <TodoHero />
+      </Header>
+      <Todo /> */}
+    </>
   );
 };
 

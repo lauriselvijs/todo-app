@@ -2,7 +2,7 @@ import "./TodoShowActiveBtn.style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 import { todoOptions } from "../../constants/TodoMenu.const";
-import { setTodoOptionActive } from "../../store/features/TodoItems/todoItems.slice";
+import { setTodoOptionActive } from "../../store/features/Todo/Todo.slice";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 
 const TodoShowActiveBtn = () => {

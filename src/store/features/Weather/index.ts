@@ -1,3 +1,1 @@
-import weather from "./weather.slice";
-
-export default weather;
+export * from "./Weather.slice";
