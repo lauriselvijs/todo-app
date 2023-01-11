@@ -1,9 +1,9 @@
-import { Error } from "../../../types/Error.d";
 import { Weather } from "../../../types/Weather.d";
+import { WeatherError } from "./Weather.slice";
 
 export interface InitialState {
-  current: Weather;
-  loaded: boolean;
+  weather: Weather;
   loading: boolean;
-  error: Error;
+  loaded: boolean;
+  error: WeatherError;
 }

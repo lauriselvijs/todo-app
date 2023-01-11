@@ -1,23 +1,30 @@
 import { InitialState } from "../Weather/Weather.initial-state.d";
 
-const initialState: InitialState = {
-  current: {
-    temp_c: null,
-    temp_f: null,
+const initialState = {
+  weather: {
+    temperature: {
+      celsius: null,
+      fahrenheit: null,
+    },
     condition: {
       text: "",
       icon: "",
     },
-    wind_mph: null,
-    wind_kph: null,
-    wind_dir: "",
+    wind: {
+      mph: null,
+      kph: null,
+      dir: "",
+    },
     humidity: null,
   },
   loading: false,
   loaded: false,
   error: {
-    code: null,
-    message: "",
+    status: null,
+    error: {
+      code: null,
+      message: "",
+    },
   },
 };
 
