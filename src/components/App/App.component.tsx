@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HOME_URL, NOT_FOUND } from "../../constants/Url.const";
 import NoMatch from "../../pages/NoMatch";

@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoShowActiveBtn.style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";

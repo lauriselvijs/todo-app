@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { store, persistor } from "../store/app/store";
 import { render as rtlRender } from "@testing-library/react";

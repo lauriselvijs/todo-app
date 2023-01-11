@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoShowAllBtn.style.scss";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import { setTodoOptionAll } from "../../store/features/TodoItems/todoItems.slice";

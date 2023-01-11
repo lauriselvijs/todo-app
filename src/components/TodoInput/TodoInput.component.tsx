@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent } from "react";
 import "./TodoInput.style.scss";
 import TodoCheckmark from "../TodoCheckmark";
 import {

@@ -3,4 +3,4 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
-import "./test/mocks/Server.mock";
+import "./__test__/mocks/Server.mock";

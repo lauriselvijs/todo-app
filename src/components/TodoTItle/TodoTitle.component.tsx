@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoTitle.style.scss";
 import { Link } from "react-router-dom";
 import { HOME_URL } from "../../constants/Url.const";

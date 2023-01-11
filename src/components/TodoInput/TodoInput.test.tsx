@@ -1,4 +1,3 @@
-import React from "react";
 import TodoInput from "../TodoInput";
 import { render } from "../../utils/Test.util";
 import { fireEvent, screen } from "@testing-library/react";

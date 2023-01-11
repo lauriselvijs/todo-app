@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./DarkModeBtn.style.scss";
 import MoonIcon from "../../asset/image/icon/icon-moon.svg";
 import SunIcon from "../../asset/image/icon/icon-sun.svg";

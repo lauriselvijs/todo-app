@@ -1,4 +1,3 @@
-import React from "react";
 import "./NoMatch.style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";

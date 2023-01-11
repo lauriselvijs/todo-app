@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoMenuWrapper.style.scss";
 import { IWrapper } from "../../types/Wrapper";
 

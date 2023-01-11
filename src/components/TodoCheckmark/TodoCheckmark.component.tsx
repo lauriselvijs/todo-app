@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoCheckmark.style.scss";
 import { ITodoCheckmark } from "./TodoCheckmark";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";

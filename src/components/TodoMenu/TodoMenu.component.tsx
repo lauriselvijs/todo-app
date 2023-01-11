@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./TodoMenu.style.scss";
 import TodoListItem from "../TodoListItem";
 import { ITodoListItem } from "../../types/ListItem";

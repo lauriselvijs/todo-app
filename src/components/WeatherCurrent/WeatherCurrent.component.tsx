@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useFetchCurrentWeather } from "../../hooks/Weather.hook";
 import { RootState } from "../../store/app/store";

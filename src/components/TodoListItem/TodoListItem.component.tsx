@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import "./TodoListItem.style.scss";
 import { ITodoListItem } from "../../types/ListItem";
 import TodoCheckmark from "../TodoCheckmark";

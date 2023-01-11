@@ -2,10 +2,10 @@ import {
   createNewTodoPlaceholder,
   finishProjectTodo,
   todoCheckMark,
-} from "../../constants/Todo.const";
+} from "../constants/Todo.const";
 
-describe("todo input checked", () => {
-  it("user can create todo", () => {
+describe("Todo", () => {
+  it("should be able to create task", () => {
     cy.visit("/");
     cy.findByPlaceholderText(createNewTodoPlaceholder).type("Finnish project");
     cy.findByTestId(todoCheckMark).click();

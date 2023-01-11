@@ -1,4 +1,3 @@
-import React from "react";
 import "./Footer.style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";

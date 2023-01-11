@@ -1,4 +1,3 @@
-import React from "react";
 import "./Todo.stye.scss";
 import TodoMenuWrapper from "../../components/TodoMenuWrapper";
 import TodoInput from "../../components/TodoInput";

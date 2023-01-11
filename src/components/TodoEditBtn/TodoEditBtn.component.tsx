@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/TodoActions.hook";
 import { RootState } from "../../store/app/store";

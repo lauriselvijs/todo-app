@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoHero.style.scss";
 import BgDesktopLight from "../../asset/image/bg-desktop-light.jpg";
 import BgDesktopDark from "../../asset/image/bg-desktop-dark.jpg";

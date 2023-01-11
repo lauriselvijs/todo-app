@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoDeleteBtn.style.scss";
 import IconCross from "../../asset/image/icon/icon-cross.svg";
 import IconCrossDarkMode from "../../asset/image/icon/icon-cross-dark-mode.svg";

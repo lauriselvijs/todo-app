@@ -1,4 +1,3 @@
-import React from "react";
 import "./TodoShowCompletedBtn.style.scss";
 import { todoOptions } from "../../constants/TodoMenu.const";
 import { useSelector } from "react-redux";
