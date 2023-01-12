@@ -1,1 +1,1 @@
-export * as CurrentWeatherService from "./Weather.service";
+export * from "./Weather.service";

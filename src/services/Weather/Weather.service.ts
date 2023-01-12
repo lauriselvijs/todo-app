@@ -1,5 +1,4 @@
-import axios, { AxiosError } from "axios";
-import { Weather } from "../../types/Weather.d";
+import axios from "axios";
 import {
   API_URL,
   CURRENT,
@@ -7,21 +6,7 @@ import {
   X_RAPID_API_HOST_NAME,
   X_RAPID_API_KEY,
 } from "./Weather.config";
-
-interface WeatherServiceResponse {
-  current: {
-    temp_c: null;
-    temp_f: null;
-    condition: {
-      text: "";
-      icon: "";
-    };
-    wind_mph: null;
-    wind_kph: null;
-    wind_dir: "";
-    humidity: null;
-  };
-}
+import { WeatherServiceResponse } from "./Weather.service.d";
 
 export const getCurrentWeatherData = async (
   location: string

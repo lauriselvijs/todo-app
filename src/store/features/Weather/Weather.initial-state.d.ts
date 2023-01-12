@@ -1,5 +1,5 @@
 import { Weather } from "../../../types/Weather.d";
-import { WeatherError } from "./Weather.slice";
+import { WeatherError } from "../../../types/Weather";
 
 export interface InitialState {
   weather: Weather;

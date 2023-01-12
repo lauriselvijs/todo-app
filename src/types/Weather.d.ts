@@ -1,16 +1,23 @@
 export interface Weather {
   temperature: {
-    celsius: number;
-    fahrenheit: number;
+    celsius: number | null;
+    fahrenheit: number | null;
   };
   condition: {
     text: string;
     icon: string;
   };
   wind: {
-    mph: number;
-    kph: number;
-    dir: string;
+    mph: number | null;
+    kph: number | null;
+    dir: string | null;
   };
-  humidity: number;
+  humidity: number | null;
+}
+
+export interface WeatherError {
+  status: number | null;
+  error: {
+    message: string;
+  };
 }

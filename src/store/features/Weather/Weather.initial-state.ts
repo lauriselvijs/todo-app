@@ -1,6 +1,6 @@
 import { InitialState } from "../Weather/Weather.initial-state.d";
 
-const initialState = {
+const initialState: InitialState = {
   weather: {
     temperature: {
       celsius: null,

@@ -1,35 +1,37 @@
-import { useCallback, useEffect } from "react";
 import { bindActionCreators } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-
+import { useLayoutEffect } from "react";
 import { RootState } from "../../store/app/store";
-import { darkModeActions } from "../../store/features/DarkMode/darkMode.slice";
-import { useAppDispatch } from "../Store";
-import Theme from "../../style/main.scss";
+import {
+  themeActions,
+  themeSliceName,
+} from "../../store/features/Theme/Theme.slice";
+import { useAppDispatch, useAppSelector } from "../Store";
+import { UseTheme } from "./Theme.hook.d";
 
-export const useTheme = (theme: string): [() => void, string | undefined] => {
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
+export const useTheme = (): UseTheme => {
+  const appDispatch = useAppDispatch();
+  const { themeUpdated } = bindActionCreators(themeActions, appDispatch);
+  const { themeName: currentTheme } = useAppSelector(
+    (state: RootState) => state[themeSliceName]
+  );
 
-  const dispatch = useAppDispatch();
-  const { setDarkMode } = bindActionCreators(darkModeActions, dispatch);
-  const { darkTheme } = Theme;
-
-  useEffect(() => {
-    if (value) {
-      document.documentElement.className = value;
-    } else if (!value) {
-      document.documentElement.className = "";
+  useLayoutEffect(() => {
+    if (currentTheme) {
+      document.documentElement.className = currentTheme;
     }
-  }, [value]);
+  }, []);
 
-  const setTheme = useCallback(() => {
-    if (value === theme) {
-      remove();
-    } else if (value !== theme) {
-      setValue(theme);
+  const setTheme = (themeName: string): void => {
+    if (themeName !== currentTheme && themeName) {
+      themeUpdated(themeName);
+      document.documentElement.className = themeName;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, theme]);
+  };
 
-  return [setTheme, value];
+  const setDefaultTheme = (): void => {
+    themeUpdated("");
+    document.documentElement.className = "";
+  };
+
+  return { currentTheme, setDefaultTheme, setTheme };
 };

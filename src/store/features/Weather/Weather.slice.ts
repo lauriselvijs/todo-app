@@ -1,20 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 
-import { CurrentWeatherService } from "../../../services/Weather";
+import { getCurrentWeatherData } from "../../../services/Weather";
 
 import initialState from "./Weather.initial-state";
-import { GET_CURRENT_WEATHER_TYPE, SLICE_NAME } from "./Weather.config";
-
-const { getCurrentWeatherData } = CurrentWeatherService;
-
-export interface WeatherError {
-  status: number;
-  error: {
-    code: number;
-    message: string;
-  };
-}
+import {
+  GET_CURRENT_WEATHER_TYPE,
+  SLICE_NAME,
+  transformResponse,
+} from "./Weather.config";
+import { WeatherError } from "../../../types/Weather";
+import { NetworkError } from "../../../types/Network";
 
 const getCurrentWeather = createAsyncThunk<
   typeof initialState.weather,
@@ -24,51 +20,30 @@ const getCurrentWeather = createAsyncThunk<
   }
 >(GET_CURRENT_WEATHER_TYPE, async (location, { rejectWithValue }) => {
   try {
-    const response = await getCurrentWeatherData(location);
+    const weatherServiceResponse = await getCurrentWeatherData(location);
+    const transformedWeatherData = transformResponse(weatherServiceResponse);
 
-    const {
-      temp_c,
-      temp_f,
-      condition: { text, icon },
-      wind_mph,
-      wind_kph,
-      wind_dir,
-      humidity,
-    } = response.current;
-
-    const transformedData = {
-      temperature: {
-        celsius: temp_c,
-        fahrenheit: temp_f,
-      },
-      condition: {
-        text,
-        icon,
-      },
-      wind: {
-        mph: wind_mph,
-        kph: wind_kph,
-        dir: wind_dir,
-      },
-      humidity,
-    };
-
-    return transformedData;
+    return transformedWeatherData;
   } catch (err: any) {
-    const error: AxiosError<{
-      error: {
-        code: number;
-        message: string;
-      };
-    }> = err;
+    const error: AxiosError<WeatherError> = err;
 
-    if (error.response?.data.error && error.response?.status) {
+    if (error.response?.data?.error && error.response?.status) {
       return rejectWithValue({
         error: {
-          code: error.response?.data.error.code,
-          message: error.response?.data.error.message,
+          message: error.response?.data?.error?.message,
         },
-        status: error.response.status,
+        status: error.response?.status,
+      });
+    }
+
+    const networkError: NetworkError = err;
+
+    if (networkError.status) {
+      return rejectWithValue({
+        error: {
+          message: networkError.message,
+        },
+        status: null,
       });
     }
 
@@ -84,23 +59,22 @@ const weather = createSlice({
     builder.addCase(getCurrentWeather.pending, (state) => {
       state.loading = true;
       state.loaded = false;
-      state.error = { code: null, message: "" };
+
+      state.error.status = null;
+      state.error.error = { message: "" };
     });
     builder.addCase(getCurrentWeather.fulfilled, (state, action) => {
       state.loading = false;
       state.loaded = true;
 
-      state.current = action.payload;
+      state.weather = action.payload;
     });
     builder.addCase(getCurrentWeather.rejected, (state, action) => {
       state.loading = false;
       state.loaded = false;
 
-      if (action.payload?.code && action.payload?.message) {
+      if (action.payload?.error && action.payload?.status) {
         state.error = action.payload;
-      } else if (action.error.message) {
-        state.error.code = null;
-        state.error.message = action.error.message;
       }
     });
   },

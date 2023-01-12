@@ -1,4 +1,4 @@
 export interface NetworkError {
-  code: string;
+  status: number;
   message: string;
 }
