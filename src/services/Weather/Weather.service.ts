@@ -1,12 +1,14 @@
 import axios from "axios";
 import {
-  API_URL,
-  CURRENT,
+  WEATHER_API_URL,
   X_RAPID_API_HOST,
   X_RAPID_API_HOST_NAME,
   X_RAPID_API_KEY,
+  WeatherApiType,
 } from "./Weather.config";
 import { CurrentWeatherServiceResponse } from "./Weather.service.d";
+
+const { CURRENT } = WeatherApiType;
 
 export const getCurrentWeather = async (
   location: string
@@ -14,7 +16,7 @@ export const getCurrentWeather = async (
   try {
     const response = await axios.request<CurrentWeatherServiceResponse>({
       method: "GET",
-      url: `${API_URL}${CURRENT}`,
+      url: `${WEATHER_API_URL}${CURRENT}`,
       params: { q: location },
       headers: {
         [X_RAPID_API_HOST]: X_RAPID_API_HOST_NAME,
