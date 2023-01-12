@@ -1,3 +1,1 @@
-import TodoTitle from "./TodoTitle.component";
-
-export default TodoTitle;
+export { default } from "./TodoTitle.component";

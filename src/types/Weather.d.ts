@@ -1,4 +1,4 @@
-export interface Weather {
+export interface CurrentWeather {
   temperature: {
     celsius: number | null;
     fahrenheit: number | null;

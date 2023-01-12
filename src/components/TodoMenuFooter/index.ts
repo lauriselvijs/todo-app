@@ -1,3 +1,1 @@
-import TodoMenuFooter from "./TodoMenuFooter.component";
-
-export default TodoMenuFooter;
+export { default } from "./TodoMenuFooter.component";

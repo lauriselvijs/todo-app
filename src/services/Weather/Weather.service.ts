@@ -6,19 +6,19 @@ import {
   X_RAPID_API_HOST_NAME,
   X_RAPID_API_KEY,
 } from "./Weather.config";
-import { WeatherServiceResponse } from "./Weather.service.d";
+import { CurrentWeatherServiceResponse } from "./Weather.service.d";
 
-export const getCurrentWeatherData = async (
+export const getCurrentWeather = async (
   location: string
-): Promise<WeatherServiceResponse> => {
+): Promise<CurrentWeatherServiceResponse> => {
   try {
-    const response = await axios.request<WeatherServiceResponse>({
+    const response = await axios.request<CurrentWeatherServiceResponse>({
       method: "GET",
       url: `${API_URL}${CURRENT}`,
       params: { q: location },
       headers: {
         [X_RAPID_API_HOST]: X_RAPID_API_HOST_NAME,
-        [X_RAPID_API_KEY]: process.env.REACT_APP_X_RAPID_API_KEY_VALUE || "",
+        [X_RAPID_API_KEY]: process.env.REACT_APP_X_RAPID_API_KEY || "",
       },
     });
 

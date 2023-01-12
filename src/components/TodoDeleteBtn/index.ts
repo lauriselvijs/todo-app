@@ -1,3 +1,1 @@
-import TodoDeleteBtn from "./TodoDeleteBtn.component";
-
-export default TodoDeleteBtn;
+export { default } from "./TodoDeleteBtn.component";

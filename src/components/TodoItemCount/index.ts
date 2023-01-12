@@ -1,3 +1,1 @@
-import TodoInputCount from "./TodoInputCount.component";
-
-export default TodoInputCount;
+export { default } from "./TodoInputCount.component";

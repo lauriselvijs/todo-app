@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 
-import { getCurrentWeatherData } from "../../../services/Weather";
+import { getCurrentWeather } from "../../../services/Weather";
 
 import initialState from "./Weather.initial-state";
 import {
@@ -9,12 +9,12 @@ import {
   SLICE_NAME,
   transformResponse,
 } from "./Weather.config";
-import { Weather, WeatherError } from "../../../types/Weather";
+import { CurrentWeather, WeatherError } from "../../../types/Weather";
 import { NetworkError } from "../../../types/Network";
 import { getIp } from "../../../services/Ip";
 
-export const getCurrentWeather = createAsyncThunk<
-  Weather,
+export const currentWeatherUpdated = createAsyncThunk<
+  CurrentWeather,
   string,
   {
     rejectValue: WeatherError;
@@ -22,10 +22,10 @@ export const getCurrentWeather = createAsyncThunk<
 >(GET_CURRENT_WEATHER_TYPE, async (location = "", { rejectWithValue }) => {
   try {
     const ip = await getIp();
-    const weatherServiceResponse = await getCurrentWeatherData(location || ip);
-    const transformedWeatherData = transformResponse(weatherServiceResponse);
+    const currentWeather = await getCurrentWeather(location || ip);
+    const transformedCurrentWeather = transformResponse(currentWeather);
 
-    return transformedWeatherData;
+    return transformedCurrentWeather;
   } catch (err: any) {
     const error: AxiosError<WeatherError> = err;
 
@@ -58,20 +58,20 @@ const weather = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCurrentWeather.pending, (state) => {
+    builder.addCase(currentWeatherUpdated.pending, (state) => {
       state.loading = true;
       state.loaded = false;
 
       state.error.status = null;
       state.error.error = { message: "" };
     });
-    builder.addCase(getCurrentWeather.fulfilled, (state, action) => {
+    builder.addCase(currentWeatherUpdated.fulfilled, (state, action) => {
       state.loading = false;
       state.loaded = true;
 
       state.weather = action.payload;
     });
-    builder.addCase(getCurrentWeather.rejected, (state, action) => {
+    builder.addCase(currentWeatherUpdated.rejected, (state, action) => {
       state.loading = false;
       state.loaded = false;
 

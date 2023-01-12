@@ -1,3 +1,1 @@
-import TodoListItem from "./TodoListItem.component";
-
-export default TodoListItem;
+export { default } from "./TodoListItem.component";

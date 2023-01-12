@@ -1,12 +1,12 @@
-import { WeatherServiceResponse } from "../../../services/Weather/Weather.service.d";
-import { Weather } from "../../../types/Weather";
+import { CurrentWeatherServiceResponse } from "../../../services/Weather/Weather.service.d";
+import { CurrentWeather } from "../../../types/Weather";
 
 export const SLICE_NAME = "weather";
 export const GET_CURRENT_WEATHER_TYPE = `${SLICE_NAME}/getCurrentWeather`;
 
 export const transformResponse = ({
   current,
-}: WeatherServiceResponse): Weather => {
+}: CurrentWeatherServiceResponse): CurrentWeather => {
   const {
     temp_c,
     temp_f,

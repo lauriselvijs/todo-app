@@ -1,3 +1,1 @@
-import DarkModeBtn from "./DarkModeBtn.component";
-
-export default DarkModeBtn;
+export { default } from "./DarkModeBtn.component";

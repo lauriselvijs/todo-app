@@ -1,4 +1,4 @@
-export interface WeatherServiceResponse {
+export interface CurrentWeatherServiceResponse {
   current: {
     temp_c: number;
     temp_f: number;

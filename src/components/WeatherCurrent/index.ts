@@ -1,3 +1,1 @@
-import WeatherCurrent from "./WeatherCurrent.component";
-
-export default WeatherCurrent;
+export { default } from "./WeatherCurrent.component";

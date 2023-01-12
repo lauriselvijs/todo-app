@@ -1,3 +1,1 @@
-import TodoInfoHelper from "./TodoInfoHelper.component";
-
-export default TodoInfoHelper;
+export { default } from "./TodoInfoHelper.component";

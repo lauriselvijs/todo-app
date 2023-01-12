@@ -1,3 +1,1 @@
-import TodoClearCompletedBtn from "./TodoClearCompletedBtn.component";
-
-export default TodoClearCompletedBtn;
+export { default } from "./TodoClearCompletedBtn.component";

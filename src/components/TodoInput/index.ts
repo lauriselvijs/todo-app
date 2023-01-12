@@ -1,3 +1,1 @@
-import TodoInput from "./TodoInput.component";
-
-export default TodoInput;
+export { default } from "./TodoInput.component";

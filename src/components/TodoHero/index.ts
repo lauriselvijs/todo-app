@@ -1,3 +1,1 @@
-import TodoHero from "./TodoHero.component";
-
-export default TodoHero;
+export { default } from "./TodoHero.component";

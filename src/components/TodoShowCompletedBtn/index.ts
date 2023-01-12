@@ -1,3 +1,1 @@
-import TodoShowCompletedBtn from "./TodoShowCompletedBtn.component";
-
-export default TodoShowCompletedBtn;
+export { default } from "./TodoShowCompletedBtn.component";

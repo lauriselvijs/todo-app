@@ -1,3 +1,1 @@
-import TodoEditBtn from "./TodoEditBtn.component";
-
-export default TodoEditBtn;
+export { default } from "./TodoEditBtn.component";
