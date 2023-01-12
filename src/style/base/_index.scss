@@ -24,13 +24,10 @@
     #{color.$secondary-light}
   );
 
-  --color-tertiary: var(
-    --imported-color-tertiary,
-    #{color.$secondary-tertiary}
-  );
+  --color-tertiary: var(--imported-color-tertiary, #{color.$tertiary});
   --color-tertiary-dark: var(
     --imported-color-tertiary-dark,
-    #{color.$secondary-tertiary-dark}
+    #{color.$tertiary-dark}
   );
 
   --color-error: var(--imported-color-error, #{color.$error});

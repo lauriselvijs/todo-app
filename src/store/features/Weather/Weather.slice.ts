@@ -9,13 +9,12 @@ import {
   SLICE_NAME,
   transformResponse,
 } from "./Weather.config";
-import { WeatherError } from "../../../types/Weather";
+import { Weather, WeatherError } from "../../../types/Weather";
 import { NetworkError } from "../../../types/Network";
-import { InitialState } from "./Weather.initial-state.d";
 import { getIp } from "../../../services/Ip";
 
 export const getCurrentWeather = createAsyncThunk<
-  InitialState["weather"],
+  Weather,
   string,
   {
     rejectValue: WeatherError;

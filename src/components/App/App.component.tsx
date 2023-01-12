@@ -9,16 +9,16 @@ import TodoTitle from "../TodoTItle";
 import WeatherCurrent from "../WeatherCurrent";
 
 const App = () => {
-  useEffect(() => {
-    const fetchWeather = async () => {
-      const ip = await getIp();
-      const weatherServiceResponse = await getCurrentWeatherData(ip);
+  // useEffect(() => {
+  //   const fetchWeather = async () => {
+  //     const ip = await getIp();
+  //     const weatherServiceResponse = await getCurrentWeatherData(ip);
 
-      console.log(weatherServiceResponse);
-    };
+  //     console.log(weatherServiceResponse);
+  //   };
 
-    fetchWeather();
-  }, []);
+  //   fetchWeather();
+  // }, []);
 
   return (
     <>

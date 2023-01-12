@@ -9,17 +9,17 @@ import {
 import { ShowTasks } from "../../constants/Task.const";
 import { useAppDispatch } from "../../hooks/Store";
 
-import styles from "./TodoShowActiveBtn.style.module.scss";
+import styles from "./TodoActiveBtn.style.module.scss";
 
 const { ACTIVE } = ShowTasks;
 
 const TodoActiveBtn = () => {
   const { showTasks } = useSelector((state: RootState) => state[todoSliceName]);
   const dispatch = useAppDispatch();
-  const { showedActiveTasks } = bindActionCreators(todoActions, dispatch);
+  const { activeTasksShowed } = bindActionCreators(todoActions, dispatch);
 
   const onTodoShowActiveBtnClick = () => {
-    showedActiveTasks();
+    activeTasksShowed();
   };
 
   return (
