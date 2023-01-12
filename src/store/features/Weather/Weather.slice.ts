@@ -11,16 +11,19 @@ import {
 } from "./Weather.config";
 import { WeatherError } from "../../../types/Weather";
 import { NetworkError } from "../../../types/Network";
+import { InitialState } from "./Weather.initial-state.d";
+import { getIp } from "../../../services/Ip";
 
-const getCurrentWeather = createAsyncThunk<
-  typeof initialState.weather,
+export const getCurrentWeather = createAsyncThunk<
+  InitialState["weather"],
   string,
   {
     rejectValue: WeatherError;
   }
->(GET_CURRENT_WEATHER_TYPE, async (location, { rejectWithValue }) => {
+>(GET_CURRENT_WEATHER_TYPE, async (location = "", { rejectWithValue }) => {
   try {
-    const weatherServiceResponse = await getCurrentWeatherData(location);
+    const ip = await getIp();
+    const weatherServiceResponse = await getCurrentWeatherData(location || ip);
     const transformedWeatherData = transformResponse(weatherServiceResponse);
 
     return transformedWeatherData;

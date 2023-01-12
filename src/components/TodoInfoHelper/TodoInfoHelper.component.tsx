@@ -1,19 +1,16 @@
-import "./TodoInfoHelper.style.scss";
+import styles from "./TodoInfoHelper.style.module.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
 import { setTodoItemLengthProperty } from "../../utils/TodoList.util";
+import { todoSliceName } from "../../store/features/Todo";
 
 const TodoInfoHelper = () => {
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
-  const todoCount = useSelector((state: RootState) => state.todos.todoCount);
+  const { taskCount } = useSelector((state: RootState) => state[todoSliceName]);
 
-  const todoInfoHelperTheme = setTodoItemLengthProperty(todoCount);
+  const todoInfoHelperTheme = setTodoItemLengthProperty(taskCount);
 
   return (
-    <div
-      className={darkMode ? "todo-info-helper-dark-mode" : "todo-info-helper"}
-      style={todoInfoHelperTheme}
-    >
+    <div className={styles.todoInfoHelper} style={todoInfoHelperTheme}>
       Drag and drop to reorder list
     </div>
   );

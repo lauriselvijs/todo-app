@@ -1,12 +1,8 @@
-import "./Footer.style.scss";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/app/store";
+import styles from "./Footer.style.module.scss";
 
 const Footer = () => {
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
-
   return (
-    <footer className={darkMode ? "footer-dark-mode" : "footer"}>
+    <footer className={styles.footer}>
       Challenge by &nbsp;
       <a
         rel="noreferrer"

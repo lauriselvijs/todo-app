@@ -5,10 +5,10 @@ import { useTheme } from "../../hooks/Theme";
 
 const DarkModeBtn = () => {
   const { currentTheme, setTheme, setDefaultTheme } = useTheme();
-  const { darkThemeName } = Theme;
+  const { dark } = Theme;
 
   const onDarkModeBtnClick = () => {
-    currentTheme ? setDefaultTheme() : setTheme(darkThemeName);
+    currentTheme ? setDefaultTheme() : setTheme(dark);
   };
 
   return (

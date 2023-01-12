@@ -1,38 +1,37 @@
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../hooks/TodoActions.hook";
+import { bindActionCreators } from "@reduxjs/toolkit";
+
 import { RootState } from "../../store/app/store";
-import "./TodoEditBtn.style.scss";
 import IconCheck from "../../asset/image/icon/icon-checkmark.svg";
 import IconCheckDarkMode from "../../asset/image/icon/icon-checkmark-dark-mode.svg";
 import IconEdit from "../../asset/image/icon/icon-edit.svg";
 import IconEditDarkMode from "../../asset/image/icon/icon-edit-dark-mode.svg";
-import { setTodoEditMode } from "../../store/features/Todo/Todo.slice";
+import { useAppDispatch } from "../../hooks/Store";
+import { todoActions, todoSliceName } from "../../store/features/Todo";
+
+import styles from "./TodoEditBtn.style.module.scss";
 
 const TodoEditBtn = () => {
   const dispatch = useAppDispatch();
-  const todoEditMode = useSelector(
-    (state: RootState) => state.todos.todoEditMode
+  const { taskEditModeActivated } = bindActionCreators(todoActions, dispatch);
+  const { taskEditMode } = useSelector(
+    (state: RootState) => state[todoSliceName]
   );
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
 
   const onTodoEditBtnClick = () => {
-    dispatch(setTodoEditMode());
+    taskEditModeActivated();
   };
 
   return (
-    <button className="todo-edit-btn" onClick={onTodoEditBtnClick}>
-      {todoEditMode ? (
-        <img
-          src={darkMode ? IconCheckDarkMode : IconCheck}
-          alt="Icon check"
-          className="todo-edit-btn-img"
-        />
+    <button
+      aria-label="Todo edit"
+      className={styles.todoEditBtn}
+      onClick={onTodoEditBtnClick}
+    >
+      {taskEditMode ? (
+        <img src={IconCheck} alt="Check icon" className={styles.image} />
       ) : (
-        <img
-          src={darkMode ? IconEditDarkMode : IconEdit}
-          alt="Icon check"
-          className="todo-edit-btn-img"
-        />
+        <img src={IconEdit} alt="Edit icon" className="todo-edit-btn-img" />
       )}
     </button>
   );

@@ -1,6 +1,7 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import { ShowTasks } from "../../../constants/Task.const";
 import { Task } from "../../../types/Task";
-import { ShowTasks, SLICE_NAME } from "./Todo.config";
+import { SLICE_NAME } from "./Todo.config";
 import initialState from "./Todo.initial-state";
 
 const { ALL, COMPLETED, ACTIVE } = ShowTasks;
@@ -14,7 +15,7 @@ export const todo = createSlice({
     },
     taskAdded: (
       state,
-      { payload: { msg, active } }: PayloadAction<Task["task"]>
+      { payload: { msg, active } }: PayloadAction<Omit<Task["task"], "id">>
     ) => {
       state.tasks = [...state.tasks, { id: nanoid(), msg, active }];
     },
@@ -23,7 +24,7 @@ export const todo = createSlice({
     },
     taskActivated: (
       state,
-      { payload: { id, active } }: PayloadAction<Task["task"]>
+      { payload: { id, active } }: PayloadAction<Omit<Task["task"], "msg">>
     ) => {
       state.tasks = state.tasks.map((todo) => {
         if (todo.id === id) {
@@ -54,17 +55,17 @@ export const todo = createSlice({
         return todo.active === true;
       });
     },
-    showedAllTasks: (state) => {
+    allTasksShowed: (state) => {
       state.showTasks = ALL;
     },
 
-    showedCompletedTasks: (state) => {
+    completedTasksShowed: (state) => {
       state.showTasks = COMPLETED;
     },
-    showedClearedTasks: (state) => {
+    activeTasksShowed: (state) => {
       state.showTasks = ACTIVE;
     },
-    editModeActivated: (state) => {
+    taskEditModeActivated: (state) => {
       state.taskEditMode = !state.taskEditMode;
     },
   },

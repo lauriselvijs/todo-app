@@ -1,0 +1,9 @@
+@import "../../style/main.scss";
+
+.todoMenu {
+  @include todo-menu-style;
+
+  .container {
+    min-height: calc(var(--todo-list-item-count) * 60px);
+  }
+}

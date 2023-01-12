@@ -1,30 +1,29 @@
-import "./TodoShowCompletedBtn.style.scss";
-import { todoOptions } from "../../constants/TodoMenu.const";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/app/store";
-import { setTodoOptionCompleted } from "../../store/features/Todo/Todo.slice";
-import { useAppDispatch } from "../../hooks/TodoActions.hook";
+import { ShowTasks } from "../../constants/Task.const";
+import { useAppDispatch } from "../../hooks/Store";
+import { todoActions, todoSliceName } from "../../store/features/Todo";
+import { bindActionCreators } from "@reduxjs/toolkit";
+
+import styles from "./TodoShowCompletedBtn.style.module.scss";
+
+const { COMPLETED } = ShowTasks;
 
 const TodoShowCompletedBtn = () => {
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
-  const { TODO_OPTION_COMPLETED } = todoOptions;
-  const todoOption = useSelector((state: RootState) => state.todos.todoOption);
+  const { showTasks } = useSelector((state: RootState) => state[todoSliceName]);
   const dispatch = useAppDispatch();
+  const { completedTasksShowed } = bindActionCreators(todoActions, dispatch);
 
   const onTodoShowCompletedBtnClick = () => {
-    dispatch(setTodoOptionCompleted());
+    completedTasksShowed();
   };
 
   return (
     <button
       className={
-        darkMode
-          ? todoOption === TODO_OPTION_COMPLETED
-            ? "todo-show-completed-btn-dark-mode-clicked"
-            : "todo-show-completed-btn-dark-mode"
-          : todoOption === TODO_OPTION_COMPLETED
-          ? "todo-show-completed-btn-clicked"
-          : "todo-show-completed-btn"
+        showTasks === COMPLETED
+          ? styles.todoShowCompletedBtnClicked
+          : styles.todoShowCompletedBtn
       }
       onClick={onTodoShowCompletedBtnClick}
     >

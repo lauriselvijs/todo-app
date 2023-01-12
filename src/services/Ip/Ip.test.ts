@@ -1,4 +1,4 @@
-import { TEST_IP, TEST_IP_URL } from "../../__tests__/constants/Ip.const";
+import { TEST_IP, IP_API_URL } from "../../__tests__/constants/Ip.const";
 import { rest, server } from "../../__tests__/mocks/Server.mock";
 import { getIpData } from "./Ip.service";
 
@@ -10,7 +10,7 @@ it("get ip test", async () => {
 
 it("handler failure", async () => {
   server.use(
-    rest.get(TEST_IP_URL, (req, res, ctx) => {
+    rest.get(IP_API_URL, (req, res, ctx) => {
       return res(ctx.status(404));
     })
   );

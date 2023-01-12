@@ -1,48 +1,50 @@
 import { useState, ChangeEvent, KeyboardEvent } from "react";
-import "./TodoInput.style.scss";
-import TodoCheckmark from "../TodoCheckmark";
-import {
-  addTodo,
-  setNewActiveTodoInput,
-} from "../../store/features/Todo/Todo.slice";
+import { bindActionCreators } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+
+import TodoCheckmark from "../TodoCheckmark";
 import { RootState } from "../../store/app/store";
-import { useAppDispatch } from "../../hooks/TodoActions.hook";
+import { todoActions, todoSliceName } from "../../store/features/Todo";
+import { useAppDispatch } from "../../hooks/Store";
+
+import styles from "./TodoInput.style.module.scss";
 
 const TodoInput = () => {
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const [todoInput, setTodoInput] = useState<string>("");
-  const todoActiveInput = useSelector(
-    (state: RootState) => state.todos.todoActiveInput
+  const { taskInputActive } = useSelector(
+    (state: RootState) => state[todoSliceName]
   );
-
   const dispatch = useAppDispatch();
+  const { taskAdded, taskInputSelected } = bindActionCreators(
+    todoActions,
+    dispatch
+  );
 
   const onTodoInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setTodoInput(e.target.value);
   };
 
   const handleAddTodoOnEnterKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && todoInput) {
-      dispatch(addTodo({ todoMsg: todoInput, todoActive: todoActiveInput }));
-      !todoActiveInput && dispatch(setNewActiveTodoInput(true));
+    if (e.code === "Enter" && todoInput) {
+      taskAdded({ msg: todoInput, active: taskInputActive });
+      !taskInputActive && taskInputSelected(true);
       setTodoInput("");
     }
   };
 
   return (
     <div
-      className={darkMode ? "todo-input-dark-mode" : "todo-input"}
+      className={styles.todoInput}
       title="Press &ldquo;Enter&ldquo; to Add Todo"
     >
-      <TodoCheckmark newActiveTodo={true} todoActive={todoActiveInput} />
+      <TodoCheckmark newActiveTodo={true} todoActive={taskInputActive} />
       <input
         type="text"
         placeholder="Create a new todo..."
         value={todoInput}
         onChange={onTodoInputChange}
-        className="todo-input-field"
-        onKeyPress={handleAddTodoOnEnterKeyPress}
+        className={styles.field}
+        onKeyDown={handleAddTodoOnEnterKeyPress}
       />
     </div>
   );

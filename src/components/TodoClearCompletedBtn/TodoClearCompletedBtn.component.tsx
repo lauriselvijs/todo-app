@@ -1,24 +1,19 @@
-import "./TodoClearCompletedBtn.style.scss";
-import { useAppDispatch } from "../../hooks/TodoActions.hook";
-import { clearCompletedTodos } from "../../store/features/Todo/Todo.slice";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/app/store";
+import styles from "./TodoClearCompletedBtn.style.module.scss";
+import { useAppDispatch } from "../../hooks/Store";
+import { bindActionCreators } from "@reduxjs/toolkit";
+import { todoActions } from "../../store/features/Todo";
 
 const TodoClearCompletedBtn = () => {
   const dispatch = useAppDispatch();
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
+  const { completedTasksCleared } = bindActionCreators(todoActions, dispatch);
 
   const onTodoClearCompletedBtnClick = () => {
-    dispatch(clearCompletedTodos());
+    completedTasksCleared();
   };
 
   return (
     <button
-      className={
-        darkMode
-          ? "todo-clear-completed-btn-dark-mode"
-          : "todo-clear-completed-btn"
-      }
+      className={styles.todoClearCompletedBtn}
       onClick={onTodoClearCompletedBtnClick}
     >
       Clear Completed

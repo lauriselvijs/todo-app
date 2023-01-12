@@ -1,14 +1,19 @@
 import { FormEvent, useState } from "react";
-import "./TodoListItem.style.scss";
+
 import { Task } from "../../types/Task";
 import TodoCheckmark from "../TodoCheckmark";
-import PropTypes from "prop-types";
-import TodoDeleteBtn from "../TodoDeleteBtn";
+import { bindActionCreators } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import TodoDeleteBtn from "../TodoDeleteBtn";
 import { RootState } from "../../store/app/store";
 import TodoEditBtn from "../TodoEditBtn";
-import { useAppDispatch } from "../../hooks/TodoActions.hook";
-import { setTodoEdit } from "../../store/features/Todo/Todo.slice";
+import {
+  todoActions,
+  todoSliceName,
+} from "../../store/features/Todo/Todo.slice";
+import { useAppDispatch } from "../../hooks/Store";
+
+import styles from "./TodoListItem.style.module.scss";
 
 const TodoListItem = ({
   task: { id, msg, active },
@@ -16,10 +21,10 @@ const TodoListItem = ({
   snapshot,
 }: Task) => {
   const dispatch = useAppDispatch();
-  const todoEditMode = useSelector(
-    (state: RootState) => state.todos.todoEditMode
+  const { taskEdited } = bindActionCreators(todoActions, dispatch);
+  const { taskEditMode } = useSelector(
+    (state: RootState) => state[todoSliceName]
   );
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
   const [showDeleteTodo, setShowDeleteTodo] = useState<boolean>(false);
   const [showEditTodo, setShowEditTodo] = useState<boolean>(false);
 
@@ -34,21 +39,13 @@ const TodoListItem = ({
   };
 
   const onTodoEditInputChange = (e: FormEvent<HTMLInputElement>): void => {
-    dispatch(setTodoEdit({ id, msg: e.currentTarget.value, active }));
+    taskEdited({ id, msg: e.currentTarget.value, active });
   };
 
   return (
     <div
       data-testid="todo-list-item"
-      className={
-        darkMode
-          ? active
-            ? "todo-list-item-dark-mode"
-            : "todo-list-item-dark-mode-completed"
-          : active
-          ? "todo-list-item"
-          : "todo-list-item-completed"
-      }
+      className={active ? styles.todoListItem : styles.todoListItemCompleted}
       onMouseLeave={onMouseLeaveTodoItem}
       onMouseOver={onMouseOverTodoItem}
       ref={innerRef}
@@ -57,18 +54,18 @@ const TodoListItem = ({
       {...dragHandleProps}
     >
       <TodoCheckmark todoId={id} todoActive={active} />
-      {!todoEditMode && msg}
-      {todoEditMode && (
+      {!taskEditMode && msg}
+      {taskEditMode && (
         <input
           onInput={onTodoEditInputChange}
-          className="todo-list-item-edit-input"
+          className={styles.input}
           type="text"
           placeholder={msg}
         />
       )}
-      <div className="todo-list-item-edit-delete">
-        {(todoEditMode || showEditTodo) && <TodoEditBtn />}
-        {(todoEditMode || showDeleteTodo) && <TodoDeleteBtn todoId={id} />}
+      <div className={styles.modify}>
+        {(taskEditMode || showEditTodo) && <TodoEditBtn />}
+        {(taskEditMode || showDeleteTodo) && <TodoDeleteBtn todoId={id} />}
       </div>
     </div>
   );

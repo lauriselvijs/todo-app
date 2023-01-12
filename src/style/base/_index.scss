@@ -1,0 +1,46 @@
+@use "./font";
+@use "./color";
+
+:root {
+  --color-primary-light: var(
+    --imported-color-primary-light,
+    #{color.$primary-light}
+  );
+  --color-primary-dark: var(
+    --imported-color-primary-dark,
+    #{color.$primary-dark}
+  );
+  --color-primary-very-dark: var(
+    --imported-color-primary-very-dark,
+    #{color.$primary-very-dark}
+  );
+
+  --color-secondary-very-light: var(
+    --imported-color-secondary-very-light,
+    #{color.$secondary-very-light}
+  );
+  --color-secondary-light: var(
+    --imported-color-secondary-light,
+    #{color.$secondary-light}
+  );
+
+  --color-tertiary: var(
+    --imported-color-tertiary,
+    #{color.$secondary-tertiary}
+  );
+  --color-tertiary-dark: var(
+    --imported-color-tertiary-dark,
+    #{color.$secondary-tertiary-dark}
+  );
+
+  --color-error: var(--imported-color-error, #{color.$error});
+  --color-background: var(--imported-color-background, #{color.$background});
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--color-secondary-very-light);
+  font-family: font.$family-primary;
+}

@@ -1,0 +1,14 @@
+@import "../../style/main.scss";
+
+.todoMenuFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+
+  .center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

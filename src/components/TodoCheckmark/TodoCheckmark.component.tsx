@@ -1,39 +1,30 @@
-import "./TodoCheckmark.style.scss";
-import { ITodoCheckmark } from "./TodoCheckmark";
-import { useAppDispatch } from "../../hooks/TodoActions.hook";
-import {
-  setActiveTodo,
-  setNewActiveTodoInput,
-} from "../../store/features/Todo/Todo.slice";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/app/store";
+import styles from "./TodoCheckmark.style.module.scss";
+import { TodoCheckmarkProps } from "./TodoCheckmark.component.d";
+import { todoActions } from "../../store/features/Todo/Todo.slice";
+import { useAppDispatch } from "../../hooks/Store";
+import { bindActionCreators } from "@reduxjs/toolkit";
 
 const TodoCheckmark = ({
   todoId,
   newActiveTodo,
   todoActive,
-}: ITodoCheckmark) => {
+}: TodoCheckmarkProps) => {
   const dispatch = useAppDispatch();
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
+  const { taskActivated, taskInputSelected } = bindActionCreators(
+    todoActions,
+    dispatch
+  );
 
   const onTodoCheckmarkClick = () => {
-    todoId && dispatch(setActiveTodo({ todoId, todoActive: !todoActive }));
-    newActiveTodo && dispatch(setNewActiveTodoInput(!todoActive));
+    todoId && taskActivated({ id: todoId, active: !todoActive });
+    newActiveTodo && taskInputSelected(!todoActive);
   };
 
   return (
     <div
       data-testid="todo-checkmark"
       onClick={onTodoCheckmarkClick}
-      className={
-        darkMode
-          ? todoActive
-            ? "todo-check-mark-dark-mode"
-            : "todo-check-mark-dark-mode-checked"
-          : todoActive
-          ? "todo-check-mark"
-          : "todo-check-mark-checked"
-      }
+      className={todoActive ? styles.todoCheckmark : styles.todoCheckmarkActive}
     />
   );
 };

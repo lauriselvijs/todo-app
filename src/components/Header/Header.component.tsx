@@ -1,8 +1,4 @@
-import { ReactNode } from "react";
-
-interface HeaderProps {
-  children: ReactNode;
-}
+import { HeaderProps } from "./Header.component.d";
 
 const Header = ({ children }: HeaderProps) => {
   return <header>{children}</header>;

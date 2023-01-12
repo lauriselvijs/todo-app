@@ -1,17 +1,17 @@
-import "./TodoItemCount.style.scss";
 import { useSelector } from "react-redux";
+
 import { RootState } from "../../store/app/store";
 import { stringPluralize } from "../../utils/String.util";
+import { todoSliceName } from "../../store/features/Todo";
+
+import styles from "./TodoItemCount.style.module.scss";
 
 const TodoInputCount = () => {
-  const darkMode = useSelector((state: RootState) => state.dark.darkMode);
-  const todoCount = useSelector((state: RootState) => state.todos.todoCount);
+  const { taskCount } = useSelector((state: RootState) => state[todoSliceName]);
 
   return (
-    <div
-      className={darkMode ? "todo-input-count-dark-mode" : "todo-input-count"}
-    >
-      {stringPluralize(todoCount, "item")} left
+    <div className={styles.todoInputCount}>
+      {stringPluralize(taskCount, "item")} left
     </div>
   );
 };
