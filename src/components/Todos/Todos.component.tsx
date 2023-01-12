@@ -22,7 +22,7 @@ import {
 import { setTodoItemLengthProperty } from "../../utils/TodoList.util";
 import { useAppDispatch } from "../../hooks/Store";
 
-import styles from "./TodoMenu.style.module.scss";
+import styles from "./Todos.style.module.scss";
 
 const { ACTIVE, ALL, COMPLETED } = ShowTasks;
 
@@ -77,7 +77,7 @@ const Todos = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className={styles.todoMenu}>
+      <div className={styles.todos}>
         <Droppable droppableId="droppable">
           {({ droppableProps, innerRef, placeholder }: DroppableProvided) => (
             <div

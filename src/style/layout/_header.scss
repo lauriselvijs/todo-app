@@ -1,3 +1,5 @@
+@use "../utils/media";
+
 header {
   position: absolute;
   display: flex;
@@ -6,7 +8,7 @@ header {
   top: 5vh;
 }
 
-@include mobile {
+@include media.mobile {
   header {
     gap: 120px;
   }

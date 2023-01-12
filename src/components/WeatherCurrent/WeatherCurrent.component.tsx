@@ -1,44 +1,39 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useFetchCurrentWeather } from "../../hooks/Weather.hook";
 import { RootState } from "../../store/app/store";
-import "./WeatherCurrent.style.scss";
+import { weatherSliceName } from "../../store/features/Weather";
+import "./WeatherCurrent.style.module.scss";
 
 const WeatherCurrent = () => {
   const {
-    dark: { darkMode },
     weather: {
-      current: {
-        temp_c,
-        temp_f,
-        condition: { text, icon },
-        wind_mph,
-        wind_kph,
-        wind_dir,
-        humidity,
-      },
-      loading,
-      loaded,
-      error: { message: currentWeatherErrorMsg },
+      temperature: { fahrenheit, celsius },
+      condition: { text, icon },
+      wind: { mph, kph, dir },
+      humidity,
     },
-  } = useSelector((state: RootState) => state);
+    loading,
+    loaded,
+    error: {
+      status,
+      error: { message },
+    },
+  } = useSelector((state: RootState) => state[weatherSliceName]);
 
   const [metric, setMetric] = useState<boolean>(false);
-
-  useFetchCurrentWeather();
 
   const onMeasurementUnitBtnClick = (): void => {
     setMetric(!metric);
   };
 
   return (
-    <div className={darkMode ? "weather-current-dark-mode" : "weather-current"}>
+    <div className="weather-current">
       {loading || !loaded ? (
         <div className="weather-current-loader">Loading...</div>
       ) : (
         <>
-          {currentWeatherErrorMsg ? (
-            <>{currentWeatherErrorMsg}</>
+          {message ? (
+            <>{message}</>
           ) : (
             <>
               <div className="weather-current-info-main">
@@ -47,7 +42,9 @@ const WeatherCurrent = () => {
                 </p>
                 <div className="weather-current-temperature-container">
                   <p className="weather-current-temperature">
-                    {metric ? Math.round(temp_f) : Math.round(temp_c)}
+                    {metric && fahrenheit
+                      ? Math.round(fahrenheit)
+                      : celsius && Math.round(celsius)}
                   </p>
                   <button
                     className="weather-current-unit-btn"
@@ -61,11 +58,11 @@ const WeatherCurrent = () => {
               <div className="weather-current-add--info">
                 <p>
                   Wind{" "}
-                  {metric
-                    ? Math.round(wind_mph) + " mph"
-                    : Math.round(wind_kph) + " kph"}
+                  {metric && mph
+                    ? Math.round(mph) + " mph"
+                    : kph && Math.round(kph) + " kph"}
                 </p>
-                <p>Wind Direction {wind_dir}</p>
+                <p>Wind Direction {dir}</p>
                 <p>Humidity {humidity} %</p>
               </div>
             </>

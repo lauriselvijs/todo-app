@@ -1,7 +1,7 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 
-import IconCross from "../../asset/image/icon/icon-cross.svg";
-import IconCrossDarkMode from "../../asset/image/icon/icon-cross-dark-mode.svg";
+import IconCross from "../../assets/icons/icon-cross.svg";
+import IconCrossDarkMode from "../../assets/icons/icon-cross-dark-mode.svg";
 import { RootState } from "../../store/app/store";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/Store";

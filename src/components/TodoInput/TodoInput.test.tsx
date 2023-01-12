@@ -1,8 +1,8 @@
 import TodoInput from "../TodoInput";
-import { render } from "../../utils/Test.util";
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TodoMenu from "../Todos";
+import { render } from "../../__tests__/config/Store.config";
 
 const setup = () => {
   const todoInput = screen.getByRole(/textbox/i);

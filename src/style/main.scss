@@ -1,6 +1,5 @@
 @use "./base";
 @use "./theme";
-@import "./utils/utils";
-@import "./components/components";
-@import "./pages/pages";
-@import "./layout/layout";
+@use "./utils";
+@use "./components";
+@use "./layout";

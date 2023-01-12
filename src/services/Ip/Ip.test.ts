@@ -1,9 +1,9 @@
 import { TEST_IP, IP_API_URL } from "../../__tests__/constants/Ip.const";
 import { rest, server } from "../../__tests__/mocks/Server.mock";
-import { getIpData } from "./Ip.service";
+import { getIp } from "./Ip.service";
 
 it("get ip test", async () => {
-  const ip = await getIpData();
+  const ip = await getIp();
 
   expect(ip).toEqual(TEST_IP);
 });
@@ -15,5 +15,5 @@ it("handler failure", async () => {
     })
   );
 
-  await expect(getIpData()).rejects.toThrow("404");
+  await expect(getIp()).rejects.toThrow("404");
 });

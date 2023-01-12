@@ -9,26 +9,27 @@ import TodoTitle from "../TodoTItle";
 import WeatherCurrent from "../WeatherCurrent";
 
 const App = () => {
-  // useEffect(() => {
-  //   const fetchWeather = async () => {
-  //     const ip = await getIp();
-  //     const weatherServiceResponse = await getCurrentWeatherData(ip);
+  useEffect(() => {
+    const fetchWeather = async () => {
+      await getIp().then(async (ip) => {
+        const weatherServiceResponse = await getCurrentWeatherData(ip);
 
-  //     console.log(weatherServiceResponse);
-  //   };
+        console.log(weatherServiceResponse);
+      });
+    };
 
-  //   fetchWeather();
-  // }, []);
+    fetchWeather();
+  }, []);
 
   return (
     <>
-      <WeatherCurrent />
-      <Header>
+      {/* <WeatherCurrent /> */}
+      {/* <Header>
         <TodoTitle />
         <DarkModeBtn />
         <TodoHero />
       </Header>
-      <Todo />
+      <Todo /> */}
     </>
   );
 };

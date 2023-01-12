@@ -22,7 +22,6 @@ const initialState: InitialState = {
   error: {
     status: null,
     error: {
-      code: null,
       message: "",
     },
   },

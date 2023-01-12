@@ -1,5 +1,5 @@
-import BgDesktopLight from "../../asset/image/bg-desktop-light.jpg";
-import BgDesktopDark from "../../asset/image/bg-desktop-dark.jpg";
+import BgDesktopLight from "../../assets/images/bg-desktop-light.jpg";
+import BgDesktopDark from "../../assets/images/bg-desktop-dark.jpg";
 
 import styles from "./TodoHero.style.module.scss";
 
