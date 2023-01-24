@@ -1,7 +1,7 @@
 import WeatherCurrent from "./WeatherCurrent.component";
 import { render, screen } from "@testing-library/react";
 import { rest, server } from "../../__tests__/mocks/Server.mock";
-import { WEATHER_API_URL } from "../../__tests__/constants/Weather.const";
+import { WEATHER_API_URL } from "../../services/Weather/Weather.config";
 
 test("Get Current Weather temperature celsius", async () => {
   render(<WeatherCurrent />);

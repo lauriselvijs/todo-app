@@ -11,12 +11,12 @@ const App = () => {
   return (
     <>
       {/* <WeatherCurrent /> */}
-      {/* <Header>
+      <Header>
         <TodoTitle />
         <DarkModeBtn />
         <TodoHero />
       </Header>
-      <Todo /> */}
+      <Todo />
     </>
   );
 };

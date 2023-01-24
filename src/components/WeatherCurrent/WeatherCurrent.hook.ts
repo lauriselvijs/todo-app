@@ -2,7 +2,7 @@ import { bindActionCreators } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
 
 import { useAppDispatch } from "../../hooks/Store";
-import { getCurrentWeather } from "../../store/features/Weather";
+import { currentWeatherUpdated } from "../../store/features/Weather";
 
 export const useFetchCurrentWeather = () => {
   const [error, setError] = useState<string>("");

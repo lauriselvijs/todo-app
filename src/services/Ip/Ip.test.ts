@@ -1,5 +1,6 @@
-import { TEST_IP, IP_API_URL } from "../../__tests__/constants/Ip.const";
+import { TEST_IP } from "../../__tests__/constants/Ip.const";
 import { rest, server } from "../../__tests__/mocks/Server.mock";
+import { IP_API_URL } from "./Ip.config";
 import { getIp } from "./Ip.service";
 
 it("get ip test", async () => {

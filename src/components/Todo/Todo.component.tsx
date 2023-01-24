@@ -3,7 +3,7 @@ import TodoInfoHelper from "../TodoInfoHelper";
 import { RootState } from "../../store/app/store";
 import { useSelector } from "react-redux";
 import { todoSliceName } from "../../store/features/Todo";
-import Todos from "../Todos";
+import TodoList from "../TodoList";
 
 const Todo = () => {
   const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
@@ -11,7 +11,7 @@ const Todo = () => {
   return (
     <main>
       <TodoInput />
-      <Todos />
+      <TodoList />
       {tasks.length !== 0 && <TodoInfoHelper />}
     </main>
   );

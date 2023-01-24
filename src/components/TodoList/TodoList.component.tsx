@@ -22,11 +22,11 @@ import {
 import { setTodoItemLengthProperty } from "../../utils/TodoList.util";
 import { useAppDispatch } from "../../hooks/Store";
 
-import styles from "./Todos.style.module.scss";
+import styles from "./TodoList.style.module.scss";
 
 const { ACTIVE, ALL, COMPLETED } = ShowTasks;
 
-const Todos = () => {
+const TodoList = () => {
   const { tasks, showTasks } = useSelector(
     (state: RootState) => state[todoSliceName]
   );
@@ -97,4 +97,4 @@ const Todos = () => {
   );
 };
 
-export default Todos;
+export default TodoList;

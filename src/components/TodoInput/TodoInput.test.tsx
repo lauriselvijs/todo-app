@@ -1,7 +1,7 @@
 import TodoInput from "../TodoInput";
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import TodoMenu from "../Todos";
+import TodoMenu from "../TodoList";
 import { render } from "../../__tests__/config/Store.config";
 
 const setup = () => {
