@@ -1,15 +1,19 @@
 @use "../utils/media";
 
+:root {
+  --header-height: 300px;
+  --header-width: 100vh;
+}
+
 header {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 415px;
-  top: 5vh;
+  background-image: var(--bg-desktop);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: var(--header-height);
 }
 
 @include media.mobile {
   header {
-    gap: 120px;
+    background-image: var(--bg-mobile);
   }
 }

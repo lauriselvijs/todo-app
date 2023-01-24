@@ -1,4 +1,8 @@
 .todos {
+  background-color: white;
+  border-radius: 4px;
+  width: 100%;
+
   .container {
     min-height: calc(var(--todo-list-item-count) * 60px);
   }

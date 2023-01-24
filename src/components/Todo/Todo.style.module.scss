@@ -1,0 +1,22 @@
+.todo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  max-width: 500px;
+  overflow-x: auto;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}

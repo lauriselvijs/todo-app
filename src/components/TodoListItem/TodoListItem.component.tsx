@@ -25,19 +25,6 @@ const TodoListItem = ({
   const { taskEditMode } = useSelector(
     (state: RootState) => state[todoSliceName]
   );
-  const [showDeleteTodo, setShowDeleteTodo] = useState<boolean>(false);
-  const [showEditTodo, setShowEditTodo] = useState<boolean>(false);
-
-  const onMouseLeaveTodoItem = (): void => {
-    setShowDeleteTodo(false);
-    setShowEditTodo(false);
-  };
-
-  const onMouseOverTodoItem = (): void => {
-    setShowDeleteTodo(true);
-    setShowEditTodo(true);
-  };
-
   const onTodoEditInputChange = (e: FormEvent<HTMLInputElement>): void => {
     taskEdited({ id, msg: e.currentTarget.value, active });
   };
@@ -46,26 +33,24 @@ const TodoListItem = ({
     <div
       data-testid="todo-list-item"
       className={active ? styles.todoListItem : styles.todoListItemCompleted}
-      onMouseLeave={onMouseLeaveTodoItem}
-      onMouseOver={onMouseOverTodoItem}
       ref={innerRef}
       snapshot={snapshot}
       {...draggableProps}
       {...dragHandleProps}
     >
-      <TodoCheckmark todoId={id} todoActive={active} />
+      {/* <TodoCheckmark todoId={id} todoActive={active} /> */}
       {!taskEditMode && msg}
       {taskEditMode && (
         <input
           onInput={onTodoEditInputChange}
           className={styles.input}
           type="text"
-          placeholder={msg}
+          value={msg}
         />
       )}
       <div className={styles.modify}>
-        {(taskEditMode || showEditTodo) && <TodoEditBtn />}
-        {(taskEditMode || showDeleteTodo) && <TodoDeleteBtn todoId={id} />}
+        <TodoEditBtn />
+        <TodoDeleteBtn todoId={id} />
       </div>
     </div>
   );

@@ -32,6 +32,9 @@
 
   --color-error: var(--imported-color-error, #{color.$error});
   --color-background: var(--imported-color-background, #{color.$background});
+
+  --bg-desktop: url("../../assets/images/bg-desktop-light.jpg");
+  --bg-mobile: url("../../assets/images/bg-mobile-light.jpg");
 }
 
 body {

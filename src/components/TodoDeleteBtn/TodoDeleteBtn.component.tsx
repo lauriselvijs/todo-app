@@ -28,7 +28,13 @@ const TodoDeleteBtn = ({ todoId }: { todoId: string }) => {
       className={styles.todoDeleteBtn}
       onClick={onTodoDeleteBtnClick}
     >
-      <img src={IconCross} alt="Delete task icon" className={styles.image} />
+      <img
+        width={22}
+        height={22}
+        src={IconCross}
+        alt="Delete task icon"
+        className={styles.image}
+      />
     </button>
   );
 };

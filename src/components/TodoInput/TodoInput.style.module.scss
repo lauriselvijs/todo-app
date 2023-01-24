@@ -1,4 +1,13 @@
 .todoInput {
+  position: relative;
+  width: 100%;
+
   .field {
+    border: none;
+    border-radius: 4px;
+    width: inherit;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 10px 10px 10px 50px;
   }
 }

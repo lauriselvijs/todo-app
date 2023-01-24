@@ -16,6 +16,7 @@ const DarkModeBtn = () => {
       width={26}
       height={26}
       alt="Dark theme"
+      aria-label="Set theme"
       src={currentTheme ? SunIcon : MoonIcon}
       onClick={onDarkModeBtnClick}
       id="dark-mode-btn"

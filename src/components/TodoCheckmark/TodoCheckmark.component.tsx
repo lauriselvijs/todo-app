@@ -21,7 +21,8 @@ const TodoCheckmark = ({
   };
 
   return (
-    <div
+    <button
+      aria-label="Check if task completed"
       data-testid="todo-checkmark"
       onClick={onTodoCheckmarkClick}
       className={todoActive ? styles.todoCheckmark : styles.todoCheckmarkActive}
