@@ -1,30 +1,18 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 
 import IconCross from "../../assets/icons/icon-cross.svg";
-import IconCrossDarkMode from "../../assets/icons/icon-cross-dark-mode.svg";
-import { RootState } from "../../store/app/store";
-import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/Store";
-import { todoActions, todoSliceName } from "../../store/features/Todo";
+import { todoActions } from "../../store/features/Todo";
 
 import styles from "./TodoDeleteBtn.style.module.scss";
-import { Task } from "../../types/Task.d";
-
-interface TodoDeleteBtnProps {
-  taskId: Task["id"];
-}
+import { TodoDeleteBtnProps } from "./TodoDeleteBtn.component.d";
 
 const TodoDeleteBtn = ({ taskId }: TodoDeleteBtnProps) => {
   const dispatch = useAppDispatch();
-  const { taskDeleted, allTasksShowed } = bindActionCreators(
-    todoActions,
-    dispatch
-  );
-  const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
+  const { taskDeleted } = bindActionCreators(todoActions, dispatch);
 
   const onTodoDeleteBtnClick = () => {
     taskDeleted(taskId);
-    tasks.length === 1 && allTasksShowed();
   };
 
   return (

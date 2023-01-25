@@ -15,8 +15,8 @@ const useTodoFilter = () => {
 
   useEffect(() => {
     const filterTypes = {
-      [ACTIVE]: (task: Task) => task.active,
-      [COMPLETED]: (task: Task) => !task.active,
+      [ACTIVE]: ({ completed }: Task) => completed,
+      [COMPLETED]: ({ completed }: Task) => !completed,
       [ALL]: () => true,
     };
 

@@ -7,11 +7,11 @@ import { todoSliceName } from "../../store/features/Todo";
 import styles from "./TodoItemCount.style.module.scss";
 
 const TodoInputCount = () => {
-  const { taskCount } = useSelector((state: RootState) => state[todoSliceName]);
+  const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
 
   return (
     <div className={styles.todoInputCount}>
-      {pluralize("item", taskCount)} left
+      {pluralize("item", tasks.length, true)} left
     </div>
   );
 };

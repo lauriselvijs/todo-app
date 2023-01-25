@@ -12,41 +12,38 @@ export const todo = createSlice({
   reducers: {
     taskAdded: (
       state,
-      { payload: { msg, active } }: PayloadAction<Omit<Task, "id">>
+      { payload: { msg, completed } }: PayloadAction<Omit<Task, "id">>
     ) => {
-      state.tasks = [...state.tasks, { id: nanoid(), msg, active }];
+      state.tasks = [...state.tasks, { id: nanoid(), msg, completed }];
     },
     taskDeleted: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((todo) => todo.id !== action.payload);
     },
     taskActivated: (
       state,
-      { payload: { id, active } }: PayloadAction<Omit<Task, "msg">>
+      { payload: { id, completed } }: PayloadAction<Omit<Task, "msg">>
     ) => {
       state.tasks = state.tasks.map((todo) => {
         if (todo.id === id) {
-          return { ...todo, active };
+          return { ...todo, completed };
         }
         return todo;
       });
     },
-    taskInputSelected: (state, action: PayloadAction<boolean>) => {
-      state.taskInputActive = action.payload;
-    },
     taskEdited: (
       state,
-      { payload: { id, msg, active } }: PayloadAction<Task>
+      { payload: { id, msg, completed } }: PayloadAction<Task>
     ) => {
       state.tasks = state.tasks.map((todo) => {
         if (todo.id === id) {
-          return { ...todo, msg, active };
+          return { ...todo, msg, completed };
         }
         return todo;
       });
     },
     completedTasksCleared: (state) => {
       state.tasks = state.tasks.filter((todo) => {
-        return todo.active === true;
+        return todo.completed === true;
       });
     },
     allTasksShowed: (state) => {
@@ -59,11 +56,12 @@ export const todo = createSlice({
     activeTasksShowed: (state) => {
       state.showTasks = ACTIVE;
     },
-    taskEditModeActivated: (state, action: PayloadAction<Task["id"]>) => {
-      state.editedTaskId = action.payload;
-    },
-    taskEditModeDeactivated: (state) => {
-      state.editedTaskId = "";
+    editTaskModeToggled: (state, action: PayloadAction<Task["id"]>) => {
+      if (state.editedTaskId) {
+        state.editedTaskId = "";
+      } else {
+        state.editedTaskId = action.payload;
+      }
     },
   },
 });

@@ -1,45 +1,50 @@
-import { FormEvent, useState } from "react";
+import { useMemo } from "react";
 
 import { Task } from "../../types/Task";
-import TodoCheckmark from "../TodoCheckmark";
-import { bindActionCreators } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
 import TodoDeleteBtn from "../TodoDeleteBtn";
-import { RootState } from "../../store/app/store";
 import TodoEditBtn from "../TodoEditBtn";
-import {
-  todoActions,
-  todoSliceName,
-} from "../../store/features/Todo/Todo.slice";
-import { useAppDispatch } from "../../hooks/Store";
 
 import styles from "./TodoListItem.style.module.scss";
+import { useTodoListItem } from "./TodoListItem.hook";
 
-const TodoListItem = ({ id, msg, active }: Task) => {
-  const dispatch = useAppDispatch();
-  const { taskEdited } = bindActionCreators(todoActions, dispatch);
-  const { editedTaskId } = useSelector(
-    (state: RootState) => state[todoSliceName]
+const TodoListItem = ({ id, msg, completed }: Task) => {
+  const { isEdited, todoCompleted, onInputChange, onCheckmarkBtnClick } =
+    useTodoListItem(id);
+
+  const renderCheckMarkBtn = useMemo(
+    () => (
+      <button
+        aria-label="Check if task completed"
+        data-testid="todo-checkmark"
+        onClick={onCheckmarkBtnClick}
+        className={todoCompleted ? styles.checkmarkActive : styles.checkmark}
+      />
+    ),
+    [todoCompleted, onCheckmarkBtnClick]
   );
-  const onTodoEditInputChange = (e: FormEvent<HTMLInputElement>): void => {
-    taskEdited({ id, msg: e.currentTarget.value, active });
-  };
 
-  return (
-    <div
-      data-testid="todo-list-item"
-      className={active ? styles.todoListItem : styles.todoListItemCompleted}
-    >
-      {/* <TodoCheckmark todoId={id} todoActive={active} /> */}
-      {editedTaskId !== id && msg}
-      {editedTaskId === id && (
+  const renderMsg = useMemo(() => {
+    if (!isEdited) {
+      return <div className={styles.msg}>{msg}</div>;
+    } else if (isEdited) {
+      return (
         <input
-          onInput={onTodoEditInputChange}
+          onInput={onInputChange}
           className={styles.input}
           type="text"
           value={msg}
         />
-      )}
+      );
+    }
+  }, [onInputChange, msg, isEdited]);
+
+  return (
+    <div
+      data-testid="todo-list-item"
+      className={completed ? styles.todoListItem : styles.todoListItemCompleted}
+    >
+      {renderCheckMarkBtn}
+      {renderMsg}
       <div className={styles.modify}>
         <TodoEditBtn taskId={id} />
         <TodoDeleteBtn taskId={id} />
