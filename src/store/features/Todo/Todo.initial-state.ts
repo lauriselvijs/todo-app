@@ -6,7 +6,7 @@ const { ALL } = ShowTasks;
 const initialState: InitialState = {
   tasks: [],
   taskInputActive: true,
-  taskEditMode: false,
+  editedTaskId: "",
   showTasks: ALL,
   taskCount: 0,
 };

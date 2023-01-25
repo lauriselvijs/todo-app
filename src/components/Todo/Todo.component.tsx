@@ -8,6 +8,7 @@ import TodoTitle from "../TodoTItle";
 import DarkModeBtn from "../DarkModeBtn";
 
 import styles from "./Todo.style.module.scss";
+import TodoFilter from "../TodoFilter";
 
 const Todo = () => {
   const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
@@ -20,6 +21,7 @@ const Todo = () => {
       </div>
       <TodoInput />
       <TodoList />
+      {tasks.length !== 0 && <TodoFilter />}
       {tasks.length !== 0 && <TodoInfoHelper />}
     </main>
   );

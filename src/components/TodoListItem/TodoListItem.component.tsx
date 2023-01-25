@@ -22,7 +22,7 @@ const TodoListItem = ({
 }: Task) => {
   const dispatch = useAppDispatch();
   const { taskEdited } = bindActionCreators(todoActions, dispatch);
-  const { taskEditMode } = useSelector(
+  const { editedTaskId } = useSelector(
     (state: RootState) => state[todoSliceName]
   );
   const onTodoEditInputChange = (e: FormEvent<HTMLInputElement>): void => {
@@ -39,8 +39,8 @@ const TodoListItem = ({
       {...dragHandleProps}
     >
       {/* <TodoCheckmark todoId={id} todoActive={active} /> */}
-      {!taskEditMode && msg}
-      {taskEditMode && (
+      {editedTaskId !== id && msg}
+      {editedTaskId === id && (
         <input
           onInput={onTodoEditInputChange}
           className={styles.input}
@@ -49,8 +49,8 @@ const TodoListItem = ({
         />
       )}
       <div className={styles.modify}>
-        <TodoEditBtn />
-        <TodoDeleteBtn todoId={id} />
+        <TodoEditBtn taskId={id} />
+        <TodoDeleteBtn taskId={id} />
       </div>
     </div>
   );

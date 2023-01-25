@@ -9,11 +9,11 @@ import {
 import { ShowTasks } from "../../constants/Task.const";
 import { useAppDispatch } from "../../hooks/Store";
 
-import styles from "./TodoActiveBtn.style.module.scss";
+import styles from "./TodoShowActiveBtn.style.module.scss";
 
 const { ACTIVE } = ShowTasks;
 
-const TodoActiveBtn = () => {
+const TodoShowActiveBtn = () => {
   const { showTasks } = useSelector((state: RootState) => state[todoSliceName]);
   const dispatch = useAppDispatch();
   const { activeTasksShowed } = bindActionCreators(todoActions, dispatch);
@@ -26,8 +26,8 @@ const TodoActiveBtn = () => {
     <button
       className={
         showTasks === ACTIVE
-          ? styles.todoActiveBtn
-          : styles.todoActiveBtnSelected
+          ? styles.todoActiveBtnSelected
+          : styles.todoActiveBtn
       }
       onClick={onTodoShowActiveBtnClick}
     >
@@ -36,4 +36,4 @@ const TodoActiveBtn = () => {
   );
 };
 
-export default TodoActiveBtn;
+export default TodoShowActiveBtn;

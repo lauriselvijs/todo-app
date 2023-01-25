@@ -8,8 +8,13 @@ import { useAppDispatch } from "../../hooks/Store";
 import { todoActions, todoSliceName } from "../../store/features/Todo";
 
 import styles from "./TodoDeleteBtn.style.module.scss";
+import { Task } from "../../types/Task.d";
 
-const TodoDeleteBtn = ({ todoId }: { todoId: string }) => {
+interface TodoDeleteBtnProps {
+  taskId: Task["task"]["id"];
+}
+
+const TodoDeleteBtn = ({ taskId }: TodoDeleteBtnProps) => {
   const dispatch = useAppDispatch();
   const { taskDeleted, allTasksShowed } = bindActionCreators(
     todoActions,
@@ -18,7 +23,7 @@ const TodoDeleteBtn = ({ todoId }: { todoId: string }) => {
   const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
 
   const onTodoDeleteBtnClick = () => {
-    taskDeleted(todoId);
+    taskDeleted(taskId);
     tasks.length === 1 && allTasksShowed();
   };
 

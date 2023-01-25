@@ -8,16 +8,28 @@ import { useAppDispatch } from "../../hooks/Store";
 import { todoActions, todoSliceName } from "../../store/features/Todo";
 
 import styles from "./TodoEditBtn.style.module.scss";
+import { Task } from "../../types/Task.d";
 
-const TodoEditBtn = () => {
+interface TodoEditBtnProps {
+  taskId: Task["task"]["id"];
+}
+
+const TodoEditBtn = ({ taskId }: TodoEditBtnProps) => {
   const dispatch = useAppDispatch();
-  const { taskEditModeActivated } = bindActionCreators(todoActions, dispatch);
-  const { taskEditMode } = useSelector(
+  const { taskEditModeActivated, taskEditModeDeactivated } = bindActionCreators(
+    todoActions,
+    dispatch
+  );
+  const { editedTaskId } = useSelector(
     (state: RootState) => state[todoSliceName]
   );
 
   const onTodoEditBtnClick = () => {
-    taskEditModeActivated();
+    taskEditModeActivated(taskId);
+
+    if (editedTaskId) {
+      taskEditModeDeactivated();
+    }
   };
 
   return (
@@ -26,7 +38,7 @@ const TodoEditBtn = () => {
       className={styles.todoEditBtn}
       onClick={onTodoEditBtnClick}
     >
-      {taskEditMode ? (
+      {editedTaskId === taskId ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"

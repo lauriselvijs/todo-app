@@ -5,14 +5,16 @@
   align-items: center;
 
   .input {
+    flex: 1;
     border: none;
-    padding: 10px;
-    background-color: yellow;
   }
 
-  .modify {
+  .input:focus {
+    outline: none;
   }
 }
 
 .todoListItemCompleted {
+  text-decoration: line-through;
+  color: lightgray;
 }

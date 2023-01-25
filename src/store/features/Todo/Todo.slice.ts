@@ -65,8 +65,14 @@ export const todo = createSlice({
     activeTasksShowed: (state) => {
       state.showTasks = ACTIVE;
     },
-    taskEditModeActivated: (state) => {
-      state.taskEditMode = !state.taskEditMode;
+    taskEditModeActivated: (
+      state,
+      action: PayloadAction<Task["task"]["id"]>
+    ) => {
+      state.editedTaskId = action.payload;
+    },
+    taskEditModeDeactivated: (state) => {
+      state.editedTaskId = "";
     },
   },
 });

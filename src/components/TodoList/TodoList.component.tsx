@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 import TodoListItem from "../TodoListItem";
 import { Task } from "../../types/Task";
-import TodoMenuFooter from "../TodoMenuFooter";
+import TodoFooter from "../TodoFooter";
 import { RootState } from "../../store/app/store";
 import { ShowTasks } from "../../constants/Task.const";
 import { onTodoDragEnd } from "../../utils/TodoAnimation.util";
@@ -91,7 +91,7 @@ const TodoList = () => {
             </div>
           )}
         </Droppable>
-        {tasks.length !== 0 && <TodoMenuFooter />}
+        {tasks.length !== 0 && <TodoFooter />}
       </div>
     </DragDropContext>
   );

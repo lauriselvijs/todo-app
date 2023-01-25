@@ -1,7 +1,8 @@
-import styles from "./TodoClearCompletedBtn.style.module.scss";
 import { useAppDispatch } from "../../hooks/Store";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { todoActions } from "../../store/features/Todo";
+
+import styles from "./TodoClearCompletedBtn.style.module.scss";
 
 const TodoClearCompletedBtn = () => {
   const dispatch = useAppDispatch();
