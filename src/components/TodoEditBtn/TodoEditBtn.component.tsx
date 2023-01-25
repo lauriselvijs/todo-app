@@ -11,7 +11,7 @@ import styles from "./TodoEditBtn.style.module.scss";
 import { Task } from "../../types/Task.d";
 
 interface TodoEditBtnProps {
-  taskId: Task["task"]["id"];
+  taskId: Task["id"];
 }
 
 const TodoEditBtn = ({ taskId }: TodoEditBtnProps) => {

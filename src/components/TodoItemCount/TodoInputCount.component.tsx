@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
+import pluralize from "pluralize";
 
 import { RootState } from "../../store/app/store";
-import { stringPluralize } from "../../utils/String.util";
 import { todoSliceName } from "../../store/features/Todo";
 
 import styles from "./TodoItemCount.style.module.scss";
@@ -11,7 +11,7 @@ const TodoInputCount = () => {
 
   return (
     <div className={styles.todoInputCount}>
-      {stringPluralize(taskCount, "item")} left
+      {pluralize("item", taskCount)} left
     </div>
   );
 };

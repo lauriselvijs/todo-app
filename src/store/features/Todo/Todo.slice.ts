@@ -10,12 +10,9 @@ export const todo = createSlice({
   name: SLICE_NAME,
   initialState,
   reducers: {
-    taskCountUpdated: (state, action: PayloadAction<number>) => {
-      state.taskCount = action.payload;
-    },
     taskAdded: (
       state,
-      { payload: { msg, active } }: PayloadAction<Omit<Task["task"], "id">>
+      { payload: { msg, active } }: PayloadAction<Omit<Task, "id">>
     ) => {
       state.tasks = [...state.tasks, { id: nanoid(), msg, active }];
     },
@@ -24,7 +21,7 @@ export const todo = createSlice({
     },
     taskActivated: (
       state,
-      { payload: { id, active } }: PayloadAction<Omit<Task["task"], "msg">>
+      { payload: { id, active } }: PayloadAction<Omit<Task, "msg">>
     ) => {
       state.tasks = state.tasks.map((todo) => {
         if (todo.id === id) {
@@ -36,12 +33,9 @@ export const todo = createSlice({
     taskInputSelected: (state, action: PayloadAction<boolean>) => {
       state.taskInputActive = action.payload;
     },
-    taskOrderUpdated: (state, action: PayloadAction<Task["task"][]>) => {
-      state.tasks = [...action.payload];
-    },
     taskEdited: (
       state,
-      { payload: { id, msg, active } }: PayloadAction<Task["task"]>
+      { payload: { id, msg, active } }: PayloadAction<Task>
     ) => {
       state.tasks = state.tasks.map((todo) => {
         if (todo.id === id) {
@@ -65,10 +59,7 @@ export const todo = createSlice({
     activeTasksShowed: (state) => {
       state.showTasks = ACTIVE;
     },
-    taskEditModeActivated: (
-      state,
-      action: PayloadAction<Task["task"]["id"]>
-    ) => {
+    taskEditModeActivated: (state, action: PayloadAction<Task["id"]>) => {
       state.editedTaskId = action.payload;
     },
     taskEditModeDeactivated: (state) => {

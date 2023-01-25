@@ -15,11 +15,7 @@ import { useAppDispatch } from "../../hooks/Store";
 
 import styles from "./TodoListItem.style.module.scss";
 
-const TodoListItem = ({
-  task: { id, msg, active },
-  provided: { innerRef, draggableProps, dragHandleProps },
-  snapshot,
-}: Task) => {
+const TodoListItem = ({ id, msg, active }: Task) => {
   const dispatch = useAppDispatch();
   const { taskEdited } = bindActionCreators(todoActions, dispatch);
   const { editedTaskId } = useSelector(
@@ -33,10 +29,6 @@ const TodoListItem = ({
     <div
       data-testid="todo-list-item"
       className={active ? styles.todoListItem : styles.todoListItemCompleted}
-      ref={innerRef}
-      snapshot={snapshot}
-      {...draggableProps}
-      {...dragHandleProps}
     >
       {/* <TodoCheckmark todoId={id} todoActive={active} /> */}
       {editedTaskId !== id && msg}

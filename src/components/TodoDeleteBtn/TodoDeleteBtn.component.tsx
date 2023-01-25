@@ -11,7 +11,7 @@ import styles from "./TodoDeleteBtn.style.module.scss";
 import { Task } from "../../types/Task.d";
 
 interface TodoDeleteBtnProps {
-  taskId: Task["task"]["id"];
+  taskId: Task["id"];
 }
 
 const TodoDeleteBtn = ({ taskId }: TodoDeleteBtnProps) => {

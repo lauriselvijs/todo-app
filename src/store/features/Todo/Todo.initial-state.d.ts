@@ -1,9 +1,9 @@
 import { Task } from "../../../types/Task";
 
 export interface InitialState {
-  tasks: Task["task"][];
+  tasks: Task[];
   taskInputActive: boolean;
-  editedTaskId: Task["task"]["id"];
+  editedTaskId: Task["id"];
   showTasks: string;
   taskCount: number;
 }
