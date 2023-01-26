@@ -19,8 +19,8 @@ export const todo = createSlice({
     ) => {
       state.tasks = [...state.tasks, { id: nanoid(), msg, completed }];
     },
-    taskDeleted: (state, action: PayloadAction<string>) => {
-      state.tasks = state.tasks.filter((todo) => todo.id !== action.payload);
+    taskDeleted: (state, { payload: taskId }: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter(({ id }) => id !== taskId);
     },
     taskActivated: (
       state,
@@ -45,15 +45,15 @@ export const todo = createSlice({
       });
     },
     completedTasksCleared: (state) => {
-      state.tasks = state.tasks.filter((todo) => {
-        return todo.completed === true;
+      state.tasks = state.tasks.filter((task) => {
+        return task.completed === false;
       });
     },
     tasksLeftUpdated: (
       state,
-      action: PayloadAction<TodoState["tasksLeft"]>
+      { payload: taskLeft }: PayloadAction<TodoState["tasksLeft"]>
     ) => {
-      state.tasksLeft = action.payload;
+      state.tasksLeft = taskLeft;
     },
     allTasksShowed: (state) => {
       state.showTasks = ALL;
@@ -65,11 +65,14 @@ export const todo = createSlice({
     activeTasksShowed: (state) => {
       state.showTasks = ACTIVE;
     },
-    editTaskModeToggled: (state, action: PayloadAction<Task["id"]>) => {
+    editTaskModeToggled: (
+      state,
+      { payload: id }: PayloadAction<Task["id"]>
+    ) => {
       if (state.editedTaskId) {
         state.editedTaskId = "";
       } else {
-        state.editedTaskId = action.payload;
+        state.editedTaskId = id;
       }
     },
   },
