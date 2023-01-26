@@ -1,13 +1,14 @@
 import { ShowTasks } from "../../../constants/Task.const";
 
-import { InitialState } from "./Todo.initial-state.d";
+import { TodoState } from "./Todo.state.d";
 
 const { ALL } = ShowTasks;
 
-const initialState: InitialState = {
+const todoState: TodoState = {
   tasks: [],
+  tasksLeft: null,
   editedTaskId: "",
   showTasks: ALL,
 };
 
-export default initialState;
+export default todoState;

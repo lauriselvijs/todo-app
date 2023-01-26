@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { SLICE_NAME } from "./Theme.config";
-import initialState from "./Theme.initial-state";
+import themeState from "./Theme.state";
 
 export const theme = createSlice({
   name: SLICE_NAME,
-  initialState,
+  initialState: themeState,
   reducers: {
     themeUpdated: (state, { payload: themeName }: PayloadAction<string>) => {
       state.themeName = themeName;

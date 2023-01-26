@@ -1,6 +1,6 @@
-import { InitialState } from "../Weather/Weather.initial-state.d";
+import { WeatherState } from "./Weather.state.d";
 
-const initialState: InitialState = {
+const weatherState: WeatherState = {
   weather: {
     temperature: {
       celsius: null,
@@ -27,4 +27,4 @@ const initialState: InitialState = {
   },
 };
 
-export default initialState;
+export default weatherState;

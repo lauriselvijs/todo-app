@@ -3,14 +3,14 @@ import { AxiosError } from "axios";
 
 import { getCurrentWeather } from "../../../services/Weather";
 
-import initialState from "./Weather.initial-state";
+import weatherState from "./Weather.state";
 import {
   GET_CURRENT_WEATHER_TYPE,
   SLICE_NAME,
   transformResponse,
 } from "./Weather.config";
-import { CurrentWeather, WeatherError } from "../../../types/Weather";
-import { NetworkError } from "../../../types/Network";
+import { CurrentWeather, WeatherError } from "../../../types/Weather.d";
+import { NetworkError } from "../../../types/Network.d";
 import { getIp } from "../../../services/Ip";
 
 export const currentWeatherUpdated = createAsyncThunk<
@@ -55,7 +55,7 @@ export const currentWeatherUpdated = createAsyncThunk<
 
 const weather = createSlice({
   name: SLICE_NAME,
-  initialState,
+  initialState: weatherState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(currentWeatherUpdated.pending, (state) => {

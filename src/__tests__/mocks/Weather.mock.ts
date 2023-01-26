@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { WEATHER_API_URL } from "../../services/Weather/Weather.config";
-import weatherData from "../../store/features/Weather/Weather.initial-state";
+import weatherData from "../../store/features/Weather/Weather.state";
 
 export const weatherServerHandler = rest.get(
   WEATHER_API_URL,

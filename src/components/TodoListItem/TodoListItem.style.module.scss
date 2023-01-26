@@ -1,62 +1,68 @@
-@mixin todo-input-checkmark {
+@mixin checkmark {
   border-radius: 50%;
   height: 20px;
   width: 20px;
 }
 
-.todoListItem {
+@mixin todo-list-item {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 20px;
   min-height: 40px;
+}
 
-  .msg {
-    flex: 1;
-    padding: 10px;
+.todoListItem {
+  @include todo-list-item;
+
+  &Completed {
+    @include todo-list-item;
+
+    text-decoration: line-through;
+    color: lightgray;
   }
+}
 
-  .input {
-    border: none;
-    flex: 1;
-    font-size: inherit;
-    padding-left: 10px;
-  }
+.input {
+  border: none;
+  flex: 1;
+  font-size: inherit;
+  padding-left: 10px;
 
-  .input:focus {
+  &:focus {
     outline: none;
   }
 }
 
-.todoListItemCompleted {
-  text-decoration: line-through;
-  color: lightgray;
+.msg {
+  flex: 1;
+  padding: 10px;
 }
 
 .checkmark {
-  @include todo-input-checkmark;
+  @include checkmark;
 
   background-color: transparent;
   border: 1px solid lightgray;
-}
 
-.checkmarkActive {
-  @include todo-input-checkmark;
+  &Checked {
+    @include checkmark;
 
-  background: linear-gradient(to bottom right, pink, blue);
-  border: none;
-  position: relative;
+    background: linear-gradient(to bottom right, pink, blue);
+    border: none;
+    position: relative;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: url("../../assets/icons/icon-check.svg");
-    background-size: 45%;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: inherit;
-    width: inherit;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url("../../assets/icons/icon-check.svg");
+      background-size: 45%;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: inherit;
+      width: inherit;
+    }
   }
 }

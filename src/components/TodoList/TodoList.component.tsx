@@ -5,10 +5,10 @@ import { Task } from "../../types/Task";
 import TodoFooter from "../TodoFooter";
 
 import styles from "./TodoList.style.module.scss";
-import useTodoFilter from "./TodoList.hook";
+import { useTodoFilter } from "./TodoList.hook";
 
 const TodoList = () => {
-  const { tasks, filteredTodos } = useTodoFilter();
+  const { filteredTodos } = useTodoFilter();
 
   const renderTodos = useMemo(
     () =>

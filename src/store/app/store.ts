@@ -10,6 +10,7 @@ import {
   persistStore,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { listenerMiddleware } from "../features/Todo";
 import rootReducer from "./reducer";
 
 const persistConfig = {
@@ -28,7 +29,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(listenerMiddleware.middleware),
 });
 
 export const persistor = persistStore(store);

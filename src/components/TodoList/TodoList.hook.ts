@@ -7,7 +7,7 @@ import { Task } from "../../types/Task.d";
 
 const { ACTIVE, ALL, COMPLETED } = ShowTasks;
 
-const useTodoFilter = () => {
+export const useTodoFilter = () => {
   const { tasks, showTasks } = useSelector(
     (state: RootState) => state[todoSliceName]
   );
@@ -15,15 +15,13 @@ const useTodoFilter = () => {
 
   useEffect(() => {
     const filterTypes = {
-      [ACTIVE]: ({ completed }: Task) => completed,
-      [COMPLETED]: ({ completed }: Task) => !completed,
+      [ACTIVE]: ({ completed }: Task) => !completed,
+      [COMPLETED]: ({ completed }: Task) => completed,
       [ALL]: () => true,
     };
 
     setFilteredTodos(tasks.filter(filterTypes[showTasks as ShowTasks]));
   }, [showTasks, tasks]);
 
-  return { tasks, filteredTodos };
+  return { filteredTodos };
 };
-
-export default useTodoFilter;

@@ -8,8 +8,11 @@ import styles from "./TodoListItem.style.module.scss";
 import { useTodoListItem } from "./TodoListItem.hook";
 
 const TodoListItem = ({ id, msg, completed }: Task) => {
-  const { isEdited, todoCompleted, onInputChange, onCheckmarkBtnClick } =
-    useTodoListItem(id);
+  const { isEdited, onInputChange, onCheckmarkBtnClick } = useTodoListItem({
+    id,
+    msg,
+    completed,
+  });
 
   const renderCheckMarkBtn = useMemo(
     () => (
@@ -17,10 +20,10 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
         aria-label="Check if task completed"
         data-testid="todo-checkmark"
         onClick={onCheckmarkBtnClick}
-        className={todoCompleted ? styles.checkmarkActive : styles.checkmark}
+        className={completed ? styles.checkmarkChecked : styles.checkmark}
       />
     ),
-    [todoCompleted, onCheckmarkBtnClick]
+    [completed, onCheckmarkBtnClick]
   );
 
   const renderMsg = useMemo(() => {
@@ -41,7 +44,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
   return (
     <div
       data-testid="todo-list-item"
-      className={completed ? styles.todoListItem : styles.todoListItemCompleted}
+      className={completed ? styles.todoListItemCompleted : styles.todoListItem}
     >
       {renderCheckMarkBtn}
       {renderMsg}

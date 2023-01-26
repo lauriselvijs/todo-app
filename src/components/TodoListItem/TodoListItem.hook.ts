@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/Store";
 import { RootState } from "../../store/app/store";
 import { todoActions, todoSliceName } from "../../store/features/Todo";
+import { Task } from "../../types/Task.d";
 
 // TODO:
 // [ ] - extract checkmark functionality and move to shared folder
-export const useTodoListItem = (id: string) => {
-  const [todoCompleted, setTodoCompleted] = useState<boolean>(false);
+export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
   const [isEdited, setIsEdit] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
@@ -19,20 +19,27 @@ export const useTodoListItem = (id: string) => {
   );
 
   useEffect(() => {
-    id === editedTaskId ? setIsEdit(true) : setIsEdit(false);
+    todoId === editedTaskId ? setIsEdit(true) : setIsEdit(false);
   }, [taskEdited]);
 
   const onInputChange = (e: FormEvent<HTMLInputElement>): void => {
-    taskEdited({ id, msg: e.currentTarget.value, completed: todoCompleted });
+    taskEdited({
+      id: todoId,
+      msg: e.currentTarget.value,
+      completed: completed,
+    });
   };
 
   const onCheckmarkBtnClick = () => {
-    setTodoCompleted((todoCompleted) => !todoCompleted);
+    taskEdited({
+      id: todoId,
+      msg,
+      completed: !completed,
+    });
   };
 
   return {
     isEdited,
-    todoCompleted,
     onInputChange,
     onCheckmarkBtnClick,
   };
