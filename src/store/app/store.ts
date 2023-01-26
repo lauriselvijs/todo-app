@@ -10,7 +10,7 @@ import {
   persistStore,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { listenerMiddleware } from "../features/Todo";
+import { listenerMiddleware } from "./middleware/Listener";
 import rootReducer from "./reducer";
 
 const persistConfig = {

@@ -1,13 +1,11 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+
 import { ShowTasks } from "../../../constants/Task.const";
 import { Task } from "../../../types/Task";
+
 import { SLICE_NAME } from "./Todo.config";
 import todoState from "./Todo.state";
-
-import { createListenerMiddleware, addListener } from "@reduxjs/toolkit";
-import type { TypedStartListening, TypedAddListener } from "@reduxjs/toolkit";
-
-import type { RootState, AppDispatch } from "../../app/store";
+import { TodoState } from "./Todo.state.d";
 
 const { ALL, COMPLETED, ACTIVE } = ShowTasks;
 
@@ -51,10 +49,11 @@ export const todo = createSlice({
         return todo.completed === true;
       });
     },
-    incompleteTasksCounted: (state) => {
-      state.tasksLeft = state.tasks.reduce((count, task) => {
-        return !task.completed ? count + 1 : count;
-      }, 0);
+    tasksLeftUpdated: (
+      state,
+      action: PayloadAction<TodoState["tasksLeft"]>
+    ) => {
+      state.tasksLeft = action.payload;
     },
     allTasksShowed: (state) => {
       state.showTasks = ALL;
@@ -73,33 +72,6 @@ export const todo = createSlice({
         state.editedTaskId = action.payload;
       }
     },
-  },
-});
-
-export const listenerMiddleware = createListenerMiddleware();
-export type AppStartListening = TypedStartListening<RootState, AppDispatch>;
-export const startAppListening =
-  listenerMiddleware.startListening as AppStartListening;
-export const addAppListener = addListener as TypedAddListener<
-  RootState,
-  AppDispatch
->;
-
-startAppListening({
-  predicate: (_action, { todo: { tasks } }, { todo: { tasks: prevTasks } }) => {
-    // console.log(action.type === todo.actions.taskAdded.type);
-
-    const isChanged =
-      tasks.length !== 0 && prevTasks.length !== 0
-        ? tasks?.some((task, index) => {
-            return task?.completed !== prevTasks[index]?.completed;
-          })
-        : false;
-
-    return isChanged;
-  },
-  effect: async (_action, listenerApi) => {
-    listenerApi.cancelActiveListeners();
   },
 });
 

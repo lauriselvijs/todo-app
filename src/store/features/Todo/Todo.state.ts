@@ -6,7 +6,7 @@ const { ALL } = ShowTasks;
 
 const todoState: TodoState = {
   tasks: [],
-  tasksLeft: null,
+  tasksLeft: 0,
   editedTaskId: "",
   showTasks: ALL,
 };
