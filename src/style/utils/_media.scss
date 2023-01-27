@@ -1,5 +1,19 @@
+$mobile: "(max-width: 700px)";
+
 @mixin mobile {
-  @media (max-width: 700px) {
+  @media #{$mobile} {
     @content;
   }
+}
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+:export {
+  mobile: #{$mobile};
 }

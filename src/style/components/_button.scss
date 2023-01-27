@@ -1,4 +1,5 @@
 @use "../base/font";
+@use "../utils/media";
 
 button {
   font-family: inherit;
@@ -6,6 +7,8 @@ button {
   &:hover {
     cursor: pointer;
   }
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 @mixin primary {
@@ -15,7 +18,7 @@ button {
   font-weight: font.$weight-bold;
   font-size: font.$size-medium;
 
-  &:hover {
+  @include media.hover {
     color: var(--color-primary-very-dark);
   }
 }
@@ -24,7 +27,7 @@ button {
   @include primary;
   color: var(--color-tertiary);
 
-  &:hover {
+  @include media.hover {
     color: var(--color-tertiary);
   }
 }

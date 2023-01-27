@@ -1,6 +1,9 @@
 @use "../base/font";
 
 input {
+  padding: 0;
+  margin: 0;
+
   font-family: inherit;
 }
 
@@ -11,6 +14,8 @@ input {
   color: var(--color-primary-very-dark);
   font-size: font.$size-large;
   font-weight: font.$weight-regular;
+
+  background-color: var(--color-primary-very-light);
 
   &:focus {
     outline: none;

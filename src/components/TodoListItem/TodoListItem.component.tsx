@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useMedia } from "react-use";
 
 import { Task } from "../../types/Task";
 import TodoDeleteBtn from "../TodoDeleteBtn";
@@ -7,7 +8,11 @@ import TodoEditBtn from "../TodoEditBtn";
 import styles from "./TodoListItem.style.module.scss";
 import { useTodoListItem } from "./TodoListItem.hook";
 
+import Media from "../../style/main.scss";
+
 const TodoListItem = ({ id, msg, completed }: Task) => {
+  const { mobile } = Media;
+
   const {
     showModifyMenu,
     onMouseEnter,
@@ -21,8 +26,10 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
     completed,
   });
 
+  const isMobile = useMedia(mobile);
+
   const renderModifyMenu = useMemo(() => {
-    if (showModifyMenu || isEdited) {
+    if (showModifyMenu || isEdited || isMobile) {
       return (
         <div>
           <TodoEditBtn taskId={id} />
@@ -30,7 +37,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
         </div>
       );
     }
-  }, [id, showModifyMenu, isEdited]);
+  }, [id, showModifyMenu, isEdited, isMobile]);
 
   const renderCheckMarkBtn = useMemo(
     () => (

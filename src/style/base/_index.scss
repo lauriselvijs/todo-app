@@ -7,11 +7,9 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-
-  height: 100vh;
-
   background-color: var(--color-secondary-very-light);
   font-family: font.$family-primary;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }

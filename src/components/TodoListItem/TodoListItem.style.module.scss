@@ -1,25 +1,25 @@
 @use "../../style/components/button";
 @use "../../style/components/input";
+@use "../../style/utils/media";
 
 .todoListItem {
   align-items: center;
+  border-bottom: 1px solid var(--color-primary-light);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  padding-left: 20px;
-  min-height: 40px;
-
-  border-bottom: 1px solid var(--color-primary-light);
+  min-height: 70px;
 
   .input {
     @include input.primary;
 
+    padding-left: 0;
     flex: 1;
-    padding-left: 10px;
   }
 
   .msg {
     flex: 1;
+    padding-left: 0;
 
     &Completed {
       @extend .msg;
@@ -31,6 +31,7 @@
 
   .checkmark {
     @include button.checkmark;
+    margin: 0 10px 0 20px;
 
     &Checked {
       @include button.checkmark-clicked;
@@ -38,4 +39,7 @@
       position: relative;
     }
   }
+}
+
+@include media.mobile {
 }

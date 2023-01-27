@@ -1,5 +1,6 @@
 $primary-light: hsl(233 11 84);
 $primary-dark: hsl(236 9 61);
+$primary-very-light: white;
 $primary-very-dark: hsl(235 19 35);
 $secondary-very-light: hsl(236 33 92);
 $secondary-light: hsl(0 0 98);
@@ -9,15 +10,16 @@ $tertiary-dark: hsl(228 45 44);
 $background: linear-gradient(to bottom right, hsl(192 100 67), hsl(280 87 65));
 $error: hsl(0 100 40);
 
-$white: white;
-$black: black;
-
 :root {
   --color-primary-light: var(--imported-color-primary-light, #{$primary-light});
   --color-primary-dark: var(--imported-color-primary-dark, #{$primary-dark});
   --color-primary-very-dark: var(
     --imported-color-primary-very-dark,
     #{$primary-very-dark}
+  );
+  --color-primary-very-light: var(
+    --imported-color-primary-very-light,
+    #{$primary-very-light}
   );
 
   --color-secondary-very-light: var(
