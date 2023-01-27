@@ -1,4 +1,17 @@
+@use "../base/font";
+
 h1 {
-  color: white;
+  color: var(--color-secondary-light);
+  font-size: font.$size-title;
+  font-weight: font.$weight-bold;
   letter-spacing: 8px;
+}
+
+p {
+  margin: 0;
+  padding: 20px;
+
+  color: var(--color-primary-very-dark);
+  font-size: font.$size-large;
+  font-weight: font.$weight-regular;
 }

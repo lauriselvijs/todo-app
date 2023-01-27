@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import Header from "../Header";
 import Todo from "../Todo";
 import WeatherCurrent from "../WeatherCurrent";
@@ -5,9 +6,9 @@ import WeatherCurrent from "../WeatherCurrent";
 const App = () => {
   return (
     <>
-      {/* <WeatherCurrent /> */}
       <Header />
       <Todo />
+      <Footer />
     </>
   );
 };

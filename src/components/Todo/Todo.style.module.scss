@@ -2,16 +2,17 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 20px;
-  max-width: 500px;
-  overflow-x: auto;
-  position: absolute;
-  top: 100px;
+  justify-content: center;
   left: 0;
-  right: 0;
   margin-left: auto;
   margin-right: auto;
+  max-width: 500px;
+  overflow-x: auto;
+  padding: 0 20px;
+  position: absolute;
+  right: 0;
+  top: 100px;
 
   .header {
     display: flex;

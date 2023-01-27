@@ -1,68 +1,41 @@
-@mixin checkmark {
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-}
-
-@mixin todo-list-item {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  min-height: 40px;
-}
+@use "../../style/components/button";
+@use "../../style/components/input";
 
 .todoListItem {
-  @include todo-list-item;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  min-height: 40px;
 
-  &Completed {
-    @include todo-list-item;
+  border-bottom: 1px solid var(--color-primary-light);
 
-    text-decoration: line-through;
-    color: lightgray;
+  .input {
+    @include input.primary;
+
+    flex: 1;
+    padding-left: 10px;
   }
-}
 
-.input {
-  border: none;
-  flex: 1;
-  font-size: inherit;
-  padding-left: 10px;
+  .msg {
+    flex: 1;
 
-  &:focus {
-    outline: none;
+    &Completed {
+      @extend .msg;
+
+      text-decoration: line-through;
+      color: var(--color-primary-light);
+    }
   }
-}
 
-.msg {
-  flex: 1;
-  padding: 10px;
-}
+  .checkmark {
+    @include button.checkmark;
 
-.checkmark {
-  @include checkmark;
+    &Checked {
+      @include button.checkmark-clicked;
 
-  background-color: transparent;
-  border: 1px solid lightgray;
-
-  &Checked {
-    @include checkmark;
-
-    background: linear-gradient(to bottom right, pink, blue);
-    border: none;
-    position: relative;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: url("../../assets/icons/icon-check.svg");
-      background-size: 45%;
-      background-repeat: no-repeat;
-      background-position: center;
-      height: inherit;
-      width: inherit;
+      position: relative;
     }
   }
 }

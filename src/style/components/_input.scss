@@ -1,0 +1,22 @@
+@use "../base/font";
+
+input {
+  font-family: inherit;
+}
+
+@mixin primary {
+  border-radius: 4px;
+  border: none;
+  caret-color: var(--color-tertiary-dark);
+  color: var(--color-primary-very-dark);
+  font-size: font.$size-large;
+  font-weight: font.$weight-regular;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--color-primary-dark);
+  }
+}

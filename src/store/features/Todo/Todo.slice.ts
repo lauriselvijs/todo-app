@@ -69,7 +69,7 @@ export const todo = createSlice({
       state,
       { payload: id }: PayloadAction<Task["id"]>
     ) => {
-      if (state.editedTaskId) {
+      if (state.editedTaskId === id) {
         state.editedTaskId = "";
       } else {
         state.editedTaskId = id;

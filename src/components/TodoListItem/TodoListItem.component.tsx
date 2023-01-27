@@ -8,11 +8,29 @@ import styles from "./TodoListItem.style.module.scss";
 import { useTodoListItem } from "./TodoListItem.hook";
 
 const TodoListItem = ({ id, msg, completed }: Task) => {
-  const { isEdited, onInputChange, onCheckmarkBtnClick } = useTodoListItem({
+  const {
+    showModifyMenu,
+    onMouseEnter,
+    onMouseLeave,
+    isEdited,
+    onInputChange,
+    onCheckmarkBtnClick,
+  } = useTodoListItem({
     id,
     msg,
     completed,
   });
+
+  const renderModifyMenu = useMemo(() => {
+    if (showModifyMenu || isEdited) {
+      return (
+        <div>
+          <TodoEditBtn taskId={id} />
+          <TodoDeleteBtn taskId={id} />
+        </div>
+      );
+    }
+  }, [id, showModifyMenu, isEdited]);
 
   const renderCheckMarkBtn = useMemo(
     () => (
@@ -28,7 +46,9 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
 
   const renderMsg = useMemo(() => {
     if (!isEdited) {
-      return <div className={styles.msg}>{msg}</div>;
+      return (
+        <p className={completed ? styles.msgCompleted : styles.msg}>{msg}</p>
+      );
     } else if (isEdited) {
       return (
         <input
@@ -39,19 +59,18 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
         />
       );
     }
-  }, [onInputChange, msg, isEdited]);
+  }, [onInputChange, msg, isEdited, completed]);
 
   return (
     <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       data-testid="todo-list-item"
-      className={completed ? styles.todoListItemCompleted : styles.todoListItem}
+      className={styles.todoListItem}
     >
       {renderCheckMarkBtn}
       {renderMsg}
-      <div className={styles.modify}>
-        <TodoEditBtn taskId={id} />
-        <TodoDeleteBtn taskId={id} />
-      </div>
+      {renderModifyMenu}
     </div>
   );
 };

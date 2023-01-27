@@ -1,10 +1,9 @@
-.todoShowCompletedBtn {
-  background-color: transparent;
-  border: none;
-}
+@use "../../style/components/button";
 
-.todoShowCompletedBtnClicked {
-  color: blue;
-  background-color: transparent;
-  border: none;
+.todoShowCompletedBtn {
+  @include button.primary;
+
+  &Selected {
+    @include button.primary-clicked;
+  }
 }

@@ -22,7 +22,7 @@ const TodoShowCompletedBtn = () => {
     <button
       className={
         showTasks === COMPLETED
-          ? styles.todoShowCompletedBtnClicked
+          ? styles.todoShowCompletedBtnSelected
           : styles.todoShowCompletedBtn
       }
       onClick={onTodoShowCompletedBtnClick}

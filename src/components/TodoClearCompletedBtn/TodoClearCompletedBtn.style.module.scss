@@ -1,4 +1,5 @@
+@use "../../style/components/button";
+
 .todoClearCompletedBtn {
-  background-color: transparent;
-  border: none;
+  @include button.primary;
 }

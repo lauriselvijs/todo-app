@@ -1,10 +1,9 @@
-.todoActiveBtn {
-  background-color: transparent;
-  border: none;
-}
+@use "../../style/components/button";
 
-.todoActiveBtnSelected {
-  color: blue;
-  background-color: transparent;
-  border: none;
+.todoActiveBtn {
+  @include button.primary;
+
+  &Selected {
+    @include button.primary-clicked;
+  }
 }

@@ -1,0 +1,58 @@
+@use "../base/font";
+
+button {
+  font-family: inherit;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin primary {
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary-dark);
+  font-weight: font.$weight-bold;
+  font-size: font.$size-medium;
+
+  &:hover {
+    color: var(--color-primary-very-dark);
+  }
+}
+
+@mixin primary-clicked {
+  @include primary;
+  color: var(--color-tertiary);
+
+  &:hover {
+    color: var(--color-tertiary);
+  }
+}
+
+@mixin checkmark {
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary-light);
+  height: 20px;
+  width: 20px;
+}
+
+@mixin checkmark-clicked {
+  @include checkmark;
+
+  background: var(--color-background);
+  border: none;
+
+  &::before {
+    content: "";
+    background-image: url("../../assets/icons/icon-check.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 45%;
+    height: inherit;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: inherit;
+  }
+}

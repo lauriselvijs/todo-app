@@ -1,5 +1,5 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/Store";
 import { RootState } from "../../store/app/store";
@@ -10,6 +10,7 @@ import { Task } from "../../types/Task.d";
 // [ ] - extract checkmark functionality and move to shared folder
 export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
   const [isEdited, setIsEdit] = useState<boolean>(false);
+  const [showModifyMenu, setShowModifyMenu] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const { taskEdited } = bindActionCreators(todoActions, dispatch);
@@ -38,7 +39,18 @@ export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
     });
   };
 
+  const onMouseEnter = () => {
+    setShowModifyMenu(true);
+  };
+
+  const onMouseLeave = () => {
+    setShowModifyMenu(false);
+  };
+
   return {
+    showModifyMenu,
+    onMouseEnter,
+    onMouseLeave,
     isEdited,
     onInputChange,
     onCheckmarkBtnClick,
