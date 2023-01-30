@@ -21,7 +21,7 @@ const useIsEditedModeSet = (taskId: Task["id"]): boolean => {
   return isEdited;
 };
 
-export const useTodoEditBtnHook = (taskId: Task["id"]) => {
+export const useTodoEditBtn = (taskId: Task["id"]) => {
   const dispatch = useAppDispatch();
   const { editTaskModeToggled } = bindActionCreators(todoActions, dispatch);
 

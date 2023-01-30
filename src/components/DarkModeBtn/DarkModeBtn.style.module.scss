@@ -1,5 +1,5 @@
 @use "../../style/components/button";
 
-.todoEditBtn {
+.darkModeBtn {
   @include button.primary;
 }

@@ -20,7 +20,7 @@ const TodoList = () => {
 
   return (
     <div className={styles.todos}>
-      <div className={styles.container}>{renderTodos}</div>
+      <div>{renderTodos}</div>
       <TodoFooter />
     </div>
   );

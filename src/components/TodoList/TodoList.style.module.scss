@@ -1,9 +1,6 @@
 .todos {
   background-color: var(--color-primary-very-light);
+  box-shadow: 0px 20px 20px 0px var(--color-primary-dark);
   border-radius: 4px;
   width: 100%;
-
-  .container {
-    min-height: calc(var(--todo-list-item-count) * 60px);
-  }
 }

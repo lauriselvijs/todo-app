@@ -17,6 +17,7 @@ const TodoDeleteBtn = ({ taskId }: TodoDeleteBtnProps) => {
 
   return (
     <button
+      title="Delete"
       aria-label="Delete task"
       className={styles.todoDeleteBtn}
       onClick={onTodoDeleteBtnClick}

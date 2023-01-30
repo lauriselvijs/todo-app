@@ -3,6 +3,8 @@ import SunIcon from "../../assets/icons/icon-sun.svg";
 import Theme from "../../style/main.scss";
 import { useTheme } from "../../hooks/Theme";
 
+import styles from "./DarkModeBtn.style.module.scss";
+
 const DarkModeBtn = () => {
   const { currentTheme, setTheme, setDefaultTheme } = useTheme();
   const { dark } = Theme;
@@ -12,16 +14,20 @@ const DarkModeBtn = () => {
   };
 
   return (
-    <img
-      width={26}
-      height={26}
-      alt="Dark theme"
+    <button
       aria-label="Set theme"
-      src={currentTheme ? SunIcon : MoonIcon}
       onClick={onDarkModeBtnClick}
-      id="dark-mode-btn"
+      className={styles.darkModeBtn}
       title="Dark theme"
-    />
+    >
+      <img
+        width={26}
+        height={26}
+        alt="Dark theme"
+        src={currentTheme ? SunIcon : MoonIcon}
+        id="dark-mode-btn"
+      />
+    </button>
   );
 };
 
