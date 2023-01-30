@@ -75,6 +75,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
       onMouseLeave={onMouseLeave}
       data-testid="todo-list-item"
       className={styles.todoListItem}
+      aria-label="Hover to enable controls"
     >
       {renderCheckMarkBtn}
       {renderMsg}
