@@ -8,3 +8,15 @@
   font-weight: font.$weight-regular;
   width: 100%;
 }
+
+.todoChosen {
+  opacity: 0;
+}
+
+.todoChosen svg {
+  opacity: 0;
+}
+
+.ghostTodo {
+  opacity: 1;
+}

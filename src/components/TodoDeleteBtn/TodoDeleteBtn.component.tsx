@@ -1,6 +1,6 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
+import { AiOutlineClose } from "react-icons/ai";
 
-import IconCross from "../../assets/icons/icon-cross.svg";
 import { useAppDispatch } from "../../hooks/Store";
 import { todoActions } from "../../store/features/Todo";
 
@@ -22,13 +22,7 @@ const TodoDeleteBtn = ({ taskId }: TodoDeleteBtnProps) => {
       className={styles.todoDeleteBtn}
       onClick={onTodoDeleteBtnClick}
     >
-      <img
-        width={22}
-        height={22}
-        src={IconCross}
-        alt="Delete task icon"
-        className={styles.image}
-      />
+      <AiOutlineClose size={24} />
     </button>
   );
 };
