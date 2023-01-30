@@ -49,6 +49,9 @@ $black: black;
 
   --color-error: var(--imported-color-error, #{$error});
   --color-background: var(--imported-color-background, #{$background});
+
+  --bg-desktop: url("../../assets/images/bg-desktop-dark.jpg");
+  --bg-mobile: url("../../assets/images/bg-mobile-dark.jpg");
 }
 
 :export {

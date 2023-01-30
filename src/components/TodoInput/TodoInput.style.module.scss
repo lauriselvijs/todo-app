@@ -2,10 +2,8 @@
 @use "../../style/components/input";
 
 @mixin todo-input-checkmark {
-  @include button.checkmark;
-
   position: absolute;
-  top: 0;
+  top: 1px;
   bottom: 0;
   margin-top: auto;
   margin-bottom: auto;
@@ -26,6 +24,7 @@
 
   .checkmark {
     @include todo-input-checkmark;
+    @include button.checkmark;
 
     &Active {
       @include todo-input-checkmark;

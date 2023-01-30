@@ -32,19 +32,37 @@ button {
   }
 }
 
-@mixin checkmark {
-  background-color: transparent;
+@mixin _checkmark {
+  background-color: grey;
   border-radius: 50%;
-  border: 1px solid var(--color-primary-light);
+  border: none;
   height: 20px;
   width: 20px;
 }
 
+@mixin checkmark {
+  @include _checkmark;
+
+  &::before {
+    content: "";
+    background-color: white;
+    border-radius: 50%;
+    bottom: 1px;
+    left: 1px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+  }
+
+  @include media.hover {
+    background: var(--color-background);
+  }
+}
+
 @mixin checkmark-clicked {
-  @include checkmark;
+  @include _checkmark;
 
   background: var(--color-background);
-  border: none;
 
   &::before {
     content: "";
