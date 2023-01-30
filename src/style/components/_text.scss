@@ -1,7 +1,7 @@
 @use "../base/font";
 
 h1 {
-  color: var(--color-secondary-light);
+  color: var(--color-title);
   font-size: font.$size-title;
   font-weight: font.$weight-bold;
   letter-spacing: 8px;
@@ -11,7 +11,7 @@ p {
   margin: 0;
   padding: 0;
 
-  color: var(--color-primary-very-dark);
+  color: var(--color-primary-dark);
   font-size: font.$size-large;
   font-weight: font.$weight-regular;
 }

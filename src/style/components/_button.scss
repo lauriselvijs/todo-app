@@ -14,26 +14,26 @@ button {
 @mixin primary {
   background-color: transparent;
   border: none;
-  color: var(--color-primary-dark);
+  color: var(--color-primary);
   font-weight: font.$weight-bold;
   font-size: font.$size-medium;
 
   @include media.hover {
-    color: var(--color-primary-very-dark);
+    color: var(--color-primary-dark);
   }
 }
 
 @mixin primary-clicked {
   @include primary;
-  color: var(--color-tertiary);
+  color: var(--color-btn-selected);
 
   @include media.hover {
-    color: var(--color-tertiary);
+    color: var(--color-btn-selected);
   }
 }
 
 @mixin _checkmark {
-  background-color: grey;
+  background-color: var(--color-primary);
   border-radius: 50%;
   border: none;
   height: 20px;
@@ -45,7 +45,7 @@ button {
 
   &::before {
     content: "";
-    background-color: white;
+    background-color: var(--color-primary-light);
     border-radius: 50%;
     bottom: 1px;
     left: 1px;
@@ -55,14 +55,14 @@ button {
   }
 
   @include media.hover {
-    background: var(--color-background);
+    background: var(--color-gradient);
   }
 }
 
 @mixin checkmark-clicked {
   @include _checkmark;
 
-  background: var(--color-background);
+  background: var(--color-gradient);
 
   &::before {
     content: "";

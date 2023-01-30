@@ -1,54 +1,47 @@
 $theme-name: "dark";
 
-$c1: hsl(235, 21%, 11%);
-$c2: hsl(235, 24%, 19%);
-$c3: hsl(234, 39%, 85%);
-$c4: hsl(236, 33%, 92%);
-$c5: hsl(234, 11%, 52%);
-$c6: hsl(233, 14%, 35%);
-$c7: hsl(237, 14%, 26%);
+$primary-dark: hsl(236 33 92);
+$primary-light: hsl(235 24 19);
+$primary: hsl(233 14 35);
 
-$primary-light: hsl(237, 14%, 26%);
-$primary-dark: hsl(236 9 61);
-$primary-very-light: hsl(235, 24%, 19%);
-$primary-very-dark: hsl(235 19 35);
-$secondary-very-light: hsl(235, 21%, 11%);
-$secondary-light: hsl(0 0 98);
-$tertiary: hsl(220 98 61);
-$tertiary-dark: hsl(228 45 44);
-
-$background: linear-gradient(to bottom right, hsl(192 100 67), hsl(280 87 65));
+$bg: hsl(235 21 11);
+$btn-selected: hsl(220 98 61);
+$caret: hsl(228 45 44);
 $error: hsl(0 100 40);
-
-$white: white;
-$black: black;
+$gradient: linear-gradient(to bottom right, hsl(192 100 67), hsl(280 87 65));
+$shadow: hsl(235 21 8);
+$title: hsl(255 100 100);
 
 .#{$theme-name} {
-  --color-primary-light: var(--imported-color-primary-light, #{$primary-light});
-  --color-primary-dark: var(--imported-color-primary-dark, #{$primary-dark});
-  --color-primary-very-dark: var(
-    --imported-color-primary-very-dark,
-    #{$primary-very-dark}
+  --color-primary-dark: var(
+    --imported-#{$theme-name}-theme-color-primary-dark,
+    #{$primary-dark}
   );
-  --color-primary-very-light: var(
-    --imported-color-primary-very-light,
-    #{$primary-very-light}
+  --color-primary-light: var(
+    --imported-#{$theme-name}-theme-color-primary-light,
+    #{$primary-light}
   );
-
-  --color-secondary-very-light: var(
-    --imported-color-secondary-very-light,
-    #{$secondary-very-light}
-  );
-  --color-secondary-light: var(
-    --imported-color-secondary-light,
-    #{$secondary-light}
+  --color-primary: var(
+    --imported-#{$theme-name}-theme-color-primary,
+    #{$primary}
   );
 
-  --color-tertiary: var(--imported-color-tertiary, #{$tertiary});
-  --color-tertiary-dark: var(--imported-color-tertiary-dark, #{$tertiary-dark});
-
-  --color-error: var(--imported-color-error, #{$error});
-  --color-background: var(--imported-color-background, #{$background});
+  --color-bg: var(--imported-#{$theme-name}-theme-color-bg, #{$bg});
+  --color-btn-selected: var(
+    --imported-#{$theme-name}-theme-color-tertiary-dark,
+    #{$btn-selected}
+  );
+  --color-caret: var(--imported-#{$theme-name}-theme-color-caret, #{$caret});
+  --color-error: var(--imported-#{$theme-name}-theme-color-tertiary, #{$error});
+  --color-gradient: var(
+    --imported-#{$theme-name}-theme-color-btn-hover,
+    #{$gradient}
+  );
+  --color-shadow: var(
+    --imported-#{$theme-name}-theme-color-tertiary,
+    #{$shadow}
+  );
+  --color-title: var(--imported-#{$theme-name}-theme-color-tertiary, #{$title});
 
   --bg-desktop: url("../../assets/images/bg-desktop-dark.jpg");
   --bg-mobile: url("../../assets/images/bg-mobile-dark.jpg");

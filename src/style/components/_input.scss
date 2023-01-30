@@ -10,18 +10,18 @@ input {
 @mixin primary {
   border-radius: 4px;
   border: none;
-  caret-color: var(--color-tertiary-dark);
-  color: var(--color-primary-very-dark);
+  caret-color: var(--color-caret);
+  color: var(--color-primary-dark);
   font-size: font.$size-large;
   font-weight: font.$weight-regular;
 
-  background-color: var(--color-primary-very-light);
+  background-color: var(--color-primary-light);
 
   &:focus {
     outline: none;
   }
 
   &::placeholder {
-    color: var(--color-primary-dark);
+    color: var(--color-primary);
   }
 }
