@@ -11,21 +11,23 @@ import DarkModeBtn from "../DarkModeBtn";
 import TodoFilter from "../TodoFilter";
 
 import styles from "./Todo.style.module.scss";
+import { useMobile } from "../../hooks/Media";
 
 const Todo = () => {
   const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
+  const isMobile = useMobile();
 
   const renderTodoMenu = useMemo(() => {
     if (tasks.length !== 0) {
       return (
         <>
           <TodoList />
-          <TodoFilter />
+          {isMobile && <TodoFilter />}
           <TodoInfoHelper />
         </>
       );
     }
-  }, [tasks]);
+  }, [tasks, isMobile]);
 
   return (
     <main className={styles.todo}>

@@ -9,10 +9,11 @@ import styles from "./TodoListItem.style.module.scss";
 import { useTodoListItem } from "./TodoListItem.hook";
 
 import Media from "../../style/main.scss";
+import { useMobile } from "../../hooks/Media";
+
+const { mobile } = Media;
 
 const TodoListItem = ({ id, msg, completed }: Task) => {
-  const { mobile } = Media;
-
   const {
     showModifyMenu,
     onMouseEnter,
@@ -26,7 +27,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
     completed,
   });
 
-  const isMobile = useMedia(mobile);
+  const isMobile = useMobile();
 
   const renderModifyMenu = useMemo(() => {
     if (showModifyMenu || isEdited || isMobile) {

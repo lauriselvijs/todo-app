@@ -1,10 +1,19 @@
+@use "../../style/utils/media";
+
 .todoFilter {
   align-items: center;
   background-color: var(--color-primary-very-light);
   border-radius: 4px;
   display: flex;
   gap: 20px;
-  padding: 20px 0;
   justify-content: center;
-  width: 100%;
+  padding: 0;
+  width: fit-content;
+}
+
+@include media.mobile {
+  .todoFilter {
+    padding: 20px 0;
+    width: 100%;
+  }
 }
