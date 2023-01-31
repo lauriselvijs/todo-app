@@ -13,6 +13,12 @@ export const todo = createSlice({
   name: SLICE_NAME,
   initialState: todoState,
   reducers: {
+    tasksReordered: (
+      state,
+      { payload: reorderedTasks }: PayloadAction<Task[]>
+    ) => {
+      state.tasks = reorderedTasks;
+    },
     taskAdded: (
       state,
       { payload: { msg, completed } }: PayloadAction<Omit<Task, "id">>
