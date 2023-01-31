@@ -1,6 +1,7 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
+
 import { ShowTasks } from "../../constants/Task.const";
 import { useAppDispatch } from "../../hooks/Store";
 import { RootState } from "../../store/app/store";
@@ -20,23 +21,14 @@ export const useTodoFilter = () => {
     (state: RootState) => state[todoSliceName]
   );
 
-  const [orderedTasks, setOrderedTasks] = useState(tasks);
-  const [filteredTasks, setFilteredTasks] = useState(tasks);
-
   const dispatch = useAppDispatch();
   const { tasksReordered } = bindActionCreators(todoActions, dispatch);
 
-  useEffect(() => {
-    setOrderedTasks(tasks);
-  }, [tasks]);
+  const [filteredTasks, setFilteredTasks] = useState(tasks);
 
-  useEffect(() => {
-    tasksReordered(orderedTasks);
-  }, [orderedTasks]);
+  useLayoutEffect(() => {
+    setFilteredTasks(tasks.filter(filterTypes[showTasks as ShowTasks]));
+  }, [showTasks, tasks]);
 
-  useEffect(() => {
-    setFilteredTasks(orderedTasks.filter(filterTypes[showTasks as ShowTasks]));
-  }, [showTasks]);
-
-  return { tasks, orderedTasks, setOrderedTasks, filteredTasks };
+  return { filteredTasks, tasksReordered };
 };

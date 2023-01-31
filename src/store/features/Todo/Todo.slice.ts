@@ -64,7 +64,6 @@ export const todo = createSlice({
     allTasksShowed: (state) => {
       state.showTasks = ALL;
     },
-
     completedTasksShowed: (state) => {
       state.showTasks = COMPLETED;
     },
