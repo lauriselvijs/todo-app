@@ -3,7 +3,7 @@
 @use "../../style/utils/media";
 
 @mixin todo-list-item-checkmark {
-  margin: 0 10px 0 20px;
+  margin: 0 20px 0 20px;
   position: relative;
 }
 
@@ -11,7 +11,6 @@
   align-items: center;
   border-bottom: 1px solid var(--color-primary);
   cursor: pointer;
-  color: var(--color-primary-dark);
   display: flex;
   justify-content: space-between;
   min-height: 60px;

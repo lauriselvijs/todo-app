@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { ReactSortable, Sortable } from "react-sortablejs";
+import { useEffect, useMemo, useState } from "react";
+import { ReactSortable } from "react-sortablejs";
 
 import TodoListItem from "../TodoListItem";
 import { Task } from "../../types/Task.d";
@@ -9,13 +9,14 @@ import styles from "./TodoList.style.module.scss";
 import { useTodoFilter } from "./TodoList.hook";
 
 const TodoList = () => {
-  const { filteredTodos } = useTodoFilter();
-
-  const [todos, setTodos] = useState<Task[]>(filteredTodos);
+  const { filteredTasks, orderedTasks, setOrderedTasks } = useTodoFilter();
 
   const renderTodos = useMemo(
-    () => todos.map((todo: Task) => <TodoListItem key={todo.id} {...todo} />),
-    [todos]
+    () =>
+      orderedTasks.map((todo: Task) => (
+        <TodoListItem key={todo.id} {...todo} />
+      )),
+    [orderedTasks]
   );
 
   return (
@@ -23,8 +24,8 @@ const TodoList = () => {
       <ReactSortable
         chosenClass={`${styles.todoChosen}`}
         ghostClass={`${styles.ghostTodo}`}
-        list={todos.map((todo) => ({ ...todo, chosen: true }))}
-        setList={setTodos}
+        list={orderedTasks.map((task) => ({ ...task, chosen: true }))}
+        setList={setOrderedTasks}
       >
         {renderTodos}
       </ReactSortable>
