@@ -1,17 +1,18 @@
 @use "../utils/media";
 
 footer {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   gap: 5px;
   justify-content: center;
-  position: absolute;
-  top: 95vh;
   width: 100%;
+  height: 10vh;
 }
 
 @include media.mobile {
   footer {
+    align-items: center;
+    justify-content: flex-end;
     flex-direction: column;
   }
 }

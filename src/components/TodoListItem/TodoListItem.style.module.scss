@@ -29,8 +29,8 @@
     &Completed {
       @extend .msg;
 
-      text-decoration: line-through;
       color: var(--color-primary);
+      text-decoration: line-through;
     }
   }
 

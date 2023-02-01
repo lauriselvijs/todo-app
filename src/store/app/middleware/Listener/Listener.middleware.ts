@@ -4,7 +4,7 @@ import {
   TypedAddListener,
   TypedStartListening,
 } from "@reduxjs/toolkit";
-import { addTodoListeners } from "../../../features/Todo";
+import { todoListeners } from "../../../features/Todo";
 import { AppDispatch, RootState } from "../../store";
 
 export const listenerMiddleware = createListenerMiddleware();
@@ -18,4 +18,4 @@ export const addAppListener = addListener as TypedAddListener<
 
 export type AppStartListening = TypedStartListening<RootState, AppDispatch>;
 
-addTodoListeners(startAppListening);
+todoListeners(startAppListening);

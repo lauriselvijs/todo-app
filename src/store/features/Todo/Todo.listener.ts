@@ -1,7 +1,7 @@
 import { todoActions } from "./";
 import type { AppStartListening } from "../../app/middleware/Listener/Listener.middleware";
 
-export const addTodoListeners = (startAppListening: AppStartListening) => {
+export const todoListeners = (startAppListening: AppStartListening) => {
   startAppListening({
     predicate: (
       _action,
@@ -17,7 +17,7 @@ export const addTodoListeners = (startAppListening: AppStartListening) => {
       }
 
       const isChanged =
-        tasks.length !== 0 && prevTasks.length !== 0
+        tasks.length && prevTasks.length
           ? tasks.some((task, index) => {
               return task.completed !== prevTasks[index]?.completed;
             })

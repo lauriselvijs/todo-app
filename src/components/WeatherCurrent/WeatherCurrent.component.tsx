@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+
 import { RootState } from "../../store/app/store";
 import { weatherSliceName } from "../../store/features/Weather";
-import "./WeatherCurrent.style.module.scss";
+
+import styles from "./WeatherCurrent.style.module.scss";
 
 const WeatherCurrent = () => {
   const {
