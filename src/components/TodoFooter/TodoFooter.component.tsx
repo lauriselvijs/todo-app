@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useMobile } from "../../hooks/Media";
 import TodoClearCompletedBtn from "../TodoClearCompletedBtn";
 import TodoFilter from "../TodoFilter";
-import TodoInputCount from "../TodoItemCount";
+import TodoInputCount from "../TodoCount";
 
 import styles from "./TodoFooter.style.module.scss";
 

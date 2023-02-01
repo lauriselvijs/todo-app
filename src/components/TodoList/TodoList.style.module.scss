@@ -1,6 +1,6 @@
 @use "../../style/base/font";
 
-.todos {
+.todoList {
   background-color: var(--color-primary-light);
   border-radius: 4px;
   box-shadow: 0px 20px 20px 0px var(--color-shadow);
@@ -9,6 +9,7 @@
   width: 100%;
 }
 
-.ghostTodo {
-  opacity: 0;
+.todos {
+  max-height: 40vh;
+  overflow: auto;
 }

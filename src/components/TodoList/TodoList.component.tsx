@@ -15,7 +15,7 @@ const TodoList = () => {
   const renderTodos = useMemo(
     () =>
       filteredTasks.map((todo: Task, index: number) => (
-        <Draggable id={todo.id} index={index}>
+        <Draggable id={todo.id} key={todo.id} index={index}>
           <TodoListItem key={todo.id} {...todo} />
         </Draggable>
       )),
@@ -23,8 +23,10 @@ const TodoList = () => {
   );
 
   return (
-    <div className={styles.todos}>
-      <DragDropContext onDragEnd={onDragEnd}>{renderTodos}</DragDropContext>
+    <div className={styles.todoList}>
+      <div className={styles.todos}>
+        <DragDropContext onDragEnd={onDragEnd}>{renderTodos}</DragDropContext>
+      </div>
       <TodoFooter />
     </div>
   );

@@ -4,10 +4,10 @@ import pluralize from "pluralize";
 import { RootState } from "../../store/app/store";
 import { todoSliceName } from "../../store/features/Todo";
 
-const TodoInputCount = () => {
+const TodoCount = () => {
   const { tasksLeft } = useSelector((state: RootState) => state[todoSliceName]);
 
   return <div>{pluralize("item", tasksLeft, true)} left</div>;
 };
 
-export default TodoInputCount;
+export default TodoCount;
