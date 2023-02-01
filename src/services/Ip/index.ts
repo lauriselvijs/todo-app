@@ -1,1 +1,1 @@
-export * from "./Ip.service";
+export * as ipService from "./Ip.service";

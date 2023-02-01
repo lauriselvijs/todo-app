@@ -1,7 +1,7 @@
 import { WeatherState } from "./Weather.state.d";
 
 const weatherState: WeatherState = {
-  weather: {
+  currentWeather: {
     temperature: {
       celsius: null,
       fahrenheit: null,
@@ -11,14 +11,14 @@ const weatherState: WeatherState = {
       icon: "",
     },
     wind: {
-      mph: null,
-      kph: null,
+      speed: { mph: null, kph: null },
       dir: "",
     },
     humidity: null,
   },
-  loading: false,
-  loaded: false,
+  isLoading: false,
+  isLoaded: false,
+  isError: false,
   error: {
     status: null,
     error: {

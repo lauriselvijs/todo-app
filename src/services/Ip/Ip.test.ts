@@ -1,10 +1,10 @@
 import { TEST_IP } from "../../__tests__/constants/Ip.const";
 import { rest, server } from "../../__tests__/mocks/Server.mock";
 import { IP_API_URL } from "./Ip.config";
-import { getIp } from "./Ip.service";
+import { ipService } from "./";
 
 it("get ip test", async () => {
-  const ip = await getIp();
+  const ip = await ipService.fetchIp();
 
   expect(ip).toEqual(TEST_IP);
 });
@@ -16,5 +16,5 @@ it("handler failure", async () => {
     })
   );
 
-  await expect(getIp()).rejects.toThrow("404");
+  await expect(ipService.fetchIp()).rejects.toThrow("404");
 });

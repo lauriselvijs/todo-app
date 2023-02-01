@@ -1,8 +1,8 @@
 import { CurrentWeatherServiceResponse } from "../../../services/Weather/Weather.service.d";
-import { CurrentWeather } from "../../../types/Weather";
+import { CurrentWeather } from "../../../types/Weather.d";
 
 export const SLICE_NAME = "weather";
-export const GET_CURRENT_WEATHER_TYPE = `${SLICE_NAME}/getCurrentWeather`;
+export const FETCH_CURRENT_WEATHER_TYPE = `${SLICE_NAME}/fetchCurrentWeather`;
 
 export const transformResponse = ({
   current,
@@ -19,16 +19,18 @@ export const transformResponse = ({
 
   const transformedData = {
     temperature: {
-      celsius: temp_c,
-      fahrenheit: temp_f,
+      celsius: Math.round(temp_c),
+      fahrenheit: Math.round(temp_f),
     },
     condition: {
       text,
       icon,
     },
     wind: {
-      mph: wind_mph,
-      kph: wind_kph,
+      speed: {
+        kph: Math.round(wind_kph),
+        mph: Math.round(wind_mph),
+      },
       dir: wind_dir,
     },
     humidity,

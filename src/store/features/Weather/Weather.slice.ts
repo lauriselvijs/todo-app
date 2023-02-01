@@ -1,28 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 
-import { getCurrentWeather } from "../../../services/Weather";
+import { weatherService } from "../../../services/Weather";
+import { ipService } from "../../../services/Ip";
+import { CurrentWeather, WeatherError } from "../../../types/Weather.d";
+import { NetworkError } from "../../../types/Network.d";
 
 import weatherState from "./Weather.state";
 import {
-  GET_CURRENT_WEATHER_TYPE,
+  FETCH_CURRENT_WEATHER_TYPE,
   SLICE_NAME,
   transformResponse,
 } from "./Weather.config";
-import { CurrentWeather, WeatherError } from "../../../types/Weather.d";
-import { NetworkError } from "../../../types/Network.d";
-import { getIp } from "../../../services/Ip";
 
-export const currentWeatherUpdated = createAsyncThunk<
+export const fetchCurrentWeather = createAsyncThunk<
   CurrentWeather,
-  string,
+  string | undefined,
   {
     rejectValue: WeatherError;
   }
->(GET_CURRENT_WEATHER_TYPE, async (location = "", { rejectWithValue }) => {
+>(FETCH_CURRENT_WEATHER_TYPE, async (location = "", { rejectWithValue }) => {
   try {
-    const ip = await getIp();
-    const currentWeather = await getCurrentWeather(location || ip);
+    const ip = await ipService.fetchIp();
+    const currentWeather = await weatherService.fetchCurrentWeather(
+      location || ip
+    );
     const transformedCurrentWeather = transformResponse(currentWeather);
 
     return transformedCurrentWeather;
@@ -58,22 +60,24 @@ const weather = createSlice({
   initialState: weatherState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(currentWeatherUpdated.pending, (state) => {
-      state.loading = true;
-      state.loaded = false;
+    builder.addCase(fetchCurrentWeather.pending, (state) => {
+      state.isLoading = true;
+      state.isLoaded = false;
+      state.isError = false;
 
       state.error.status = null;
       state.error.error = { message: "" };
     });
-    builder.addCase(currentWeatherUpdated.fulfilled, (state, action) => {
-      state.loading = false;
-      state.loaded = true;
+    builder.addCase(fetchCurrentWeather.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isLoaded = true;
 
-      state.weather = action.payload;
+      state.currentWeather = action.payload;
     });
-    builder.addCase(currentWeatherUpdated.rejected, (state, action) => {
-      state.loading = false;
-      state.loaded = false;
+    builder.addCase(fetchCurrentWeather.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isLoaded = false;
+      state.isError = true;
 
       if (action.payload?.error && action.payload?.status) {
         state.error = action.payload;

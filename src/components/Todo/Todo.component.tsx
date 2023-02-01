@@ -12,6 +12,7 @@ import TodoFilter from "../TodoFilter";
 
 import styles from "./Todo.style.module.scss";
 import { useMobile } from "../../hooks/Media";
+import WeatherCurrent from "../WeatherCurrent";
 
 const Todo = () => {
   const { tasks } = useSelector((state: RootState) => state[todoSliceName]);

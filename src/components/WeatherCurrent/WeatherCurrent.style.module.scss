@@ -1,0 +1,62 @@
+@use "../../style/components/button";
+@use "../../style/base/font";
+@use "../../style/utils/media";
+
+.weatherCurrent {
+  align-items: center;
+  background-color: var(--color-primary-light);
+  border-radius: 0 16px 16px 0;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  left: 0;
+  padding: 20px;
+  position: absolute;
+  top: 30px;
+  z-index: 1;
+
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .temperature {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .unitBtn {
+        @include button.primary;
+
+        &Selected {
+          @include button.primary-clicked;
+        }
+      }
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.showBtn {
+  @include button.primary;
+
+  background-color: var(--color-primary-light);
+  border-radius: 0 16px 16px 0;
+  left: 0;
+  position: absolute;
+  top: 30px;
+  z-index: 1;
+}
+
+@include media.mobile {
+  .weatherCurrent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,77 +1,98 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useMemo } from "react";
+import { TiWeatherCloudy } from "react-icons/ti";
+import { FadeLoader } from "react-spinners";
 
-import { RootState } from "../../store/app/store";
-import { weatherSliceName } from "../../store/features/Weather";
-
+import { useWeatherCurrent } from "./WeatherCurrent.hook";
 import styles from "./WeatherCurrent.style.module.scss";
 
 const WeatherCurrent = () => {
   const {
-    weather: {
+    currentWeather: {
       temperature: { fahrenheit, celsius },
       condition: { text, icon },
-      wind: { mph, kph, dir },
+      wind: {
+        speed: { mph, kph },
+        dir,
+      },
       humidity,
     },
-    loading,
-    loaded,
-    error: {
-      status,
-      error: { message },
-    },
-  } = useSelector((state: RootState) => state[weatherSliceName]);
+    metricUnits,
+    imperialUnits,
+    isLoaded,
+    isLoading,
+    isError,
+    isOpen,
+    onMetricUnitsBtnClick,
+    onImperialUnitsBtnClick,
+    onFetchCurrentWeatherBtnClick,
+  } = useWeatherCurrent();
 
-  const [metric, setMetric] = useState<boolean>(false);
+  //TODO:
+  // [ ] - move logic to hook
+  const renderTemperature = useMemo(() => {
+    if (metricUnits) {
+      return <h2>{celsius}</h2>;
+    } else if (imperialUnits) {
+      return <h2>{fahrenheit}</h2>;
+    }
+  }, [metricUnits, imperialUnits, celsius, fahrenheit]);
 
-  const onMeasurementUnitBtnClick = (): void => {
-    setMetric(!metric);
-  };
+  const renderWindSpeed = useMemo(() => {
+    if (metricUnits) {
+      return <p>{kph} kph</p>;
+    } else if (imperialUnits) {
+      return <p>{mph} mph</p>;
+    }
+  }, [metricUnits, imperialUnits, kph, mph]);
+
+  if (isError) {
+    return <div className={styles.weatherCurrent}>Error</div>;
+  }
+
+  if (isLoaded) {
+    return (
+      <div className={styles.weatherCurrent}>
+        <div className={styles.main}>
+          <img src={icon} alt="Current weather" title={text} />
+          <div className={styles.temperature}>
+            {renderTemperature}
+            <button
+              aria-label="Set metric units"
+              className={metricUnits ? styles.unitBtnSelected : styles.unitBtn}
+              onClick={onMetricUnitsBtnClick}
+            >
+              &deg; C
+            </button>
+            |
+            <button
+              aria-label="Set imperial units"
+              className={
+                imperialUnits ? styles.unitBtnSelected : styles.unitBtn
+              }
+              onClick={onImperialUnitsBtnClick}
+            >
+              &deg; F
+            </button>
+          </div>
+        </div>
+        <div className={styles.info}>
+          {renderWindSpeed}
+          <p>Wind Direction {dir}</p>
+          <p>Humidity {humidity} %</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="weather-current">
-      {loading || !loaded ? (
-        <div className="weather-current-loader">Loading...</div>
-      ) : (
-        <>
-          {message ? (
-            <>{message}</>
-          ) : (
-            <>
-              <div className="weather-current-info-main">
-                <p>
-                  <img src={icon} alt="Current weather" title={text} />
-                </p>
-                <div className="weather-current-temperature-container">
-                  <p className="weather-current-temperature">
-                    {metric && fahrenheit
-                      ? Math.round(fahrenheit)
-                      : celsius && Math.round(celsius)}
-                  </p>
-                  <button
-                    className="weather-current-unit-btn"
-                    onClick={onMeasurementUnitBtnClick}
-                  >
-                    &deg;
-                    {metric ? "F" : "C"}
-                  </button>
-                </div>
-              </div>
-              <div className="weather-current-add--info">
-                <p>
-                  Wind{" "}
-                  {metric && mph
-                    ? Math.round(mph) + " mph"
-                    : kph && Math.round(kph) + " kph"}
-                </p>
-                <p>Wind Direction {dir}</p>
-                <p>Humidity {humidity} %</p>
-              </div>
-            </>
-          )}
-        </>
-      )}
-    </div>
+    <button
+      title="Show current weather"
+      aria-label="Show current weather"
+      className={styles.showBtn}
+      onClick={onFetchCurrentWeatherBtnClick}
+    >
+      {!isLoading ? <FadeLoader /> : <TiWeatherCloudy size={32} />}
+    </button>
   );
 };
 

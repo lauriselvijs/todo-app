@@ -8,8 +8,10 @@ export interface CurrentWeather {
     icon: string;
   };
   wind: {
-    mph: number | null;
-    kph: number | null;
+    speed: {
+      mph: number | null;
+      kph: number | null;
+    };
     dir: string | null;
   };
   humidity: number | null;

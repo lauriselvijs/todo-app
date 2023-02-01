@@ -16,7 +16,7 @@ button {
   border: none;
   color: var(--color-primary);
   font-weight: font.$weight-bold;
-  font-size: font.$size-medium;
+  font-size: font.$size-md;
 
   @include media.hover {
     color: var(--color-primary-dark);

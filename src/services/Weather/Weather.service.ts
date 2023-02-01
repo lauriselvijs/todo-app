@@ -10,7 +10,7 @@ import { CurrentWeatherServiceResponse } from "./Weather.service.d";
 
 const { CURRENT } = WeatherApiType;
 
-export const getCurrentWeather = async (
+export const fetchCurrentWeather = async (
   location: string
 ): Promise<CurrentWeatherServiceResponse> => {
   const response = await axios.request<CurrentWeatherServiceResponse>({

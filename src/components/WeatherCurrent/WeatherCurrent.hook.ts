@@ -1,30 +1,46 @@
-import { bindActionCreators } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/Store";
-import { currentWeatherUpdated } from "../../store/features/Weather";
+import { RootState } from "../../store/app/store";
+import { weatherSliceName } from "../../store/features/Weather";
+import { fetchCurrentWeather as fetchCurrentWeatherAsyncThunk } from "../../store/features/Weather";
 
-export const useFetchCurrentWeather = () => {
-  const [error, setError] = useState<string>("");
+export const useWeatherCurrent = () => {
   const dispatch = useAppDispatch();
-  // const { getCurrentWeather } = bindActionCreators(weatherActions, dispatch);
 
-  // const getWeather = async () => {
-  //   try {
-  //     const { ip } = await dispatch(getIp()).unwrap();
-  //     dispatch(getCurrentWeather(ip));
-  //   } catch (err: any) {
-  //     const error: SerializedError = err;
+  const { currentWeather, isLoaded, isLoading, isError, error } = useSelector(
+    (state: RootState) => state[weatherSliceName]
+  );
+  const [metricUnits, setMetricUnits] = useState<boolean>(true);
+  const [imperialUnits, setImperialUnits] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  //     getCurrentWeather("");
-  //     error.name && setError(error.name);
-  //     return error;
-  //   }
-  // };
+  const onMetricUnitsBtnClick = (): void => {
+    setMetricUnits(true);
+    setImperialUnits(false);
+  };
 
-  // useEffect(() => {
-  //   getWeather();
-  // }, []);
+  const onImperialUnitsBtnClick = (): void => {
+    setImperialUnits(true);
+    setMetricUnits(false);
+  };
 
-  return error;
+  const onFetchCurrentWeatherBtnClick = (): void => {
+    setIsOpen(true);
+    dispatch(fetchCurrentWeatherAsyncThunk());
+  };
+
+  return {
+    onMetricUnitsBtnClick,
+    onImperialUnitsBtnClick,
+    onFetchCurrentWeatherBtnClick,
+    currentWeather,
+    error,
+    metricUnits,
+    imperialUnits,
+    isLoaded,
+    isLoading,
+    isError,
+    isOpen,
+  };
 };
