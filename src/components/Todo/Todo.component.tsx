@@ -18,17 +18,18 @@ const Todo = () => {
   const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
   const isMobile = useMobile();
 
-  const renderTodoMenu = useMemo(() => {
-    if (tasks.length !== 0) {
-      return (
+  const renderTodoMenu = useMemo(
+    () =>
+      tasks.length !== 0 && (
         <>
           <TodoList />
           {isMobile && <TodoFilter />}
           <TodoInfoHelper />
         </>
-      );
-    }
-  }, [tasks, isMobile]);
+      ),
+
+    [tasks, isMobile]
+  );
 
   return (
     <main className={styles.todo}>

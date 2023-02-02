@@ -11,5 +11,6 @@
 
 .todos {
   max-height: 40vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

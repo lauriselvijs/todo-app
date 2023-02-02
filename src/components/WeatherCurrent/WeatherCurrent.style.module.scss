@@ -1,29 +1,63 @@
 @use "../../style/components/button";
 @use "../../style/base/font";
 @use "../../style/utils/media";
+@use "../../style/animations/spinner";
 
+.enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.enterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
+// FIXME - overflow not working when resizing screen
 .weatherCurrent {
   align-items: center;
   background-color: var(--color-primary-light);
   border-radius: 0 16px 16px 0;
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: center;
   left: 0;
+  min-height: 15vh;
+  min-width: 400px;
+  overflow: auto;
   padding: 20px;
   position: absolute;
-  top: 30px;
+  top: 15px;
   z-index: 1;
 
+  .data {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex: 1;
+  }
+
   .main {
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
 
     .temperature {
+      align-items: flex-start;
       display: flex;
       justify-content: center;
-      align-items: center;
 
       .unitBtn {
         @include button.primary;
@@ -36,10 +70,11 @@
   }
 
   .info {
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
+  }
+
+  .closeBtn {
+    @include button.primary;
   }
 }
 
@@ -54,9 +89,21 @@
   z-index: 1;
 }
 
+.spinner {
+  @include spinner.primary;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @include media.mobile {
   .weatherCurrent {
-    flex-direction: column;
+    min-height: 25vh;
+    min-width: 200px;
+  }
+
+  .data {
     align-items: flex-start;
+    flex-direction: column;
   }
 }

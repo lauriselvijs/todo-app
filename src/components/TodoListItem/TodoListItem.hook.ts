@@ -7,7 +7,7 @@ import { todoActions, todoSliceName } from "../../store/features/Todo";
 import { Task } from "../../types/Task.d";
 
 // TODO:
-// [ ] - extract checkmark functionality and move to shared folder
+// [ ] - Extract checkmark functionality and move to shared folder
 export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
   const [isEdited, setIsEdit] = useState<boolean>(false);
   const [showModifyMenu, setShowModifyMenu] = useState<boolean>(false);

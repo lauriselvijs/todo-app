@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 import { TiWeatherCloudy } from "react-icons/ti";
-import { FadeLoader } from "react-spinners";
+import { CSSTransition } from "react-transition-group";
 
 import { useWeatherCurrent } from "./WeatherCurrent.hook";
 import styles from "./WeatherCurrent.style.module.scss";
@@ -22,17 +23,24 @@ const WeatherCurrent = () => {
     isLoading,
     isError,
     isOpen,
+    error: {
+      error: { message: errorMsg },
+    },
+
+    onCloseBtnClick,
     onMetricUnitsBtnClick,
     onImperialUnitsBtnClick,
     onFetchCurrentWeatherBtnClick,
   } = useWeatherCurrent();
+  const currentWeather = useRef<HTMLDivElement>(null);
 
   //TODO:
-  // [ ] - move logic to hook
+  // [ ] - Move logic to hook
   const renderTemperature = useMemo(() => {
     if (metricUnits) {
       return <h2>{celsius}</h2>;
-    } else if (imperialUnits) {
+    }
+    if (imperialUnits) {
       return <h2>{fahrenheit}</h2>;
     }
   }, [metricUnits, imperialUnits, celsius, fahrenheit]);
@@ -40,18 +48,15 @@ const WeatherCurrent = () => {
   const renderWindSpeed = useMemo(() => {
     if (metricUnits) {
       return <p>{kph} kph</p>;
-    } else if (imperialUnits) {
+    }
+    if (imperialUnits) {
       return <p>{mph} mph</p>;
     }
   }, [metricUnits, imperialUnits, kph, mph]);
 
-  if (isError) {
-    return <div className={styles.weatherCurrent}>Error</div>;
-  }
-
-  if (isLoaded) {
-    return (
-      <div className={styles.weatherCurrent}>
+  const renderCurrentWeatherData = useMemo(
+    () => (
+      <div className={styles.data}>
         <div className={styles.main}>
           <img src={icon} alt="Current weather" title={text} />
           <div className={styles.temperature}>
@@ -81,18 +86,83 @@ const WeatherCurrent = () => {
           <p>Humidity {humidity} %</p>
         </div>
       </div>
-    );
-  }
+    ),
+    [
+      dir,
+      humidity,
+      icon,
+      imperialUnits,
+      metricUnits,
+      onImperialUnitsBtnClick,
+      onMetricUnitsBtnClick,
+      renderTemperature,
+      renderWindSpeed,
+      text,
+    ]
+  );
+
+  const renderCurrentWeather = useMemo(() => {
+    if (isLoading) {
+      return <div className={styles.spinner} />;
+    }
+    if (isLoaded) {
+      return renderCurrentWeatherData;
+    }
+    if (isError) {
+      return <p>{errorMsg}</p>;
+    }
+  }, [errorMsg, isError, isLoaded, isLoading, renderCurrentWeatherData]);
+
+  const renderAnimation = useMemo(
+    () => (
+      <CSSTransition
+        nodeRef={currentWeather}
+        in={isOpen}
+        timeout={300}
+        classNames={{
+          enter: styles.enter,
+          enterActive: styles.enterActive,
+          exit: styles.exit,
+          exitActive: styles.exitActive,
+        }}
+        unmountOnExit
+      >
+        <div ref={currentWeather} className={styles.weatherCurrent}>
+          {renderCurrentWeather}
+          <button
+            title="Close"
+            aria-label="Close"
+            className={styles.closeBtn}
+            onClick={onCloseBtnClick}
+          >
+            <AiOutlineClose size={24} />
+          </button>
+        </div>
+      </CSSTransition>
+    ),
+    [isOpen, onCloseBtnClick, renderCurrentWeather]
+  );
+
+  const renderShowBtn = useMemo(
+    () =>
+      !isOpen && (
+        <button
+          title="Show current weather"
+          aria-label="Show current weather"
+          className={styles.showBtn}
+          onClick={onFetchCurrentWeatherBtnClick}
+        >
+          {<TiWeatherCloudy size={32} />}
+        </button>
+      ),
+    [isOpen, onFetchCurrentWeatherBtnClick]
+  );
 
   return (
-    <button
-      title="Show current weather"
-      aria-label="Show current weather"
-      className={styles.showBtn}
-      onClick={onFetchCurrentWeatherBtnClick}
-    >
-      {!isLoading ? <FadeLoader /> : <TiWeatherCloudy size={32} />}
-    </button>
+    <aside>
+      {renderShowBtn}
+      {renderAnimation}
+    </aside>
   );
 };
 

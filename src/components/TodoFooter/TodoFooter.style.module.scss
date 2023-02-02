@@ -1,6 +1,7 @@
 .todoMenuFooter {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  overflow: auto;
   padding: 15px 20px;
 }

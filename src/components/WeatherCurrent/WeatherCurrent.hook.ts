@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../hooks/Store";
 import { RootState } from "../../store/app/store";
-import { weatherSliceName } from "../../store/features/Weather";
-import { fetchCurrentWeather as fetchCurrentWeatherAsyncThunk } from "../../store/features/Weather";
+import {
+  fetchCurrentWeather,
+  weatherSliceName,
+} from "../../store/features/Weather";
 
 export const useWeatherCurrent = () => {
   const dispatch = useAppDispatch();
@@ -27,13 +29,18 @@ export const useWeatherCurrent = () => {
 
   const onFetchCurrentWeatherBtnClick = (): void => {
     setIsOpen(true);
-    dispatch(fetchCurrentWeatherAsyncThunk());
+    dispatch(fetchCurrentWeather());
+  };
+
+  const onCloseBtnClick = (): void => {
+    setIsOpen(false);
   };
 
   return {
     onMetricUnitsBtnClick,
     onImperialUnitsBtnClick,
     onFetchCurrentWeatherBtnClick,
+    onCloseBtnClick,
     currentWeather,
     error,
     metricUnits,

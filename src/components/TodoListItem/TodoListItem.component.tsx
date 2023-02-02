@@ -29,16 +29,17 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
 
   const isMobile = useMobile();
 
-  const renderModifyMenu = useMemo(() => {
-    if (showModifyMenu || isEdited || isMobile) {
-      return (
-        <div>
+  const renderModifyMenu = useMemo(
+    () =>
+      (showModifyMenu || isEdited || isMobile) && (
+        <div className={styles.modify}>
           <TodoEditBtn taskId={id} />
           <TodoDeleteBtn taskId={id} />
         </div>
-      );
-    }
-  }, [id, showModifyMenu, isEdited, isMobile]);
+      ),
+
+    [id, showModifyMenu, isEdited, isMobile]
+  );
 
   const renderCheckMarkBtn = useMemo(
     () => (
@@ -53,11 +54,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
   );
 
   const renderMsg = useMemo(() => {
-    if (!isEdited) {
-      return (
-        <p className={completed ? styles.msgCompleted : styles.msg}>{msg}</p>
-      );
-    } else if (isEdited) {
+    if (isEdited) {
       return (
         <input
           onInput={onInputChange}
@@ -67,6 +64,10 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
         />
       );
     }
+
+    return (
+      <p className={completed ? styles.msgCompleted : styles.msg}>{msg}</p>
+    );
   }, [onInputChange, msg, isEdited, completed]);
 
   return (

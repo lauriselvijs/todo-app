@@ -75,35 +75,36 @@ Users should be able to:
 Using redux toolkit for more efficient global state implementation
 
 ```js
-export const darkMode = createSlice({
-  name: "darkMode",
-  initialState,
+export const todo = createSlice({
+  name: SLICE_NAME,
+  initialState: todoState,
   reducers: {
-    setDarkMode: (state, action: PayloadAction<string>) => {
-      if (action.payload && !state.darkMode) {
-        document.body.className = action.payload;
-      } else if (state.darkMode) {
-        document.body.className = "";
-      }
-
-      state.darkMode = !state.darkMode;
+    tasksReordered: (
+      state,
+      { payload: reorderedTasks }: PayloadAction<Task[]>
+    ) => {
+      state.tasks = reorderedTasks;
     },
+   ...
   },
 });
-};
 ```
 
 Using global css variables to change themes of webpage
 
 ```css
 :root {
-  --main-bg-color: var(--imported-main-bg-color, #{$very-light-grayish-blue});
+  --bg-desktop: url("../../assets/images/bg-desktop-light.jpg");
+  --bg-mobile: url("../../assets/images/bg-mobile-light.jpg");
 }
 
 body {
   margin: 0;
-  font-family: $font-family;
-  background-color: var(--main-bg-color);
+  padding: 0;
+
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  font-family: font.$family-primary;
 }
 ```
 
@@ -123,5 +124,4 @@ body {
 
 ## Author
 
-- Website - [Lauris](https://b2cf56-portfolio.netlify.app/projects)
 - Frontend Mentor - [lauriselvijs](https://www.frontendmentor.io/profile/lauriselvijs)
