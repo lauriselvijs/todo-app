@@ -1,7 +1,12 @@
 import { useMemo, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { TiWeatherCloudy } from "react-icons/ti";
-import { CSSTransition } from "react-transition-group";
+
+import Animation from "../shared/Animation";
+import {
+  WEATHER_CURRENT_ANIMATION_LENGTH,
+  WEATHER_CURRENT_ICON_SIZE,
+} from "./WeatherCurrent.config";
 
 import { useWeatherCurrent } from "./WeatherCurrent.hook";
 import styles from "./WeatherCurrent.style.module.scss";
@@ -54,6 +59,8 @@ const WeatherCurrent = () => {
     }
   }, [metricUnits, imperialUnits, kph, mph]);
 
+  // TODO:
+  // [ ] - Replace text with const
   const renderCurrentWeatherData = useMemo(
     () => (
       <div className={styles.data}>
@@ -108,6 +115,9 @@ const WeatherCurrent = () => {
     if (isLoaded) {
       return renderCurrentWeatherData;
     }
+
+    //TODO:
+    // [ ] - Check if working
     if (isError) {
       return <p>{errorMsg}</p>;
     }
@@ -115,17 +125,11 @@ const WeatherCurrent = () => {
 
   const renderAnimation = useMemo(
     () => (
-      <CSSTransition
+      <Animation
         nodeRef={currentWeather}
-        in={isOpen}
-        timeout={300}
-        classNames={{
-          enter: styles.enter,
-          enterActive: styles.enterActive,
-          exit: styles.exit,
-          exitActive: styles.exitActive,
-        }}
-        unmountOnExit
+        show={isOpen}
+        timeout={WEATHER_CURRENT_ANIMATION_LENGTH}
+        styles={styles}
       >
         <div ref={currentWeather} className={styles.weatherCurrent}>
           {renderCurrentWeather}
@@ -138,7 +142,7 @@ const WeatherCurrent = () => {
             <AiOutlineClose size={24} />
           </button>
         </div>
-      </CSSTransition>
+      </Animation>
     ),
     [isOpen, onCloseBtnClick, renderCurrentWeather]
   );
@@ -152,7 +156,7 @@ const WeatherCurrent = () => {
           className={styles.showBtn}
           onClick={onFetchCurrentWeatherBtnClick}
         >
-          {<TiWeatherCloudy size={32} />}
+          {<TiWeatherCloudy size={WEATHER_CURRENT_ICON_SIZE} />}
         </button>
       ),
     [isOpen, onFetchCurrentWeatherBtnClick]
