@@ -23,7 +23,7 @@ export const todo = createSlice({
       reducer(state, { payload: task }: PayloadAction<Task>) {
         state.tasks = [...state.tasks, task];
       },
-      prepare(msg: Task["msg"], completed: Task["completed"]) {
+      prepare({ msg, completed }: Omit<Task, "id">) {
         return {
           payload: {
             id: nanoid(),

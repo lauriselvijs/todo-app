@@ -20,7 +20,7 @@ export const useTodoInput = () => {
 
   const handleAddTodoOnKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === ENTER && input) {
-      taskAdded(input, todoCompleted);
+      taskAdded({ msg: input, completed: todoCompleted });
       setInput("");
     }
   };
