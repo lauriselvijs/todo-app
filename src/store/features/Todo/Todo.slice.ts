@@ -19,11 +19,19 @@ export const todo = createSlice({
     ) => {
       state.tasks = reorderedTasks;
     },
-    taskAdded: (
-      state,
-      { payload: { msg, completed } }: PayloadAction<Omit<Task, "id">>
-    ) => {
-      state.tasks = [...state.tasks, { id: nanoid(), msg, completed }];
+    taskAdded: {
+      reducer(state, { payload: task }: PayloadAction<Task>) {
+        state.tasks = [...state.tasks, task];
+      },
+      prepare(msg: Task["msg"], completed: Task["completed"]) {
+        return {
+          payload: {
+            id: nanoid(),
+            msg,
+            completed,
+          },
+        };
+      },
     },
     taskDeleted: (state, { payload: taskId }: PayloadAction<string>) => {
       state.tasks = state.tasks.filter(({ id }) => id !== taskId);
