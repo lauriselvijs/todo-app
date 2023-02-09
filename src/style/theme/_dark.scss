@@ -32,16 +32,16 @@ $title: hsl(255 100 100);
     #{$btn-selected}
   );
   --color-caret: var(--imported-#{$theme-name}-theme-color-caret, #{$caret});
-  --color-error: var(--imported-#{$theme-name}-theme-color-tertiary, #{$error});
+  --color-error: var(--imported-#{$theme-name}-theme-color-error, #{$error});
   --color-gradient: var(
-    --imported-#{$theme-name}-theme-color-btn-hover,
+    --imported-#{$theme-name}-theme-color-gradient,
     #{$gradient}
   );
   --color-shadow: var(
-    --imported-#{$theme-name}-theme-color-tertiary,
+    --imported-#{$theme-name}-theme-color-shadow,
     #{$shadow}
   );
-  --color-title: var(--imported-#{$theme-name}-theme-color-tertiary, #{$title});
+  --color-title: var(--imported-#{$theme-name}-theme-color-title, #{$title});
 
   --bg-desktop: url("../../assets/images/bg-desktop-dark.jpg");
   --bg-mobile: url("../../assets/images/bg-mobile-dark.jpg");
