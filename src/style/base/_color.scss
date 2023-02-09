@@ -16,10 +16,10 @@ $title: hsl(255 100 100);
   --color-primary: var(--imported-color-primary, #{$primary});
 
   --color-bg: var(--imported-color-bg, #{$bg});
-  --color-btn-selected: var(--imported-color-tertiary-dark, #{$btn-selected});
+  --color-btn-selected: var(--imported-color-btn-selected, #{$btn-selected});
   --color-caret: var(--imported-color-caret, #{$caret});
-  --color-error: var(--imported-color-tertiary, #{$error});
-  --color-gradient: var(--imported-color-btn-hover, #{$gradient});
-  --color-shadow: var(--imported-color-tertiary, #{$shadow});
-  --color-title: var(--imported-color-tertiary, #{$title});
+  --color-error: var(--imported-color-error, #{$error});
+  --color-gradient: var(--imported-color-gradient, #{$gradient});
+  --color-shadow: var(--imported-color-shadow, #{$shadow});
+  --color-title: var(--imported-color-title, #{$title});
 }
