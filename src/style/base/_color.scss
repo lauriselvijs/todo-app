@@ -1,14 +1,18 @@
-$primary-dark: hsl(235, 19%, 35%);
-$primary-light: hsl(255 100 100);
-$primary: hsl(236 9 61);
+$primary-dark: hsl(235 19% 5%);
+$primary-light: hsl(255 100% 100%);
+$primary: hsl(236 9% 61%);
 
-$bg: hsl(0 0 98);
-$btn-selected: hsl(220 98 61);
-$caret: hsl(228 45 44);
-$error: hsl(0 100 40);
-$gradient: linear-gradient(to bottom right, hsl(192 100 67), hsl(280 87 65));
-$shadow: hsl(236 9 61);
-$title: hsl(255 100 100);
+$bg: hsl(0 0% 98%);
+$btn-selected: hsl(220 98% 61%);
+$caret: hsl(228 45% 44%);
+$error: hsl(0 100% 40%);
+$gradient: linear-gradient(
+  to bottom right,
+  hsl(192 100% 67%),
+  hsl(280 87% 65%)
+);
+$shadow: hsl(236 9% 61%);
+$title: hsl(255 100% 100%);
 
 :root {
   --color-primary-dark: var(--imported-color-primary-dark, #{$primary-dark});

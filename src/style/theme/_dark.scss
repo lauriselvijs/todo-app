@@ -1,16 +1,20 @@
 $theme-name: "dark";
 
-$primary-dark: hsl(236 33 92);
-$primary-light: hsl(235, 24%, 19%);
-$primary: hsl(116, 50%, 47%);
+$primary-dark: hsl(236 33% 92%);
+$primary-light: hsl(235 4% 19%);
+$primary: hsl(116 50% 7%);
 
-$bg: hsl(235 21 11);
-$btn-selected: hsl(220 98 61);
-$caret: hsl(228 45 44);
-$error: hsl(0 100 40);
-$gradient: linear-gradient(to bottom right, hsl(192 100 67), hsl(280 87 65));
-$shadow: hsl(235 21 8);
-$title: hsl(255 100 100);
+$bg: hsl(235 21% 11%);
+$btn-selected: hsl(220 98% 61%);
+$caret: hsl(228 45% 44%);
+$error: hsl(0 100% 40%);
+$gradient: linear-gradient(
+  to bottom right,
+  hsl(192 100% 67%),
+  hsl(280 87% 65%)
+);
+$shadow: hsl(235 21% 8%);
+$title: hsl(255 100% 100%);
 
 .#{$theme-name} {
   --color-primary-dark: var(
@@ -37,10 +41,7 @@ $title: hsl(255 100 100);
     --imported-#{$theme-name}-theme-color-gradient,
     #{$gradient}
   );
-  --color-shadow: var(
-    --imported-#{$theme-name}-theme-color-shadow,
-    #{$shadow}
-  );
+  --color-shadow: var(--imported-#{$theme-name}-theme-color-shadow, #{$shadow});
   --color-title: var(--imported-#{$theme-name}-theme-color-title, #{$title});
 
   --bg-desktop: url("../../assets/images/bg-desktop-dark.jpg");
