@@ -1,17 +1,20 @@
-import Footer from "../Footer";
-import Header from "../Header";
+import Author from "../Author";
 import Todo from "../Todo";
 import WeatherCurrent from "../WeatherCurrent";
 
-// TODO:
-// [ ] - Create containers for header, aside, main and footer
 const App = () => {
   return (
     <>
-      <Header />
-      <WeatherCurrent />
-      <Todo />
-      <Footer />
+      <header />
+      <aside>
+        <WeatherCurrent />
+      </aside>
+      <main>
+        <Todo />
+      </main>
+      <footer>
+        <Author />
+      </footer>
     </>
   );
 };

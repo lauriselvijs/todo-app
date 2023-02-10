@@ -12,7 +12,6 @@ import TodoFilter from "../TodoFilter";
 
 import styles from "./Todo.style.module.scss";
 import { useMobile } from "../../hooks/Media";
-import WeatherCurrent from "../WeatherCurrent";
 
 const Todo = () => {
   const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
@@ -32,14 +31,14 @@ const Todo = () => {
   );
 
   return (
-    <main className={styles.todo}>
+    <div className={styles.todo}>
       <div className={styles.header}>
         <TodoTitle />
         <DarkModeBtn />
       </div>
       <TodoInput />
       {renderTodoMenu}
-    </main>
+    </div>
   );
 };
 

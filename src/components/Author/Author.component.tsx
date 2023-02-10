@@ -1,6 +1,6 @@
-const Footer = () => {
+const Author = () => {
   return (
-    <footer>
+    <>
       <div>
         Challenge by{" "}
         <a
@@ -22,8 +22,8 @@ const Footer = () => {
         </a>
         .
       </div>
-    </footer>
+    </>
   );
 };
 
-export default Footer;
+export default Author;

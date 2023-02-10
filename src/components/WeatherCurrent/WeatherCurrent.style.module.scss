@@ -41,12 +41,22 @@
   top: 15px;
   z-index: 1;
 
+  @include media.mobile {
+    min-height: 25vh;
+    min-width: 200px;
+  }
+
   .data {
     align-items: center;
     display: flex;
     gap: 20px;
     justify-content: center;
     flex: 1;
+
+    @include media.mobile {
+      align-items: flex-start;
+      flex-direction: column;
+    }
   }
 
   .main {
@@ -94,16 +104,4 @@
 
   margin-left: auto;
   margin-right: auto;
-}
-
-@include media.mobile {
-  .weatherCurrent {
-    min-height: 25vh;
-    min-width: 200px;
-  }
-
-  .data {
-    align-items: flex-start;
-    flex-direction: column;
-  }
 }

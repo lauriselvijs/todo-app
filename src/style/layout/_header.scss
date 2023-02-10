@@ -10,10 +10,8 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   height: var(--header-height);
-}
 
-@include media.mobile {
-  header {
+  @include media.mobile {
     background-image: var(--bg-mobile);
   }
 }

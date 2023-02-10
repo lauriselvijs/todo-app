@@ -10,10 +10,8 @@
   overflow: auto;
   padding: 0;
   width: fit-content;
-}
 
-@include media.mobile {
-  .todoFilter {
+  @include media.mobile {
     box-shadow: 0px 20px 20px 0px var(--color-shadow);
     padding: 20px 0;
     width: 100%;

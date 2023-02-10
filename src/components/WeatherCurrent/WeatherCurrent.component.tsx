@@ -163,10 +163,10 @@ const WeatherCurrent = () => {
   );
 
   return (
-    <aside>
+    <>
       {renderShowBtn}
       {renderAnimation}
-    </aside>
+    </>
   );
 };
 
