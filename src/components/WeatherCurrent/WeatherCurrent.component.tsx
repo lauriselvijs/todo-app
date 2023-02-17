@@ -156,7 +156,10 @@ const WeatherCurrent = () => {
           className={styles.showBtn}
           onClick={onFetchCurrentWeatherBtnClick}
         >
-          {<TiWeatherCloudy size={WEATHER_CURRENT_ICON_SIZE} />}
+          <TiWeatherCloudy
+            aria-hidden="true"
+            size={WEATHER_CURRENT_ICON_SIZE}
+          />
         </button>
       ),
     [isOpen, onFetchCurrentWeatherBtnClick]

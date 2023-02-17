@@ -21,6 +21,7 @@ const DarkModeBtn = () => {
       title="Dark theme"
     >
       <img
+        aria-hidden="true"
         width={26}
         height={26}
         alt="Dark theme"
