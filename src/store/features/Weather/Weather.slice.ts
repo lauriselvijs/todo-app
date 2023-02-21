@@ -34,9 +34,9 @@ export const fetchCurrentWeather = createAsyncThunk<
     if (error.response?.data?.error && error.response?.status) {
       return rejectWithValue({
         error: {
-          message: error.response?.data?.error?.message,
+          message: error.response.data.error.message,
         },
-        status: error.response?.status,
+        status: error.response.status,
       });
     }
 
