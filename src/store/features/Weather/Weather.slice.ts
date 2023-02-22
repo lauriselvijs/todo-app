@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 import { weatherService } from "../../../services/Weather";
 import { ipService } from "../../../services/Ip";

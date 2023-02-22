@@ -39,8 +39,6 @@ const WeatherCurrent = () => {
   } = useWeatherCurrent();
   const currentWeather = useRef<HTMLDivElement>(null);
 
-  //TODO:
-  // [ ] - Move logic to hook
   const renderTemperature = useMemo(() => {
     if (metricUnits) {
       return <h2>{celsius}</h2>;
@@ -59,6 +57,15 @@ const WeatherCurrent = () => {
     }
   }, [metricUnits, imperialUnits, kph, mph]);
 
+  const metricUnitBtnStyle = useMemo(
+    () => (metricUnits ? styles.unitBtnSelected : styles.unitBtn),
+    [metricUnits]
+  );
+  const imperialUnitBtnStyle = useMemo(
+    () => (imperialUnits ? styles.unitBtnSelected : styles.unitBtn),
+    [imperialUnits]
+  );
+
   // TODO:
   // [ ] - Replace text with const
   const renderCurrentWeatherData = useMemo(
@@ -70,7 +77,7 @@ const WeatherCurrent = () => {
             {renderTemperature}
             <button
               aria-label="Set metric units"
-              className={metricUnits ? styles.unitBtnSelected : styles.unitBtn}
+              className={metricUnitBtnStyle}
               onClick={onMetricUnitsBtnClick}
             >
               &deg; C
@@ -78,9 +85,7 @@ const WeatherCurrent = () => {
             |
             <button
               aria-label="Set imperial units"
-              className={
-                imperialUnits ? styles.unitBtnSelected : styles.unitBtn
-              }
+              className={imperialUnitBtnStyle}
               onClick={onImperialUnitsBtnClick}
             >
               &deg; F
@@ -98,8 +103,8 @@ const WeatherCurrent = () => {
       dir,
       humidity,
       icon,
-      imperialUnits,
-      metricUnits,
+      imperialUnitBtnStyle,
+      metricUnitBtnStyle,
       onImperialUnitsBtnClick,
       onMetricUnitsBtnClick,
       renderTemperature,
@@ -120,6 +125,24 @@ const WeatherCurrent = () => {
       return <p>{errorMsg}</p>;
     }
   }, [errorMsg, isError, isLoaded, isLoading, renderCurrentWeatherData]);
+
+  const renderShowBtn = useMemo(
+    () =>
+      !isOpen && (
+        <button
+          title="Show current weather"
+          aria-label="Show current weather"
+          className={styles.showBtn}
+          onClick={onFetchCurrentWeatherBtnClick}
+        >
+          <TiWeatherCloudy
+            aria-hidden="true"
+            size={WEATHER_CURRENT_ICON_SIZE}
+          />
+        </button>
+      ),
+    [isOpen, onFetchCurrentWeatherBtnClick]
+  );
 
   const renderAnimation = useMemo(
     () => (
@@ -143,24 +166,6 @@ const WeatherCurrent = () => {
       </Animation>
     ),
     [isOpen, onCloseBtnClick, renderCurrentWeather]
-  );
-
-  const renderShowBtn = useMemo(
-    () =>
-      !isOpen && (
-        <button
-          title="Show current weather"
-          aria-label="Show current weather"
-          className={styles.showBtn}
-          onClick={onFetchCurrentWeatherBtnClick}
-        >
-          <TiWeatherCloudy
-            aria-hidden="true"
-            size={WEATHER_CURRENT_ICON_SIZE}
-          />
-        </button>
-      ),
-    [isOpen, onFetchCurrentWeatherBtnClick]
   );
 
   return (
