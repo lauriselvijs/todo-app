@@ -116,8 +116,6 @@ const WeatherCurrent = () => {
       return renderCurrentWeatherData;
     }
 
-    //TODO:
-    // [ ] - Check if working
     if (isError) {
       return <p>{errorMsg}</p>;
     }

@@ -5,7 +5,7 @@ import TodoMenu from "../TodoList";
 import { render } from "../../__tests__/config/Store.config";
 
 const setup = () => {
-  const todoInput = screen.getByRole(/textbox/i);
+  const todoInput = screen.getByRole("textbox");
   return {
     todoInput,
   };

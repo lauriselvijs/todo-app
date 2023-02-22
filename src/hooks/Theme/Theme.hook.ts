@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../Store";
 import { UseTheme } from "./Theme.hook.d";
 import Theme from "../../style/main.scss";
 import { useMedia } from "react-use";
+import { PREFER_DARK_THEME } from "./Theme.config";
 
 const { dark } = Theme;
 
@@ -18,7 +19,7 @@ export const useTheme = (): UseTheme => {
   const { themeName: currentTheme } = useAppSelector(
     (state: RootState) => state[themeSliceName]
   );
-  const prefersDarkMode = useMedia("(prefers-color-scheme: dark)");
+  const prefersDarkMode = useMedia(PREFER_DARK_THEME);
 
   useLayoutEffect(() => {
     if (currentTheme) {

@@ -12,3 +12,7 @@ export interface CurrentWeatherServiceResponse {
     humidity: number;
   };
 }
+
+export interface CurrentWeatherServiceError {
+  message: string;
+}

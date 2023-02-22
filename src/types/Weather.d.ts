@@ -16,10 +16,3 @@ export interface CurrentWeather {
   };
   humidity: number | null;
 }
-
-export interface WeatherError {
-  status: number | null;
-  error: {
-    message: string;
-  };
-}

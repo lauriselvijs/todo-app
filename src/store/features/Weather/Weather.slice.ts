@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 
 import { weatherService } from "../../../services/Weather";
 import { ipService } from "../../../services/Ip";
-import { CurrentWeather, WeatherError } from "../../../types/Weather.d";
-import { NetworkError } from "../../../types/Network.d";
+import { CurrentWeather } from "../../../types/Weather.d";
+import { CurrentWeatherServiceError } from "../../../services/Weather/Weather.service.d";
 
+import { Error } from "./Weather.slice.d";
 import weatherState from "./Weather.state";
 import {
   FETCH_CURRENT_WEATHER_TYPE,
@@ -17,7 +18,7 @@ export const fetchCurrentWeather = createAsyncThunk<
   CurrentWeather,
   string | undefined,
   {
-    rejectValue: WeatherError;
+    rejectValue: Error;
   }
 >(FETCH_CURRENT_WEATHER_TYPE, async (location = "", { rejectWithValue }) => {
   try {
@@ -28,30 +29,26 @@ export const fetchCurrentWeather = createAsyncThunk<
     const transformedCurrentWeather = transformResponse(currentWeather);
 
     return transformedCurrentWeather;
-  } catch (err: any) {
-    const error: AxiosError<WeatherError> = err;
+  } catch (error: any) {
+    if (axios.isAxiosError<CurrentWeatherServiceError>(error)) {
+      if (error.response?.status && error.response?.data?.message) {
+        return rejectWithValue({
+          error: {
+            message: error.response.data.message,
+          },
+          status: error.response?.status,
+        });
+      }
 
-    if (error.response?.data?.error && error.response?.status) {
       return rejectWithValue({
         error: {
-          message: error.response?.data?.error?.message,
-        },
-        status: error.response?.status,
-      });
-    }
-
-    const networkError: NetworkError = err;
-
-    if (networkError.status) {
-      return rejectWithValue({
-        error: {
-          message: networkError.message,
+          message: error.message,
         },
         status: null,
       });
     }
 
-    throw err;
+    throw error;
   }
 });
 

@@ -23,12 +23,12 @@
   }
 
   .checkmark {
-    @include todo-input-checkmark;
     @include button.checkmark;
+    @include todo-input-checkmark;
 
     &Active {
-      @include todo-input-checkmark;
       @include button.checkmark-clicked;
+      @include todo-input-checkmark;
     }
   }
 }

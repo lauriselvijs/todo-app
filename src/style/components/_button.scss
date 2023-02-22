@@ -33,7 +33,6 @@ button {
 }
 
 @mixin _checkmark {
-  background-color: var(--color-primary);
   border-radius: 50%;
   border: none;
   height: 20px;
@@ -42,6 +41,8 @@ button {
 
 @mixin checkmark {
   @include _checkmark;
+
+  background-color: var(--color-primary);
 
   &::before {
     content: "";
@@ -62,18 +63,6 @@ button {
 @mixin checkmark-clicked {
   @include _checkmark;
 
-  background: var(--color-gradient);
-
-  &::before {
-    content: "";
-    background-image: url("../../assets/icons/icon-check.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 45%;
-    height: inherit;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: inherit;
-  }
+  background: url("../../assets/icons/icon-check.svg") no-repeat center/45%,
+    var(--color-gradient);
 }
