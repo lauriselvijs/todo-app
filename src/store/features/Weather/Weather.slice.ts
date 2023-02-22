@@ -40,6 +40,9 @@ export const fetchCurrentWeather = createAsyncThunk<
         });
       }
 
+    const networkError: NetworkError = err;
+
+    if (networkError.status) {
       return rejectWithValue({
         error: {
           message: error.message,
