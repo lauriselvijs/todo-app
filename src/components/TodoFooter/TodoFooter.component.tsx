@@ -9,11 +9,11 @@ import styles from "./TodoFooter.style.module.scss";
 const TodoFooter = () => {
   const isMobile = useMobile();
 
-  const renderTodoFilter = useMemo(() => {
-    if (!isMobile) {
-      return <TodoFilter />;
-    }
-  }, [isMobile]);
+  const renderTodoFilter = useMemo(
+    () => !isMobile && <TodoFilter />,
+
+    [isMobile]
+  );
 
   return (
     <div className={styles.todoMenuFooter}>

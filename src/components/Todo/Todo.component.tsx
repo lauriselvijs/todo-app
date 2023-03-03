@@ -14,20 +14,24 @@ import styles from "./Todo.style.module.scss";
 import { useMobile } from "../../hooks/Media";
 
 const Todo = () => {
-  const { tasks } = useSelector((state: RootState) => state[todoSliceName]);
+  const {
+    tasks: { length: tasksLength },
+  } = useSelector((state: RootState) => state[todoSliceName]);
   const isMobile = useMobile();
 
-  const renderTodoMenu = useMemo(
+  const renderFilter = useMemo(() => isMobile && <TodoFilter />, [isMobile]);
+
+  const renderMenu = useMemo(
     () =>
-      tasks.length !== 0 && (
+      tasksLength > 0 && (
         <>
           <TodoList />
-          {isMobile && <TodoFilter />}
+          {renderFilter}
           <TodoInfoHelper />
         </>
       ),
 
-    [tasks, isMobile]
+    [tasksLength, renderFilter]
   );
 
   return (
@@ -37,7 +41,7 @@ const Todo = () => {
         <DarkModeBtn />
       </div>
       <TodoInput />
-      {renderTodoMenu}
+      {renderMenu}
     </div>
   );
 };

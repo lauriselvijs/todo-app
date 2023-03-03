@@ -22,7 +22,7 @@ export const fetchCurrentWeather = createAsyncThunk<
   }
 >(FETCH_CURRENT_WEATHER_TYPE, async (location = "", { rejectWithValue }) => {
   try {
-    const ip = await ipService.fetchIp();
+    const { ip } = await ipService.fetchIp();
     const currentWeather = await weatherService.fetchCurrentWeather(
       location || ip
     );

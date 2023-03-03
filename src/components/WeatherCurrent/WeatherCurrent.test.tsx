@@ -1,24 +1,64 @@
+import userEvent from "@testing-library/user-event";
+import { act, cleanup, screen } from "@testing-library/react";
+
 import WeatherCurrent from "./WeatherCurrent.component";
-import { render, screen } from "@testing-library/react";
-import { rest, server } from "../../__tests__/mocks/Server.mock";
-import { WEATHER_API_URL } from "../../services/Weather/Weather.config";
+import { rest, server } from "../../tests/mocks/Server.mock";
+import {
+  WeatherApiType,
+  WEATHER_API_URL,
+} from "../../services/Weather/Weather.config";
+import { renderWithProviders } from "../../tests/config/Store.config";
+import { CurrentWeatherServiceError } from "../../services/Weather/Weather.service.d";
 
-test("Get Current Weather temperature celsius", async () => {
-  render(<WeatherCurrent />);
+const setup = () => {
+  const showCurrentWeatherBtn = screen.getByRole("button", {
+    name: "Show current weather",
+  });
+  return {
+    showCurrentWeatherBtn,
+  };
+};
 
-  const tempC = await screen.findByText("0");
-  expect(tempC).toBeInTheDocument();
-});
+describe("Current weather", () => {
+  it("should display errors", async () => {
+    renderWithProviders(<WeatherCurrent />);
 
-test("Check if error", async () => {
-  render(<WeatherCurrent />);
+    server.use(
+      rest.get(
+        `${WEATHER_API_URL}${WeatherApiType.CURRENT}`,
+        (req, res, ctx) => {
+          return res(
+            ctx.status(404),
+            ctx.json<CurrentWeatherServiceError>({
+              message: "Error",
+            })
+          );
+        }
+      )
+    );
 
-  server.use(
-    rest.get(WEATHER_API_URL, (req, res, ctx) => {
-      return res(ctx.status(404));
-    })
-  );
+    const { showCurrentWeatherBtn } = setup();
 
-  const tempC = await screen.findByText(/Loading.../i);
-  expect(tempC).toBeInTheDocument();
+    await userEvent.click(showCurrentWeatherBtn);
+
+    const errorMsg = await screen.findByText(/Error/i);
+
+    expect(errorMsg).toBeInTheDocument();
+
+    cleanup();
+  });
+
+  it("should get current weather temperature", async () => {
+    renderWithProviders(<WeatherCurrent />);
+
+    const { showCurrentWeatherBtn } = setup();
+
+    await userEvent.click(showCurrentWeatherBtn);
+
+    const windDirection = await screen.findByText(/Wind direction/i);
+
+    expect(windDirection).toBeInTheDocument();
+
+    cleanup();
+  });
 });

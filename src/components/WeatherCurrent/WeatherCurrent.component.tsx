@@ -156,7 +156,7 @@ const WeatherCurrent = () => {
           {renderCurrentWeather}
           <button
             title="Close"
-            aria-label="Close"
+            aria-label="Close current weather"
             className={styles.closeBtn}
             onClick={onCloseBtnClick}
           >

@@ -13,7 +13,7 @@ const { CURRENT } = WeatherApiType;
 export const fetchCurrentWeather = async (
   location: string
 ): Promise<CurrentWeatherServiceResponse> => {
-  const response = await axios.request<CurrentWeatherServiceResponse>({
+  const { data } = await axios.request<CurrentWeatherServiceResponse>({
     method: "GET",
     url: `${WEATHER_API_URL}${CURRENT}`,
     params: { q: location },
@@ -23,5 +23,5 @@ export const fetchCurrentWeather = async (
     },
   });
 
-  return response.data;
+  return data;
 };
