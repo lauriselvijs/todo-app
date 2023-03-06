@@ -68,6 +68,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
 
   return (
     <div
+      data-testid="todo-list-item"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={styles.todoListItem}
