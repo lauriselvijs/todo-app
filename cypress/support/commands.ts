@@ -36,3 +36,25 @@
 //   }
 // }
 import "@testing-library/cypress/add-commands";
+
+Cypress.Commands.add("getTodoInput", () => {
+  cy.findByPlaceholderText(/create a new todo.../i);
+});
+
+Cypress.Commands.add("addTodo", () => {
+  cy.getTodoInput().type("Finnish Job");
+});
+
+Cypress.Commands.add("getTodo", () => {
+  cy.findByText(/finnish job/i);
+});
+  
+declare global {
+  namespace Cypress {
+      interface Chainable {
+        getTodoInput(): Chainable<any>;
+        addTodo(): Chainable<any>;
+        getTodo(): Chainable<any>;
+      }
+  }
+}
