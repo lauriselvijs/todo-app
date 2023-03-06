@@ -16,7 +16,6 @@ const TodoInput = () => {
     () => (
       <button
         aria-label="Check if task completed"
-        data-testid="todo-checkmark"
         onClick={onInputCheckmarkClick}
         className={todoCompleted ? styles.checkmarkActive : styles.checkmark}
       />

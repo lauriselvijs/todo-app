@@ -42,7 +42,6 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
     () => (
       <button
         aria-label="Check if task completed"
-        data-testid="todo-checkmark"
         onClick={onCheckmarkBtnClick}
         className={completed ? styles.checkmarkChecked : styles.checkmark}
       />
@@ -71,7 +70,6 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
     <div
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      data-testid="todo-list-item"
       className={styles.todoListItem}
       aria-label="Hover to enable controls"
     >
