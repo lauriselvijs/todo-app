@@ -30,7 +30,7 @@ export const useTheme = (): UseTheme => {
       themeUpdated(dark);
       document.documentElement.className = dark;
     }
-  }, []);
+  }, [currentTheme, prefersDarkMode, themeUpdated]);
 
   const setTheme = (themeName: string): void => {
     if (themeName !== currentTheme && themeName) {

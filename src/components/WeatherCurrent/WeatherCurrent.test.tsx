@@ -48,7 +48,7 @@ describe("Current weather", () => {
     cleanup();
   });
 
-  it("should get current weather temperature", async () => {
+  it("should see wind direction text", async () => {
     renderWithProviders(<WeatherCurrent />);
 
     const { showCurrentWeatherBtn } = setup();

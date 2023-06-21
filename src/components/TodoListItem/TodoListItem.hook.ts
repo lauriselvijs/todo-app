@@ -21,7 +21,7 @@ export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
 
   useEffect(() => {
     todoId === editedTaskId ? setIsEdit(true) : setIsEdit(false);
-  }, [taskEdited]);
+  }, [editedTaskId, taskEdited, todoId]);
 
   const onInputChange = (e: FormEvent<HTMLInputElement>): void => {
     taskEdited({

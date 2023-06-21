@@ -26,6 +26,7 @@ export const fetchCurrentWeather = createAsyncThunk<
     const currentWeather = await weatherService.fetchCurrentWeather(
       location || ip
     );
+
     const transformedCurrentWeather = transformResponse(currentWeather);
 
     return transformedCurrentWeather;
@@ -76,7 +77,7 @@ const weather = createSlice({
       state.isLoaded = false;
       state.isError = true;
 
-      if (action.payload?.error && action.payload?.status) {
+      if (action.payload?.error) {
         state.error = action.payload;
       }
     });

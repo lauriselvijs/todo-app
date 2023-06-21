@@ -1,14 +1,12 @@
 import { useMemo } from "react";
-import { useMedia } from "react-use";
 
+import { useMobile } from "../../hooks/Media";
 import { Task } from "../../types/Task";
 import TodoDeleteBtn from "../TodoDeleteBtn";
 import TodoEditBtn from "../TodoEditBtn";
 
 import styles from "./TodoListItem.style.module.scss";
 import { useTodoListItem } from "./TodoListItem.hook";
-
-import { useMobile } from "../../hooks/Media";
 
 const TodoListItem = ({ id, msg, completed }: Task) => {
   const {

@@ -3,11 +3,12 @@ import { AiOutlineClose } from "react-icons/ai";
 import { TiWeatherCloudy } from "react-icons/ti";
 
 import Animation from "../shared/Animation";
+
 import {
+  WEATHER_CLOSE_ICON_SIZE,
   WEATHER_CURRENT_ANIMATION_LENGTH,
   WEATHER_CURRENT_ICON_SIZE,
 } from "./WeatherCurrent.config";
-
 import { useWeatherCurrent } from "./WeatherCurrent.hook";
 import styles from "./WeatherCurrent.style.module.scss";
 
@@ -31,7 +32,6 @@ const WeatherCurrent = () => {
     error: {
       error: { message: errorMsg },
     },
-
     onCloseBtnClick,
     onMetricUnitsBtnClick,
     onImperialUnitsBtnClick,
@@ -144,7 +144,7 @@ const WeatherCurrent = () => {
     [isOpen, onFetchCurrentWeatherBtnClick]
   );
 
-  const renderAnimation = useMemo(
+  const renderShowWeather = useMemo(
     () => (
       <Animation
         nodeRef={currentWeather}
@@ -160,7 +160,7 @@ const WeatherCurrent = () => {
             className={styles.closeBtn}
             onClick={onCloseBtnClick}
           >
-            <AiOutlineClose size={24} />
+            <AiOutlineClose size={WEATHER_CLOSE_ICON_SIZE} />
           </button>
         </div>
       </Animation>
@@ -171,7 +171,7 @@ const WeatherCurrent = () => {
   return (
     <>
       {renderShowBtn}
-      {renderAnimation}
+      {renderShowWeather}
     </>
   );
 };
