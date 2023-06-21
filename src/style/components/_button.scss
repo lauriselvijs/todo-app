@@ -42,21 +42,23 @@ button {
 @mixin checkmark {
   @include _checkmark;
 
-  background-color: var(--color-primary);
-
-  &::before {
-    content: "";
-    background-color: var(--color-primary-light);
-    border-radius: 50%;
-    bottom: 1px;
-    left: 1px;
-    position: absolute;
-    right: 1px;
-    top: 1px;
-  }
+  background-color: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
 
   @include media.hover {
     background: var(--color-gradient);
+    border: none;
+
+    &::before {
+      content: "";
+      background-color: var(--color-primary-light);
+      border-radius: 50%;
+      bottom: 1px;
+      left: 1px;
+      position: absolute;
+      right: 1px;
+      top: 1px;
+    }
   }
 }
 
