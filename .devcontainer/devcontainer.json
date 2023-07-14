@@ -9,7 +9,9 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "sudo apt-get update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb -y && npm install && npx cypress install"
+  // "postCreateCommand": "sudo apt-get update -y && sudo DEBIAN_FRONTEND=noninteractive apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb -y && npm install && npx cypress install"
+
+    "postStartCommand": "nvm use && npm install && npm start"
 
   // Configure tool-specific properties.
   // "customizations": {},
