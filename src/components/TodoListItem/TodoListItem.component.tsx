@@ -17,6 +17,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
     onInputChange,
     onCheckmarkBtnClick,
     t,
+    ns: { ui },
   } = useTodoListItem({
     id,
     msg,
@@ -40,7 +41,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
   const renderCheckMarkBtn = useMemo(
     () => (
       <button
-        aria-label={t("Check if task completed", { ns: "ui" })}
+        aria-label={t("Check if task completed", { ns: ui })}
         onClick={onCheckmarkBtnClick}
         className={completed ? styles.checkmarkChecked : styles.checkmark}
       />
@@ -71,7 +72,7 @@ const TodoListItem = ({ id, msg, completed }: Task) => {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={styles.todoListItem}
-      aria-label={t("Hover to enable controls", { ns: "ui" })}
+      aria-label={t("Hover to enable controls", { ns: ui })}
     >
       {renderCheckMarkBtn}
       {renderMsg}

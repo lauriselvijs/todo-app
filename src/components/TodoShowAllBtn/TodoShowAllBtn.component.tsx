@@ -8,6 +8,7 @@ import { todoActions, todoSliceName } from "../../store/features/Todo";
 
 import styles from "./TodoShowAllBtn.style.module.scss";
 import { useTranslation } from "react-i18next";
+import { ns } from "../../config/Lang";
 
 const { ALL } = ShowTasks;
 
@@ -15,7 +16,10 @@ const TodoShowAllBtn = () => {
   const { showTasks } = useSelector((state: RootState) => state[todoSliceName]);
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+
   const { allTasksShowed } = bindActionCreators(todoActions, dispatch);
+
+  const { ui } = ns;
 
   const onTodoShowAllBtnClick = () => {
     allTasksShowed();
@@ -28,7 +32,7 @@ const TodoShowAllBtn = () => {
       }
       onClick={onTodoShowAllBtnClick}
     >
-      {t("All", { ns: "ui" })}
+      {t("All", { ns: ui })}
     </button>
   );
 };

@@ -6,6 +6,7 @@ import { RootState } from "../../store/app/store";
 import { todoActions, todoSliceName } from "../../store/features/Todo";
 import { Task } from "../../types/Task.d";
 import { useTranslation } from "react-i18next";
+import { ns } from "../../config/Lang";
 
 // TODO:
 // [ ] - Extract checkmark functionality and move to shared folder
@@ -51,6 +52,7 @@ export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
 
   return {
     t,
+    ns,
     showModifyMenu,
     onMouseEnter,
     onMouseLeave,

@@ -32,6 +32,8 @@ const WeatherCurrent = () => {
     error: {
       error: { message: errorMsg },
     },
+    t,
+    ns: { ui },
     onCloseBtnClick,
     onMetricUnitsBtnClick,
     onImperialUnitsBtnClick,
@@ -50,12 +52,20 @@ const WeatherCurrent = () => {
 
   const renderWindSpeed = useMemo(() => {
     if (metricUnits) {
-      return <p>{kph} kph</p>;
+      return (
+        <p>
+          {kph} {t("kph", { ns: ui })}
+        </p>
+      );
     }
     if (imperialUnits) {
-      return <p>{mph} mph</p>;
+      return (
+        <p>
+          {mph} {t("mph", { ns: ui })}
+        </p>
+      );
     }
-  }, [metricUnits, imperialUnits, kph, mph]);
+  }, [metricUnits, imperialUnits, kph, mph, t, ui]);
 
   const metricUnitBtnStyle = useMemo(
     () => (metricUnits ? styles.unitBtnSelected : styles.unitBtn),
@@ -72,11 +82,11 @@ const WeatherCurrent = () => {
     () => (
       <div className={styles.data}>
         <div className={styles.main}>
-          <img src={icon} alt="Current weather" title={text} />
+          <img src={icon} alt={t("Current weather", { ns: ui })} title={text} />
           <div className={styles.temperature}>
             {renderTemperature}
             <button
-              aria-label="Set metric units"
+              aria-label={t("Set metric units", { ns: ui })}
               className={metricUnitBtnStyle}
               onClick={onMetricUnitsBtnClick}
             >
@@ -84,7 +94,7 @@ const WeatherCurrent = () => {
             </button>
             |
             <button
-              aria-label="Set imperial units"
+              aria-label={t("Set imperial units", { ns: ui })}
               className={imperialUnitBtnStyle}
               onClick={onImperialUnitsBtnClick}
             >
@@ -94,8 +104,12 @@ const WeatherCurrent = () => {
         </div>
         <div className={styles.info}>
           {renderWindSpeed}
-          <p>Wind Direction {dir}</p>
-          <p>Humidity {humidity} %</p>
+          <p>
+            {t("Wind Direction", { ns: ui })} {dir}
+          </p>
+          <p>
+            {t("Humidity", { ns: ui })} {humidity} %
+          </p>
         </div>
       </div>
     ),
@@ -110,6 +124,8 @@ const WeatherCurrent = () => {
       renderTemperature,
       renderWindSpeed,
       text,
+      t,
+      ui,
     ]
   );
 
@@ -130,8 +146,8 @@ const WeatherCurrent = () => {
     () =>
       !isOpen && (
         <button
-          title="Show current weather"
-          aria-label="Show current weather"
+          title={t("Show current weather", { ns: ui })}
+          aria-label={t("Show current weather", { ns: ui })}
           className={styles.showBtn}
           onClick={onFetchCurrentWeatherBtnClick}
         >
@@ -141,7 +157,7 @@ const WeatherCurrent = () => {
           />
         </button>
       ),
-    [isOpen, onFetchCurrentWeatherBtnClick]
+    [isOpen, onFetchCurrentWeatherBtnClick, t, ui]
   );
 
   const renderShowWeather = useMemo(
@@ -155,8 +171,8 @@ const WeatherCurrent = () => {
         <div ref={currentWeather} className={styles.weatherCurrent}>
           {renderCurrentWeather}
           <button
-            title="Close"
-            aria-label="Close current weather"
+            title={t("Close", { ns: ui })}
+            aria-label={t("Close", { ns: ui })}
             className={styles.closeBtn}
             onClick={onCloseBtnClick}
           >
@@ -165,7 +181,7 @@ const WeatherCurrent = () => {
         </div>
       </Animation>
     ),
-    [isOpen, onCloseBtnClick, renderCurrentWeather]
+    [isOpen, onCloseBtnClick, renderCurrentWeather, t, ui]
   );
 
   return (

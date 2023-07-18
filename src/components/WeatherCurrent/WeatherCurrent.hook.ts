@@ -6,16 +6,18 @@ import {
   fetchCurrentWeather,
   weatherSliceName,
 } from "../../store/features/Weather";
+import { ns } from "../../config/Lang";
+import { useTranslation } from "react-i18next";
 
 export const useWeatherCurrent = () => {
   const dispatch = useAppDispatch();
-
   const { currentWeather, isLoaded, isLoading, isError, error } = useSelector(
     (state: RootState) => state[weatherSliceName]
   );
   const [metricUnits, setMetricUnits] = useState<boolean>(true);
   const [imperialUnits, setImperialUnits] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const onMetricUnitsBtnClick = (): void => {
     setMetricUnits(true);
@@ -37,6 +39,8 @@ export const useWeatherCurrent = () => {
   };
 
   return {
+    ns,
+    t,
     onMetricUnitsBtnClick,
     onImperialUnitsBtnClick,
     onFetchCurrentWeatherBtnClick,

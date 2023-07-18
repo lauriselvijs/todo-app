@@ -12,6 +12,16 @@
   "Set theme": "Set theme",
   "Edit": "Edit",
   "Hover to enable controls": "Hover to enable controls",
+  "Set metric units": "Set metric units",
+  "Set imperial units": "Set imperial units",
+  "Current weather": "Current weather",
+  "Wind Direction": "Wind Direction",
+  "Humidity": "Humidity",
+  "Close": "Close",
+  "kph": "kph",
+  "mph": "mph",
+  "Show current weather": "Show current weather",
   "itemWithCount_one": "{{count}} item left",
+  "itemWithCount_many": "{{count}} items left",
   "itemWithCount_other": "{{count}} items left"
 }

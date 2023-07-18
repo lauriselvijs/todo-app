@@ -11,6 +11,7 @@ import { useAppDispatch } from "../../hooks/Store";
 
 import styles from "./TodoShowActiveBtn.style.module.scss";
 import { useTranslation } from "react-i18next";
+import { ns } from "../../config/Lang";
 
 const { ACTIVE } = ShowTasks;
 
@@ -18,7 +19,9 @@ const TodoShowActiveBtn = () => {
   const { showTasks } = useSelector((state: RootState) => state[todoSliceName]);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+
   const { activeTasksShowed } = bindActionCreators(todoActions, dispatch);
+  const { ui } = ns;
 
   const onTodoShowActiveBtnClick = () => {
     activeTasksShowed();
@@ -33,7 +36,7 @@ const TodoShowActiveBtn = () => {
       }
       onClick={onTodoShowActiveBtnClick}
     >
-      {t("Active", { ns: "ui" })}
+      {t("Active", { ns: ui })}
     </button>
   );
 };

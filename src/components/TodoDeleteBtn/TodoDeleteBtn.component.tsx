@@ -7,11 +7,14 @@ import { todoActions } from "../../store/features/Todo";
 import styles from "./TodoDeleteBtn.style.module.scss";
 import { TodoDeleteBtnProps } from "./TodoDeleteBtn.component.d";
 import { useTranslation } from "react-i18next";
+import { ns } from "../../config/Lang";
 
 const TodoDeleteBtn = ({ taskId }: TodoDeleteBtnProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+
   const { taskDeleted } = bindActionCreators(todoActions, dispatch);
+  const { ui } = ns;
 
   const onTodoDeleteBtnClick = () => {
     taskDeleted(taskId);
@@ -19,8 +22,8 @@ const TodoDeleteBtn = ({ taskId }: TodoDeleteBtnProps) => {
 
   return (
     <button
-      title={t("Delete", { ns: "ui" })}
-      aria-label={t("Delete task", { ns: "ui" })}
+      title={t("Delete", { ns: ui })}
+      aria-label={t("Delete task", { ns: ui })}
       className={styles.todoDeleteBtn}
       onClick={onTodoDeleteBtnClick}
     >

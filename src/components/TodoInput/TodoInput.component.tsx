@@ -11,6 +11,7 @@ const TodoInput = () => {
     handleAddTodoOnKeyPress,
     onInputCheckmarkClick,
     t,
+    ns: { ui },
   } = useTodoInput();
 
   const todoCheckmarkStyle = todoCompleted
@@ -20,27 +21,27 @@ const TodoInput = () => {
   const renderCheckMarkBtn = useMemo(
     () => (
       <button
-        aria-label={t("Check if task completed", { ns: "ui" })}
+        aria-label={t("Check if task completed", { ns: ui })}
         onClick={onInputCheckmarkClick}
         className={todoCheckmarkStyle}
       />
     ),
-    [todoCheckmarkStyle, onInputCheckmarkClick, t]
+    [todoCheckmarkStyle, onInputCheckmarkClick, t, ui]
   );
 
   const renderInput = useMemo(
     () => (
       <input
-        title={t("Press &ldquo;Enter&ldquo; to add new task", { ns: "ui" })}
+        title={t("Press &ldquo;Enter&ldquo; to add new task", { ns: ui })}
         type="text"
-        placeholder={t("Create a new todo...", { ns: "ui" })}
+        placeholder={t("Create a new todo...", { ns: ui })}
         value={input}
         onChange={onInputChange}
         className={styles.input}
         onKeyDown={handleAddTodoOnKeyPress}
       />
     ),
-    [input, onInputChange, handleAddTodoOnKeyPress, t]
+    [input, onInputChange, handleAddTodoOnKeyPress, t, ui]
   );
 
   return (
