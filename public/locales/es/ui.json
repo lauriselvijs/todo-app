@@ -1,0 +1,18 @@
+{
+  "Drag and drop to reorder list": "Arrastre y suelte para reordenar la lista",
+  "Check if task completed": "Comprobar si la tarea se completó",
+  "Create a new todo...": "Crear una nueva tarea...",
+  "Press Enter to add new task": "Prensa",
+  "Clear Completed": "Despejado completo",
+  "All": "Todo",
+  "Active": "Activo",
+  "Completed": "Terminado",
+  "Delete": "Borrar",
+  "Delete task": "Eliminar tarea",
+  "Set theme": "Establecer tema",
+  "Edit": "Editar",
+  "Hover to enable controls": "Pase el cursor para habilitar los controles",
+  "itemWithCount_one": "{{count}} artículo dejado",
+  "itemWithCount_many": "{{count}} artículos dejados",
+  "itemWithCount_other": "{{count}} artículos dejados"
+}

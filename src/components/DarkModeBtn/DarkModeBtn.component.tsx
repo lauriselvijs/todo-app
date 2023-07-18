@@ -4,9 +4,11 @@ import Theme from "../../style/main.scss";
 import { useTheme } from "../../hooks/Theme";
 
 import styles from "./DarkModeBtn.style.module.scss";
+import { useTranslation } from "react-i18next";
 
 const DarkModeBtn = () => {
   const { currentTheme, setTheme, setDefaultTheme } = useTheme();
+  const { t } = useTranslation();
   const { dark, light } = Theme;
 
   const onDarkModeBtnClick = () => {
@@ -15,18 +17,17 @@ const DarkModeBtn = () => {
 
   return (
     <button
-      aria-label="Set theme"
+      aria-label={t("Set theme", { ns: "ui" })}
       onClick={onDarkModeBtnClick}
       className={styles.darkModeBtn}
-      title="Dark theme"
+      title={t("Set theme", { ns: "ui" })}
     >
       <img
         aria-hidden="true"
         width={26}
         height={26}
-        alt="Dark theme"
+        alt={t("Set theme", { ns: "ui" })}
         src={currentTheme ? SunIcon : MoonIcon}
-        id="dark-mode-btn"
       />
     </button>
   );

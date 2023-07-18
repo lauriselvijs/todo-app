@@ -6,11 +6,13 @@ import { todoActions, todoSliceName } from "../../store/features/Todo";
 import { bindActionCreators } from "@reduxjs/toolkit";
 
 import styles from "./TodoShowCompletedBtn.style.module.scss";
+import { useTranslation } from "react-i18next";
 
 const { COMPLETED } = ShowTasks;
 
 const TodoShowCompletedBtn = () => {
   const { showTasks } = useSelector((state: RootState) => state[todoSliceName]);
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { completedTasksShowed } = bindActionCreators(todoActions, dispatch);
 
@@ -27,7 +29,7 @@ const TodoShowCompletedBtn = () => {
       }
       onClick={onTodoShowCompletedBtnClick}
     >
-      Completed
+      {t("Completed", { ns: "ui" })}
     </button>
   );
 };

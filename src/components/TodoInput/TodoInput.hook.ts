@@ -4,10 +4,12 @@ import { bindActionCreators } from "@reduxjs/toolkit";
 import { KeyboardCode } from "../../constants/Keyboard.const";
 import { useAppDispatch } from "../../hooks/Store";
 import { todoActions } from "../../store/features/Todo";
+import { useTranslation } from "react-i18next";
 
 const { ENTER } = KeyboardCode;
 
 export const useTodoInput = () => {
+  const { t } = useTranslation();
   const [input, setInput] = useState<string>("");
   const [todoCompleted, setTodoCompleted] = useState<boolean>(false);
 
@@ -30,6 +32,7 @@ export const useTodoInput = () => {
   };
 
   return {
+    t,
     todoCompleted,
     input,
     onInputChange,

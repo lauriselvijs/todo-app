@@ -5,12 +5,14 @@ import { useAppDispatch } from "../../hooks/Store";
 import { RootState } from "../../store/app/store";
 import { todoActions, todoSliceName } from "../../store/features/Todo";
 import { Task } from "../../types/Task.d";
+import { useTranslation } from "react-i18next";
 
 // TODO:
 // [ ] - Extract checkmark functionality and move to shared folder
 export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
   const [isEdited, setIsEdit] = useState<boolean>(false);
   const [showModifyMenu, setShowModifyMenu] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
   const { taskEdited } = bindActionCreators(todoActions, dispatch);
@@ -48,6 +50,7 @@ export const useTodoListItem = ({ id: todoId, completed, msg }: Task) => {
   };
 
   return {
+    t,
     showModifyMenu,
     onMouseEnter,
     onMouseLeave,

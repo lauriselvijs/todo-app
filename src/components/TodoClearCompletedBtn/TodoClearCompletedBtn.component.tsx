@@ -3,6 +3,7 @@ import { bindActionCreators } from "@reduxjs/toolkit";
 import { todoActions } from "../../store/features/Todo";
 
 import styles from "./TodoClearCompletedBtn.style.module.scss";
+import { useTranslation } from "react-i18next";
 
 const TodoClearCompletedBtn = () => {
   const dispatch = useAppDispatch();
@@ -12,12 +13,14 @@ const TodoClearCompletedBtn = () => {
     completedTasksCleared();
   };
 
+  const { t } = useTranslation();
+
   return (
     <button
       className={styles.todoClearCompletedBtn}
       onClick={onTodoClearCompletedBtnClick}
     >
-      Clear Completed
+      {t("Clear Completed", { ns: "ui" })}
     </button>
   );
 };

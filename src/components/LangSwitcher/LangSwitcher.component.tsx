@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { lngs } from "./LangSwitcher.config";
 import Select, { SingleValue } from "react-select";
+
+import { lngs } from "./LangSwitcher.config";
 import styles from "./LangSwitcher.module.scss";
 
 const LangSwitcher = () => {

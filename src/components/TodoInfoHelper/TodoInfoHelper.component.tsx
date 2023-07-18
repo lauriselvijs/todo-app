@@ -6,7 +6,7 @@ const TodoInfoHelper = () => {
 
   return (
     <div className={styles.todoInfoHelper}>
-      {t("Drag and drop to reorder list")}
+      {t("Drag and drop to reorder list", { ns: "ui" })}
     </div>
   );
 };

@@ -5,3 +5,8 @@ export interface Language {
 export interface LanguageMap {
   [key: string]: Language;
 }
+
+export interface SelectedOption {
+  value: string;
+  label: string;
+}

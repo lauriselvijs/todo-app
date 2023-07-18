@@ -1,0 +1,17 @@
+{
+  "Drag and drop to reorder list": "Drag and drop to reorder list",
+  "Check if task completed": "Check if task completed",
+  "Create a new todo...": "Create a new todo...",
+  "Press &ldquo;Enter&ldquo; to add new task": "Press &ldquo;Enter&ldquo; to add new task",
+  "Clear Completed": "Clear Completed",
+  "All": "All",
+  "Active": "Active",
+  "Completed": "Completed",
+  "Delete": "Delete",
+  "Delete task": "Delete task",
+  "Set theme": "Set theme",
+  "Edit": "Edit",
+  "Hover to enable controls": "Hover to enable controls",
+  "itemWithCount_one": "{{count}} item left",
+  "itemWithCount_other": "{{count}} items left"
+}

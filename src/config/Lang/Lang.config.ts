@@ -5,7 +5,13 @@ import Backend from "i18next-http-backend";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-i18next.use(initReactI18next).use(LanguageDetector).use(Backend).init({
-  debug: isDevelopment,
-  fallbackLng: "en",
-});
+i18next
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(Backend)
+  .init({
+    ns: ["ui", "translation"],
+    defaultNS: "translation",
+    debug: isDevelopment,
+    fallbackLng: "en",
+  });
