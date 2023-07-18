@@ -1,0 +1,72 @@
+@use "../../style/base/font";
+
+.select {
+  position: absolute !important;
+  right: 20px !important;
+  top: 20px !important;
+  width: clamp(100px, 40%, 300px) !important;
+}
+
+:global {
+  .lang-switcher {
+    &__control {
+      background-color: var(--color-primary-light) !important;
+      border-radius: 4px !important;
+      border-width: 0 !important;
+      border: none;
+      padding: 4px;
+      cursor: pointer !important;
+
+      &--menu-is-open {
+        cursor: text !important;
+      }
+    }
+
+    // &__value-container {
+    // }
+
+    &__single-value {
+      color: var(--color-primary-dark) !important;
+      font-weight: font.$weight-bold !important;
+    }
+
+    &__input {
+      caret-color: var(--color-caret);
+    }
+
+    &__indicator-separator {
+      display: none !important;
+    }
+
+    &__dropdown-indicator {
+      color: var(--color-primary-dark) !important;
+      padding: 8px !important;
+      transition: transform 0.2s linear !important;
+      cursor: pointer !important;
+
+      &:hover {
+        transform: rotate(180deg) !important;
+      }
+    }
+
+    &__menu-list {
+      padding: 0 !important;
+    }
+
+    &__option {
+      padding: 12px !important;
+
+      &--is-focused {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+      }
+
+      &--is-selected {
+        background: var(--color-gradient) !important;
+      }
+
+      &--is-focused:not(&--is-selected) {
+        cursor: pointer !important;
+      }
+    }
+  }
+}

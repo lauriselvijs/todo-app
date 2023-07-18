@@ -7,10 +7,10 @@ import styles from "./DarkModeBtn.style.module.scss";
 
 const DarkModeBtn = () => {
   const { currentTheme, setTheme, setDefaultTheme } = useTheme();
-  const { dark } = Theme;
+  const { dark, light } = Theme;
 
   const onDarkModeBtnClick = () => {
-    currentTheme ? setDefaultTheme() : setTheme(dark);
+    currentTheme !== light ? setDefaultTheme() : setTheme(dark);
   };
 
   return (

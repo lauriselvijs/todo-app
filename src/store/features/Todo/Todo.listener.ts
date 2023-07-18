@@ -1,5 +1,6 @@
+import type { AppStartListening } from "../../app/middleware/Listener";
+
 import { todoActions } from "./";
-import type { AppStartListening } from "../../app/middleware/Listener/Listener.middleware";
 
 export const todoListeners = (startAppListening: AppStartListening) => {
   startAppListening({

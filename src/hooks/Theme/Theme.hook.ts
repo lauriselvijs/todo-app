@@ -11,7 +11,7 @@ import Theme from "../../style/main.scss";
 import { useMedia } from "react-use";
 import { PREFER_DARK_THEME } from "./Theme.config";
 
-const { dark } = Theme;
+const { dark, light } = Theme;
 
 export const useTheme = (): UseTheme => {
   const appDispatch = useAppDispatch();
@@ -24,9 +24,7 @@ export const useTheme = (): UseTheme => {
   useLayoutEffect(() => {
     if (currentTheme) {
       document.documentElement.className = currentTheme;
-    }
-
-    if (prefersDarkMode) {
+    } else if (prefersDarkMode) {
       themeUpdated(dark);
       document.documentElement.className = dark;
     }
@@ -40,7 +38,7 @@ export const useTheme = (): UseTheme => {
   };
 
   const setDefaultTheme = (): void => {
-    themeUpdated("");
+    themeUpdated(light);
     document.documentElement.className = "";
   };
 

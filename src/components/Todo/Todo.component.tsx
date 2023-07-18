@@ -9,9 +9,9 @@ import TodoList from "../TodoList";
 import TodoTitle from "../TodoTItle";
 import DarkModeBtn from "../DarkModeBtn";
 import TodoFilter from "../TodoFilter";
+import { useMobile } from "../../hooks/Media";
 
 import styles from "./Todo.style.module.scss";
-import { useMobile } from "../../hooks/Media";
 
 const Todo = () => {
   const {

@@ -1,0 +1,5 @@
+$theme-name: "light";
+
+:export {
+  #{$theme-name}: #{$theme-name};
+}

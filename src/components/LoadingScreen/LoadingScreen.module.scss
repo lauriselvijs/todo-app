@@ -1,0 +1,24 @@
+// LoadingScreen.module.scss
+
+.loadingScreen {
+  align-items: center;
+  background: var(--color-gradient);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  border: 12px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: var(--color-primary-light);
+  width: min(60vw, 100px);
+  height: min(60vw, 100px);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

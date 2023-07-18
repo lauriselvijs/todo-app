@@ -1,11 +1,17 @@
+import { Suspense } from "react";
+
 import Author from "../Author";
 import Todo from "../Todo";
 import WeatherCurrent from "../WeatherCurrent";
+import LoadingScreen from "../LoadingScreen";
+import LangSwitcher from "../LangSwitcher";
 
 const App = () => {
   return (
-    <>
-      <header />
+    <Suspense fallback={<LoadingScreen />}>
+      <header>
+        <LangSwitcher />
+      </header>
       <aside>
         <WeatherCurrent />
       </aside>
@@ -15,7 +21,7 @@ const App = () => {
       <footer>
         <Author />
       </footer>
-    </>
+    </Suspense>
   );
 };
 
