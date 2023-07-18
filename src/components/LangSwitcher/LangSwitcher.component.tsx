@@ -1,32 +1,21 @@
-import { useTranslation } from "react-i18next";
-import Select, { SingleValue } from "react-select";
+import Select from "react-select";
 
-import { lngs } from "./LangSwitcher.config";
 import styles from "./LangSwitcher.module.scss";
+import { useLanguageSwitcher } from "./LangSwitcher.hook";
 
 const LangSwitcher = () => {
-  const { i18n } = useTranslation();
-
-  const handleLanguageChange = (
-    selectedOption: SingleValue<{
-      value: string;
-      label: string;
-    }>
-  ) => {
-    i18n.changeLanguage(selectedOption?.value);
-  };
-
-  const dropdownOptions = Object.keys(lngs).map((lng) => ({
-    value: lng,
-    label: lngs[lng].nativeName,
-  }));
-
-  const selectedOption = dropdownOptions.find(
-    (option) => option.value === i18n.resolvedLanguage
-  );
+  const {
+    t,
+    ns: { ui },
+    handleLanguageChange,
+    selectedOption,
+    dropdownOptions,
+  } = useLanguageSwitcher();
 
   return (
     <Select
+      aria-label={t("Select language", { ns: ui })}
+      noOptionsMessage={(_obj) => t("Not found", { ns: ui })}
       // menuIsOpen
       className={styles.select}
       classNamePrefix="lang-switcher"

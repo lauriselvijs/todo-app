@@ -1,12 +1,14 @@
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { SingleValue } from "react-select";
 
+import { ns } from "../../config/Lang";
+
 import { lngs } from "./LangSwitcher.config";
 import { SelectedOption } from "./LangSwitcher.component.d";
-import { useMemo } from "react";
 
 export const useLanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const handleLanguageChange = (
     selectedOption: SingleValue<SelectedOption>
@@ -30,6 +32,8 @@ export const useLanguageSwitcher = () => {
   );
 
   return {
+    t,
+    ns,
     handleLanguageChange,
     selectedOption,
     dropdownOptions,
