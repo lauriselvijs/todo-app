@@ -43,7 +43,7 @@ button {
   @include _checkmark;
 
   background-color: var(--color-primary-light);
-  border: 2px solid var(--color-primary);
+  border: 3px solid var(--color-primary);
 
   @include media.hover {
     background: var(--color-gradient);
