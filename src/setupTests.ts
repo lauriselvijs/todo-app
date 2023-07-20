@@ -4,3 +4,4 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 import "./tests/mocks/Server.mock";
+import "./tests/mocks/i18next.mock";

@@ -10,7 +10,7 @@ jest.mock("../../hooks/Media", () => ({
 
 const setup = () => {
   const todoInput = screen.getByRole("textbox", {
-    name: "Press “Enter“ to add new task",
+    name: "Press &ldquo;Enter&ldquo; to add new task",
   });
   return {
     todoInput,

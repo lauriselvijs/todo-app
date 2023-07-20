@@ -54,6 +54,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "npm test -- --env=jsdom --coverage",
+    "ci:test": "react-scripts test --watchAll=false",
+    "ci:test-coverage": "npm test -- --env=jsdom --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
